@@ -16,17 +16,17 @@
         />
       </div>
 
-      <ul class="tab">
+      <!-- <ul class="tab">
         <li class="tab-item isSelected" @click="gotoHome">招新首页</li>
         <li class="tab-item" @click="gotoIntro">部门介绍</li>
         <li class="tab-item tab-item-right" @click="gotoAbout">关于我们</li>
-      </ul> 
-      <!-- <div class="tab">
-        <v-tab class="tab-item">招新首页</v-tab>
+      </ul>  -->
+      <div class="tab">
+        <v-tab class="tab-item isSelected" >招新首页</v-tab>
         <v-tab class="tab-item">部门介绍</v-tab>
         <v-tab class="tab-item">关于我们</v-tab>
       </div>  
-         -->
+        
 
 
 
@@ -74,16 +74,18 @@ export default {
   .tab-item {
     display: inline-block;
     width: 68px;
-    padding: 2px 3px 2px 2px;
+    /* padding: 2px 3px 2px 2px; */
+    padding: 2px 2px 2px 4px;
     margin-right: 66px;
     text-align-last: justify;
+    color: #333333;
     font: normal 400 14px "Source Han Serif SC";
-    outline: none;
-    cursor: pointer;
+    /* outline: none;
+    cursor: pointer; */
   }
 
   .isSelected {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-top: 1px solid #333333;
+    border-bottom: 1px solid #333333;
   }
 </style>
