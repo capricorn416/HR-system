@@ -19,89 +19,129 @@
       <div class="sign-up">
         <p class="sign-up_header">报名信息录入</p>
         <div class="sign-up_form">
-          <v-form>
+          <v-app>
+          <v-form ref="form">
             <div class="sign-up_left">
               <v-list>
-                <v-list-item class="list">
+                
+                <v-list-item class="list list-firstline">
                     <v-text-field
+                        v-model="name"
+                        :rules="nameRules"
                         label="姓名"
                         placeholder="姓名"
                         single-line
-                        filled
+                        solo
+                        flat
+                        background-color="#F3F3F3"
                         dense
-                        class="input"
-                    ></v-text-field>
+                        class="input list-firstline-item"
+                        clearable
+                    ></v-text-field>   
+                </v-list-item>
+                <v-list-item class="list">
+                  <div class="sex-tip">性别</div>
                     <v-radio-group
                       v-model="row"
                       row
-                      class="sex"
+                      class="sex list-firstline-item"
                       mandatory
-                      
                     >
                       <v-radio
                         label="男"
                         value="radio-1"
+                        color="#666666"
+                        class="sex-option"
                       ></v-radio>
                       <v-radio
                         label="女"
                         value="radio-2"
+                        color="#666666"
+                        class="sex-option"
                       ></v-radio>
-                    </v-radio-group>                
+                    </v-radio-group>             
                 </v-list-item>
                 <v-list-item class="list">
                     <v-text-field
-                        label="电话"
-                        placeholder="电话"
-                        single-line
-                        filled
-                        dense
-                        class="input"
+                      v-model="phone"
+                      :rules="phoneRules"
+                      label="电话"
+                      placeholder="电话"
+                      single-line
+                      solo
+                      flat
+                      background-color="#F3F3F3"
+                      dense
+                      class="input"
+                      clearable
                     ></v-text-field>
                 </v-list-item>
                 <v-list-item class="list">
                     <v-text-field
+                        v-model="qq"
+                        :rules="qqRules"
                         label="QQ"
                         placeholder="QQ"
                         single-line
-                        filled
+                        solo
+                        flat
+                        background-color="#F3F3F3"
                         dense
                         class="input"
+                        clearable
                     ></v-text-field>
                 </v-list-item>
                 <v-list-item class="list">
-                    <v-text-field
+                    <v-select
                         label="年级"
-                        placeholder="年级"
+                        :items="grades"
                         single-line
-                        filled
+                        solo
+                        flat
+                        background-color="#F3F3F3"
                         dense
                         class="input"
-                    ></v-text-field>
+                    ></v-select>
                 </v-list-item>
                 <v-list-item class="list"> 
                     <v-text-field
+                        v-model="major"
+                        :rules="majorRules"
                         label="专业"
                         placeholder="专业"
                         single-line
-                        filled
+                        solo
+                        flat
+                        background-color="#F3F3F3"
                         dense
                         class="input"
+                        clearable
                     ></v-text-field>    
                 </v-list-item> 
                 </v-list>
-                <button class="sign-up_submit">
+                <button class="sign-up_submit" type="button" @click="validateField">
                   提交
               </button>
             </div>
             <div class="sign-up_right">
               <v-file-input
               placeholder="点击此处上传简历"
+              solo
+              flat
+              background-color="#F3F3F3"
+              height="166"
+              :rules="resumeRules"
               ></v-file-input>
               <v-file-input
               placeholder="点击此处上传作品集（非必填）"
+              solo
+              flat
+              background-color="#F3F3F3"
+              height="166"
               ></v-file-input>
             </div>    
           </v-form>
+          </v-app>
         </div>
 
       </div>
@@ -138,7 +178,33 @@
     },
     data() {
       return {
-        time: "2021秋季"
+        time: "2021秋季",
+        name: '',
+        nameRules: [
+          v => !!v || '姓名不能为空哦'
+        ],
+        phone: '',
+        phoneRules: [
+          v => !!v || '电话不能为空哦',
+          v => /1[0-9]{10}/.test(v) || '请输入正确的电话号码 ~'
+        ],
+        qq: '',
+        qqRules: [
+          v => !!v || 'QQ不能为空哦'
+        ],
+        grades: [
+          '大一','大二','大三','大四','研一','研二','研三'
+        ],
+        gradeRules: [
+          v => !!v || '年级不能为空哦'
+        ],
+        major: '',
+        majorRules: [
+          v => !!v || '专业不能为空哦'
+        ],
+        resumeRules: [
+          v => !!v || '简历不能为空哦'
+        ]
       }
     },
     methods: {
@@ -148,8 +214,29 @@
           top: distance,
           behavior: 'smooth'
         })
+      },
+      validateField() {
+        var state = this.$refs.form.validate();
+        console.log(state);
+        return false;
       }
-    }
+      // getTime() {
+      //   let date = new Date();
+      //   let year = date.getFullYear();
+      //   let month = date.getMonth();
+      //   console.log(year, month);
+      //   if(month<=5) {
+      //     // 1到6月
+      //     this.time = year + '春季';
+      //   }else{
+      //     // 7到12月
+      //     this.time = year + '秋季'
+      //   }
+      // }
+    },
+    // created() {
+    //   this.getTime();
+    // }
   }
 </script>
 
@@ -172,8 +259,7 @@
     /* left: 15%; */
     top: 50%;
     margin-top: -10%;
-    right: 50%;
-    margin-right: 75px;
+    left: 14%;
     width: 400px;
     color: white;
     font: normal 400 48px "Source Han Serif TC";
@@ -185,9 +271,8 @@
     /* top: 72%;
     left: 20%; */
     top: 68%;
-    right: 50%;
-    margin-right: 130px;
-    width: 360px;
+    left: 14%;
+    width: 370px;
     height: 100px;
     display: flex;
     justify-content: space-around;
@@ -269,7 +354,6 @@
     outline: none;
     line-height: 64px;
   }
-
   .click {
     position: absolute;
 
@@ -284,23 +368,28 @@
 
   .sign-up {
     width: 80%;
-    height: 80%;
-    margin: 5% auto;
+    margin: 2% auto;
   }
-  .sign-up_header {
+  .sign-up_header,
+  .sign-up_header_xs {
     font: normal 400 48px "Source Han Serif TC";
     color: #8D8D8D;
     margin-left: 5px;
     margin-bottom: 10px;
-  }  
+  }
+  
+  .sign-up_header_xs {
+    font-size: 40px;
+    display: none;
+  }
+
   .sign-up_form {
     width: 100%;
-    height: 60%;
   }
 
   .sign-up_left {
     float: left;
-    width: 50%;
+    width: 40%;
   }
 
   .sign-up_right {
@@ -311,8 +400,26 @@
     padding-left: 0;
     margin-left: -15px;
   }
+  .sex {
+    min-width: 150px;
+  }
+  .sex-option {
+    margin-top: -20px;
+  }
+  .sex-tip {
+    background-color: #f3f3f3;
+    min-width: 75px;
+    height: 36px;
+    border-radius: 3px;
+    text-indent: 12px;
+    line-height: 36px;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    margin-right: 30px;
+    color: #7a7a6a;
+  }
   .sign-up_submit {
-    margin-top: 15px;
+    margin-top: 10px;
     height: 71px;
     width: 222px;
     background-color: #333333;
@@ -330,20 +437,20 @@
   .footer_logo {
     position: absolute;
     left: 89px;
-    top: 20%;    
+    top: 55px;    
   }
   .footer_message {
     position: absolute;
     left: 101px;
-    bottom: 10%;
+    bottom: 27px;
     color: rgba(200, 200, 200, 0.5);
     font: normal 400 18px "Source Han Serif SC";
     letter-spacing: 0.2em;
   }
   .footer_contact {
     position: absolute;
-    left: 821px;
-    top: 23%;
+    left: 61%;
+    top: 65px;
     width: 291px;
     height: 96px;
     line-height: 12px;
@@ -352,5 +459,38 @@
     color: #DADADA;
     font: normal 700 14px "Source Han Serif SC";
   }
-  
+  @media screen and (max-width: 768px) {
+    .sign-up_header {
+      font-size: 40px;
+    }
+    .sign-up_left {
+      width: 50%;
+    }
+    .sex-tip {
+      display: none;
+    }
+    .join {
+      left: 5%;
+      width: 230px;
+    }
+    .join_btn {
+      width: 40px;
+      height: 40px;
+    }
+    .join_font {
+      font-size: 40px;
+    }
+    .time {
+      left: 4%;
+      top: 40%;
+      font-size: 30px;
+    }
+    .footer_logo,
+    .footer_message {
+      display: none;
+    }
+    .footer_contact {
+      left: 10%;
+    }
+  }
 </style>
