@@ -15,24 +15,13 @@
           height="50"
         />
       </div>
-
-      <!-- <ul class="tab">
-        <li class="tab-item isSelected" @click="gotoHome">招新首页</li>
-        <li class="tab-item" @click="gotoIntro">部门介绍</li>
-        <li class="tab-item tab-item-right" @click="gotoAbout">关于我们</li>
-      </ul>  -->
       <div class="tab">
-        <v-tab class="tab-item isSelected" >招新首页</v-tab>
-        <v-tab class="tab-item">部门介绍</v-tab>
-        <v-tab class="tab-item">关于我们</v-tab>
+        <v-tab v-for="(item, index) in pages" :key="index" class="tab-item" @click="gotoPages(index)"
+        :class="{isSelected: index === currentIndex}">
+          {{ item }}
+        </v-tab>
       </div>  
-        
-
-
-
-
     </v-app-bar>
-
   </v-app>
 </template>
 
@@ -42,17 +31,27 @@ export default {
   name: 'App',
 
   data: () => ({
-    //
+    pages:[
+      '招新首页',
+      '部门介绍',
+      '关于我们'
+    ],
+    currentIndex: 0
   }),
   methods: {
-    gotoHome() {
-      this.$router.push({ path: '/' });
-    },
-    gotoIntro() {
-
-    },
-    gotoAbout() {
-      this.$router.push({ path: '/about' });
+    gotoPages(index) {
+      this.currentIndex = index;
+      switch(index) {
+        case 0:
+          this.$router.push({ path: '/' });
+          break;
+        case 1:
+          this.$router.push({ path: '/introduction' });
+          break;
+        case 2:
+          this.$router.push({ path: '/about' });
+          break;
+      }
     }
   }
 };

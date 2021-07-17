@@ -2,12 +2,11 @@
   <div>
     <!-- 招新首页 -->
     <div class="home">
-      <head-bar></head-bar>
       <div class="main">
         <p class="time">Pivot Studio<br/>{{time}}招新</p>
         <div class="join">
-          <button class="join_btn" @click="gotoRegister">
-            <v-icon x-large dark class="join_icon">mdi-chevron-down</v-icon>   
+          <button class="join_btn" @click="gotoRegister" @mouseover="changeColor">
+            <v-icon x-large class="join_icon" color="#ffffff" ref="icon">mdi-chevron-down</v-icon>   
           </button>
           <button class="join_font" @click="gotoRegister" >JOIN US</button>
         </div>
@@ -19,16 +18,20 @@
       <div class="sign-up">
         <p class="sign-up_header">报名信息录入</p>
         <div class="sign-up_form">
-          <v-form>
+          <v-form ref="form">
             <div class="sign-up_left">
               <v-list>
                 <v-list-item class="list">
                     <v-text-field
+                        v-model="name"
+                        :rules="nameRules"
                         label="姓名"
                         placeholder="姓名"
                         single-line
-                        filled
+                        solo
+                        flat
                         dense
+                        background-color="#F3F3F3"
                         class="input"
                     ></v-text-field>
                     <v-radio-group
@@ -50,55 +53,79 @@
                 </v-list-item>
                 <v-list-item class="list">
                     <v-text-field
-                        label="电话"
-                        placeholder="电话"
-                        single-line
-                        filled
-                        dense
-                        class="input"
+                      v-model="phone"
+                      :rules="phoneRules"
+                      label="电话"
+                      placeholder="电话"
+                      single-line
+                      solo
+                      flat
+                      background-color="#F3F3F3"
+                      dense
+                      class="input"
                     ></v-text-field>
                 </v-list-item>
                 <v-list-item class="list">
                     <v-text-field
+                        v-model="qq"
+                        :rules="qqRules"
                         label="QQ"
                         placeholder="QQ"
                         single-line
-                        filled
+                        solo
+                        flat
+                        background-color="#F3F3F3"
                         dense
                         class="input"
                     ></v-text-field>
                 </v-list-item>
                 <v-list-item class="list">
-                    <v-text-field
-                        label="年级"
-                        placeholder="年级"
-                        single-line
-                        filled
-                        dense
-                        class="input"
-                    ></v-text-field>
+                    <v-select
+                      :items="grades"
+                      label="年级"
+                      solo
+                      flat
+                      background-color="#F3F3F3"
+                      dense
+                      single-line
+                      :rules="gradeRules"
+                    ></v-select>
                 </v-list-item>
                 <v-list-item class="list"> 
                     <v-text-field
+                        v-model="major"
+                        :rules="majorRules"
                         label="专业"
                         placeholder="专业"
                         single-line
-                        filled
+                        solo
+                        flat
+                        background-color="#F3F3F3"
                         dense
                         class="input"
                     ></v-text-field>    
                 </v-list-item> 
                 </v-list>
-                <button class="sign-up_submit">
+                <button class="sign-up_submit" @click="validateField" type="button">
                   提交
               </button>
             </div>
             <div class="sign-up_right">
               <v-file-input
+              solo
+              flat
+              background-color="#F3F3F3"
+              height="137"
+              :rules="resumeRules"
               placeholder="点击此处上传简历"
               ></v-file-input>
               <v-file-input
+              solo
+              flat
+              height="137"
+              background-color="#F3F3F3"
               placeholder="点击此处上传作品集（非必填）"
+              
               ></v-file-input>
             </div>    
           </v-form>
@@ -128,17 +155,38 @@
 </template>
 
 <script>
-  import HeadBar from 'components/HeadBar.vue'
-
   export default {
     name: 'Home',
-
     components: {
-      HeadBar
     },
     data() {
       return {
-        time: "2021秋季"
+        valid: false,
+        time: "2021秋季",
+        name: '',
+        nameRules: [
+          v => !!v || '姓名不能为空哦'
+        ],
+        phone: '',
+        phoneRules: [
+          v => !!v || '电话不能为空哦',
+          v => /1[0-9]{10}/.test(v) || '请输入正确的电话号码 ~'
+        ],
+        qq: '',
+        qqRules: [
+          v => !!v || 'QQ不能为空哦'
+        ],
+        grades: ['大一','大二','大三','大四','研一','研二','研三'],
+        gradeRules: [
+          v => !!v || '年级不能为空哦'
+        ],
+        major: '',
+        majorRules: [
+          v => !!v || '专业不能为空哦'
+        ],
+        resumeRules: [
+          v => !!v || '简历不能为空哦'
+        ]
       }
     },
     methods: {
@@ -148,8 +196,29 @@
           top: distance,
           behavior: 'smooth'
         })
-      }
-    }
+      },
+      validateField() {
+        var state = this.$refs.form.validate();
+        console.log(state);
+        return false;
+      },
+      // getTime() {
+      //   let date = new Date();
+      //   let year = date.getFullYear();
+      //   let month = date.getMonth();
+      //   console.log(year, month);
+      //   if(month<=5) {
+      //     // 1到6月
+      //     this.time = year + '春季';
+      //   }else{
+      //     // 7到12月
+      //     this.time = year + '秋季'
+      //   }
+      // }
+    },
+    // created() {
+    //   this.getTime();
+    // }
   }
 </script>
 
@@ -246,11 +315,11 @@
     animation: light 2s linear infinite;
   }
   .join_btn:hover::before {
-    background: lightgray;;
+    background: lightgray;
     box-shadow: 0 0 20px aqua; 
   }
   .join_btn:hover::after {
-    animation: none;
+    display: none;
   }
   @keyframes light{
     0%{
