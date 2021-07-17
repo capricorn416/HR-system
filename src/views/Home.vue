@@ -2,7 +2,7 @@
   <div>
     <!-- 招新首页 -->
     <div class="home">
-      <head-bar></head-bar>
+    
       <div class="main">
         <p class="time">Pivot Studio<br/>{{time}}招新</p>
         <div class="join">
@@ -168,14 +168,8 @@
 </template>
 
 <script>
-  import HeadBar from 'components/HeadBar.vue'
-
   export default {
     name: 'Home',
-
-    components: {
-      HeadBar
-    },
     data() {
       return {
         time: "2021秋季",
@@ -398,7 +392,6 @@
   }
   .list {
     padding-left: 0;
-    margin-left: -15px;
   }
   .sex {
     min-width: 150px;
