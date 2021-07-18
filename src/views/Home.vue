@@ -40,7 +40,21 @@
                     ></v-text-field>   
                 </v-list-item>
                 <v-list-item class="list">
-                  <div class="sex-tip">性别</div>
+                  <v-select
+                        v-model="select"
+                        label="组别"
+                        :items="groups"
+                        :rules="groupRules"
+                        single-line
+                        solo
+                        flat
+                        background-color="#F3F3F3"
+                        dense
+                        class="input group"
+                        item-text="name"
+                        
+                    ></v-select>
+                  <!-- <div class="sex-tip">性别</div> -->
                     <v-radio-group
                       v-model="row"
                       row
@@ -59,8 +73,22 @@
                         color="#666666"
                         class="sex-option"
                       ></v-radio>
-                    </v-radio-group>             
+                    </v-radio-group>          
                 </v-list-item>
+                  <v-list-item class="list group_xs">
+                  <v-select
+                        label="组别"
+                        :items="groups"
+                        :rules="groupRules"
+                        single-line
+                        solo
+                        flat
+                        background-color="#F3F3F3"
+                        dense
+                        class="input "
+                        v-model="select"
+                    ></v-select>
+                  </v-list-item>
                 <v-list-item class="list">
                     <v-text-field
                       v-model="phone"
@@ -95,6 +123,7 @@
                     <v-select
                         label="年级"
                         :items="grades"
+                        :rules="gradeRules"
                         single-line
                         solo
                         flat
@@ -129,7 +158,7 @@
               solo
               flat
               background-color="#F3F3F3"
-              height="166"
+              height="162"
               :rules="resumeRules"
               ></v-file-input>
               <v-file-input
@@ -137,7 +166,7 @@
               solo
               flat
               background-color="#F3F3F3"
-              height="166"
+              height="162"
               ></v-file-input>
             </div>    
           </v-form>
@@ -165,6 +194,11 @@ import Bottom from '../components/Bottom.vue';
         name: '',
         nameRules: [
           v => !!v || '姓名不能为空哦'
+        ],
+        select: '',
+        groups: [ '产品组', '运营组', '设计组', '前端组', '后端组', '移动组'],
+        groupRules: [
+          v => !!v || '组别不能为空哦'
         ],
         phone: '',
         phoneRules: [
@@ -201,6 +235,7 @@ import Bottom from '../components/Bottom.vue';
       validateField() {
         var state = this.$refs.form.validate();
         console.log(state);
+        console.log(this.select);
         return false;
       }
       // getTime() {
@@ -372,23 +407,31 @@ import Bottom from '../components/Bottom.vue';
 
   .sign-up_left {
     float: left;
-    width: 40%;
+    width: 45%;
   }
 
   .sign-up_right {
+    padding-top: 10px;
     float: right;
     width: 50%;
   }
   .list {
     padding-left: 0;
   }
+  .group {
+    min-width: 110px;
+  }
+  .group_xs {
+    display: none;
+  }
   .sex {
-    min-width: 150px;
+    padding-left: 10%;
+    min-width: 180px;
   }
   .sex-option {
     margin-top: -20px;
   }
-  .sex-tip {
+  .sex-tip, .group-tip {
     background-color: #f3f3f3;
     min-width: 75px;
     height: 36px;
@@ -423,6 +466,12 @@ import Bottom from '../components/Bottom.vue';
     }
     .sex-tip {
       display: none;
+    }
+    .group_xs {
+      display: block;
+    }
+    .group {
+      display: none !important;;
     }
     .join {
       left: 5%;

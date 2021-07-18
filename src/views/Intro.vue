@@ -102,7 +102,6 @@
     .bottom {
       position: relative;
       height: 250px;
-      
     }
 
 </style>
