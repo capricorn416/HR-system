@@ -76,7 +76,7 @@ export default {
           this.$router.push({ path: '/' });
           break;
         case 1:
-          this.$router.push({ path: '/introduction' });
+          this.$router.push({ path: '/intro' });
           break;
         case 2:
           this.$router.push({ path: '/about' });

@@ -147,28 +147,17 @@
       </div>
     </div>
     <!-- 页尾 -->
-    <div class="footer">
-        <v-img
-          class="footer_logo"
-          contain
-          src="~assets/img/home/logo-white.png"
-          width="139"
-          height="46"
-        />
-        <p class="footer_message">© 2021 PIVOT STUDIO提供</p>
-        <div class="footer_contact">
-          <p>联系我们</p>
-          <p>邮箱：team@pivotstudio.cn</p>
-          <p>加入招新群</p>
-          <p>QQ群：435230136</p>
-        </div>
+    <div class="home_footer">
+        <bottom/>
     </div>
   </div>
 
 </template>
 
 <script>
+import Bottom from '../components/Bottom.vue';
   export default {
+  components: { Bottom },
     name: 'Home',
     data() {
       return {
@@ -420,37 +409,10 @@
     color: #F3F3F3;
     outline: none;
   }
-  .footer {
+  .home_footer {
     position: absolute;
     top: 200%;
-    height: 250px;
     width: 100%;
-    background-color: #2C2C2C;
-  }
-  .footer_logo {
-    position: absolute;
-    left: 89px;
-    top: 55px;    
-  }
-  .footer_message {
-    position: absolute;
-    left: 101px;
-    bottom: 27px;
-    color: rgba(200, 200, 200, 0.5);
-    font: normal 400 18px "Source Han Serif SC";
-    letter-spacing: 0.2em;
-  }
-  .footer_contact {
-    position: absolute;
-    left: 61%;
-    top: 65px;
-    width: 291px;
-    height: 96px;
-    line-height: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #DADADA;
-    font: normal 700 14px "Source Han Serif SC";
   }
   @media screen and (max-width: 768px) {
     .sign-up_header {
@@ -477,13 +439,6 @@
       left: 4%;
       top: 40%;
       font-size: 30px;
-    }
-    .footer_logo,
-    .footer_message {
-      display: none;
-    }
-    .footer_contact {
-      left: 10%;
     }
   }
 </style>
