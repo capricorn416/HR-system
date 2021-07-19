@@ -27,6 +27,7 @@ export default {
   .footer {
     height: 250px;
     background-color: #2c2c2c;
+    position: relative;
   }
   .footer_logo {
     position: absolute;

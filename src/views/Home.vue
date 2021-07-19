@@ -51,7 +51,6 @@
                         dense
                         class="input group"
                         item-text="name"
-                        
                     ></v-select>
                   <!-- <div class="sex-tip">性别</div> -->
                     <v-radio-group
@@ -175,7 +174,7 @@
       </div>
     </div>
     <!-- 页尾 -->
-    <div class="home_footer">
+    <div class="home_footer" v-show="hidShow">
         <bottom/>
     </div>
   </div>
@@ -220,7 +219,28 @@ import Bottom from '../components/Bottom.vue';
         ],
         resumeRules: [
           v => !!v || '简历不能为空哦'
-        ]
+        ],
+        docmHeight: document.documentElement.clientHeight,
+        showHeight: document.documentElement.clientHeight,
+        hidShow: true
+      }
+    },
+    // 防止页尾在输入时上浮
+    watch: {
+      showHeight: function() {
+        if(this.docmHeight > this.showHeight) {
+          this.hidShow = false;
+        }else {
+          this.hidShow = true;
+        }
+      }
+    },
+    mounted() {
+      let vm = this;
+      window.onresize = () => {
+        return (()=>{
+          this.showHeight = document.body.clientHeight;
+        })()
       }
     },
     methods: {
@@ -374,6 +394,7 @@ import Bottom from '../components/Bottom.vue';
     width: 100%;
     top: 100%;
     height: 100%;
+    background-color: white;
   }
   .sign-up {
     width: 80%;
@@ -426,8 +447,8 @@ import Bottom from '../components/Bottom.vue';
     color: #7a7a6a;
   }
   .sign-up_submit {
-    margin-top: 10px;
-    height: 71px;
+    margin-top: 2%;
+    padding: 10px 0;
     width: 222px;
     background-color: #333333;
     font: normal 700 40px "Source Han Serif TC";
@@ -436,12 +457,13 @@ import Bottom from '../components/Bottom.vue';
   }
   .home_footer {
     position: absolute;
-    top: 200%;
+    top: 210%;
     width: 100%;
   }
   @media screen and (max-width: 767px) {
     .sign-up_header {
-      font-size: 40px;
+      font-size: 32px;
+      margin: 0;
     }
     .sign-up_left {
       width: 50%;
@@ -470,6 +492,12 @@ import Bottom from '../components/Bottom.vue';
       left: 4%;
       top: 40%;
       font-size: 30px;
+    }
+    .sign-up_submit {
+      font-size: 24px;
+      padding: 5px;
+      width: 110px;
+      margin-top: 0;
     }
   }
 </style>
