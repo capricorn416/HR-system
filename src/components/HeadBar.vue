@@ -124,7 +124,7 @@ export default {
     border-top: 1px solid #333333;
     border-bottom: 1px solid #333333;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     .logo {
       height: 40px;
       left: 10%;

@@ -1,53 +1,173 @@
 <template>
     <div>
+        <!-- 关于我们 -->
         <div class="main2">
             <div class="section">
-                <v-list v-for="(group, index) in groups" :key="index">
+                <!-- 在中等屏幕及以上呈现 -->
+                <v-list v-for="(group, index) in groups" :key="index" class="card">
+                    <!-- 奇偶行交叉呈现: 轮播图在左-->
+                    <div v-if="index % 2 == 0">
+                      <v-list-item class="section_item">
+                          <v-card
+                          flat
+                          color="#FBFBFB"
+                          height="435"
+                          width="100%"
+                          >
+                          <v-row>
+                            <!-- 轮播图部分 -->
+                            <v-col cols="12" sm="6">
+                              <div class="section_left" >
+                                <div class="section_swiper">
+                                <v-app>
+                                  <v-carousel
+                                    show-arrows-on-hover
+                                    v-model="model" 
+                                    height="274" 
+                                    hide-delimiter-background
+                                    cycle
+                                    interval="3000"
+                                    class="swiper"
+                                  > 
+                                    <v-carousel-item 
+                                      v-for="(item,i) in items"
+                                      :key="i"
+                                      :src="item.src"
+                                    >
+                                    </v-carousel-item>
+                                  </v-carousel> 
+                                </v-app>
+                                </div>
+                              </div>
+                            </v-col>
+                            <!-- 文字部分 -->
+                            <v-col cols="12" sm="6">
+                            <div class="section_right">
+                              <div class="section_font">
+                                <h1 class="section_font_header">
+                                  {{ group.name }}
+                                </h1>
+                                <p class="section_font_info">
+                                  {{ group.info }}
+                                </p>
+                              </div>
+                            </div>
+                            </v-col>
+                          </v-row>
+                          </v-card>
+                      </v-list-item>
+                    </div>
+                    <!-- 轮播图在右 -->
+                    <div v-else>
+                      <v-list-item class="section_item">
+                          <v-card
+                          flat
+                          color="#FBFBFB"
+                          height="435"
+                          width="100%"
+                          >
+                          <v-row>
+                            <!-- 文字部分 -->
+                            <v-col cols="12" sm="6">
+                              <div class="section_left" >
+                                <div class="section_font">
+                                  <h1 class="section_font_header">
+                                    {{ group.name }}
+                                  </h1>
+                                  <p class="section_font_info">
+                                    {{ group.info }}
+                                  </p>
+                                </div>
+                              </div>
+                            </v-col>
+                            <!-- 轮播图部分 -->
+                            <v-col cols="12" sm="6">
+                              <div class="section_right">
+                                <div class="section_swiper">
+                                <v-app>
+                                  <v-carousel
+                                    show-arrows-on-hover
+                                    v-model="model" 
+                                    height="274" 
+                                    hide-delimiter-background
+                                    cycle
+                                    interval="3000"
+                                    class="swiper"
+                                  > 
+                                    <v-carousel-item 
+                                      v-for="(item,i) in items"
+                                      :key="i"
+                                      :src="item.src"
+                                    >
+                                    </v-carousel-item>
+                                  </v-carousel> 
+                                </v-app>
+                                </div>
+                              </div>
+                            </v-col>
+                          </v-row>
+                          </v-card>
+                      </v-list-item>
+                    </div>
+                </v-list>
+
+                <!-- 在小屏呈现 -->
+                <v-list v-for="(group, index) in groups" :key="index" class="card_xs">
                     <v-list-item class="section_item">
                         <v-card
-                        flat
                         color="#FBFBFB"
                         height="435"
                         width="100%"
                         >
-                          <div class="section_left">
-                            <div class="section_swiper">
-                            <v-app>
-                              <v-carousel
-                                show-arrows-on-hover
-                                v-model="model" 
-                                height="274" 
-                                hide-delimiter-background
-                                cycle
-                                interval="3000"
-                              > 
-                                <v-carousel-item 
-                                  v-for="(item,i) in items"
-                                  :key="i"
-                                  :src="item.src"
-                                >
-                                </v-carousel-item>
-                              </v-carousel> 
-                            </v-app>
+                        <!-- 轮播图在上，文字在下 -->
+                        <v-row>
+                          <!-- 轮播图部分 -->
+                          <v-col cols="12" sm="6">
+                            <div class="section_left" >
+                              <div class="section_swiper">
+                              <v-app>
+                                <v-carousel
+                                  show-arrows-on-hover
+                                  v-model="model" 
+                                  height="274" 
+                                  hide-delimiter-background
+                                  cycle
+                                  interval="3000"
+                                  class="swiper"
+                                > 
+                                  <v-carousel-item 
+                                    v-for="(item,i) in items"
+                                    :key="i"
+                                    :src="item.src"
+                                  >
+                                  </v-carousel-item>
+                                </v-carousel> 
+                              </v-app>
+                              </div>
                             </div>
-                          </div>
-                          <div class="section_right">
-                            <div class="section_font">
-                              <h1 class="section_font_header">
-                                {{ group.name }}
-                              </h1>
-                              <p class="section_font_info">
-                                {{ group.info }}
-                              </p>
+                          </v-col>
+                          <!-- 文字部分 -->
+                          <v-col cols="12" sm="6">
+                            <div class="section_right">
+                              <div class="section_font">
+                                <h1 class="section_font_header">
+                                  {{ group.name }}
+                                </h1>
+                                <p class="section_font_info">
+                                  {{ group.info }}
+                                </p>
+                              </div>
                             </div>
-                          </div>
-                        
+                          </v-col>
+                        </v-row>
                         </v-card>
                     </v-list-item>
                 </v-list>
             </div>
         </div>
-        <div class="bottom">
+
+        <!-- 页尾 -->
+        <div class="intro_footer">
           <bottom/>
         </div>
     </div>
@@ -64,44 +184,64 @@
     .section {
         position: relative;
         width: 84%;
-        margin: 104px auto;
+        margin: 7% auto;
     }
     .section_item {
       margin-bottom: 153px;
     }
-    .section_left {
-      float: left;
-      width: 50%;
-    }
-    .section_right {
-      float: right;
-      width: 50%;
-    }
     .section_swiper {
-      margin-top: 40px;
-      margin-left: 40px;
+      margin: 50px 40px 40px 40px;
       height: 274px;
     }
     .v-application--wrap {
       min-height: 0;
     }
     .section_font {
-      margin-top: 30px;
-      margin-left: 117px;
+      margin-top: 40px;
+      margin-left: 10%;
+      margin-right: 10%;
     }
     .section_font_header {
       font: normal 400 48px 'Source Han Serif TC';
       color: #BDBDBD;
       line-height: 64px;
+      margin-bottom: 20px;
     }
     .section_font_info {
       font: normal 400 16px 'Advent Pro';
       color: #000;
-      margin-top: 20px;
     }
-    .bottom {
+    .card_xs {
+      display: none;
+    }
+    .intro_footer {
       position: relative;
       height: 250px;
+    }
+    @media screen and (max-width: 600px) {
+      .section_swiper {
+        margin: 0;
+        height: 200px;
+      }
+      .swiper {
+        height: 200px!important;
+      }
+      .section_font {
+        margin: -20px 20px 0 20px;
+      }
+      .section_font_header {
+        font-size: 32px;
+        margin-bottom: 0;
+      }
+      .section_font_info {
+        font-size: 14px;
+      }
+      .card {
+        display: none;
+      }
+      .card_xs {
+        display: block;
+      }
     }
 
 </style>
@@ -117,11 +257,11 @@ export default {
         return {
             groups: [{
                 name: '产品组',
-                info: '1111111111'
+                info: '11111111111111111111111111111111111111111111111111111111111111111111111111111111111'
             },
             {
                 name: '设计组',
-                info: '2222222222'
+                info: '2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222'
             },
             {
                 name: '运营组',

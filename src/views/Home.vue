@@ -2,7 +2,6 @@
   <div>
     <!-- 招新首页 -->
     <div class="home">
-    
       <div class="main">
         <p class="time">Pivot Studio<br/>{{time}}招新</p>
         <div class="join">
@@ -258,7 +257,7 @@ import Bottom from '../components/Bottom.vue';
   }
 </script>
 
-<style>
+<style scoped>
   .main {
     position: absolute;
     top: 99px;
@@ -273,8 +272,6 @@ import Bottom from '../components/Bottom.vue';
   }
   .time {
     position: absolute;
-    /* top: 39%; */
-    /* left: 15%; */
     top: 50%;
     margin-top: -10%;
     left: 14%;
@@ -372,48 +369,33 @@ import Bottom from '../components/Bottom.vue';
     outline: none;
     line-height: 64px;
   }
-  .click {
-    position: absolute;
-
-  }
-
   .register {
     position: absolute;
     width: 100%;
     top: 100%;
     height: 100%;
   }
-
   .sign-up {
     width: 80%;
     margin: 2% auto;
   }
-  .sign-up_header,
-  .sign-up_header_xs {
+  .sign-up_header {
     font: normal 400 48px "Source Han Serif TC";
     color: #8D8D8D;
     margin-left: 5px;
     margin-bottom: 10px;
   }
-  
-  .sign-up_header_xs {
-    font-size: 40px;
-    display: none;
-  }
-
   .sign-up_form {
     width: 100%;
   }
-
   .sign-up_left {
     float: left;
     width: 45%;
   }
-
   .sign-up_right {
     padding-top: 10px;
     float: right;
-    width: 50%;
+    width: 45%;
   }
   .list {
     padding-left: 0;
@@ -457,7 +439,7 @@ import Bottom from '../components/Bottom.vue';
     top: 200%;
     width: 100%;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     .sign-up_header {
       font-size: 40px;
     }
