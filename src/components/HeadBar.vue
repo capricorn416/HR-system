@@ -4,6 +4,7 @@
       color="#FFF"
       height="99"
       flat
+     
     >
       <div>
         <v-img
@@ -52,7 +53,7 @@ export default {
 
     },
     gotoAbout() {
-      this.$router.push({ path: '/about' });
+      this.$router.push({ path: '/aboutus' });
     }
   }
 };
