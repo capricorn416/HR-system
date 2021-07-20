@@ -421,6 +421,7 @@ import Bottom from '../components/Bottom.vue';
   .list {
     padding-left: 0;
   }
+
   .group {
     min-width: 110px;
   }
@@ -457,7 +458,7 @@ import Bottom from '../components/Bottom.vue';
   }
   .home_footer {
     position: absolute;
-    top: 210%;
+    top: 205%;
     width: 100%;
   }
   @media screen and (max-width: 767px) {
@@ -498,6 +499,15 @@ import Bottom from '../components/Bottom.vue';
       padding: 5px;
       width: 110px;
       margin-top: 0;
+    }
+
+    @media screen and (max-height: 550px) {
+      .home_footer {
+        top: 225%;
+      }
+      .list {
+        margin-bottom: -5px;
+      }
     }
   }
 </style>

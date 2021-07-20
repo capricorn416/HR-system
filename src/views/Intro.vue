@@ -48,7 +48,9 @@
                                   {{ group.name }}
                                 </h1>
                                 <p class="section_font_info">
-                                  {{ group.info }}
+                                  {{ group.info1 }}
+                                  <br/>
+                                  {{ group.info2 }}
                                 </p>
                               </div>
                             </div>
@@ -75,7 +77,9 @@
                                     {{ group.name }}
                                   </h1>
                                   <p class="section_font_info">
-                                    {{ group.info }}
+                                    {{ group.info1 }}
+                                    <br/>
+                                    {{ group.info2 }}
                                   </p>
                                 </div>
                               </div>
@@ -154,7 +158,9 @@
                                   {{ group.name }}
                                 </h1>
                                 <p class="section_font_info">
-                                  {{ group.info }}
+                                  {{ group.info1 }}
+                                  <br/>
+                                  {{ group.info2 }}
                                 </p>
                               </div>
                             </div>
@@ -257,27 +263,33 @@ export default {
         return {
             groups: [{
                 name: '产品组',
-                info: '11111111111111111111111111111111111111111111111111111111111111111111111111111111111'
+                info1: '做什么——',
+                info2: '希望你——'
             },
             {
                 name: '设计组',
-                info: '2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222'
+                info1: '做什么——',
+                info2: '希望你——'
             },
             {
                 name: '运营组',
-                info: '3333333333'
+                info1: '做什么——',
+                info2: '希望你——'
             },
             {
                 name: '前端组',
-                info: '3333333333'
+                info1: '做什么——',
+                info2: '希望你——'
             },
             {
                 name: '后端组',
-                info: '3333333333'
+                info1: '做什么——',
+                info2: '希望你——'
             },
             {
                 name: '移动组',
-                info: '3333333333'
+                info1: '做什么——',
+                info2: '希望你——'
             }
             ],
             model: 0,
