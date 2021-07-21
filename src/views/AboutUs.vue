@@ -67,6 +67,8 @@
             <p class="p2">微信扫码关注我们的公众号</p>
         </div>
       </div>
+
+       <footer class="bottom"> </footer>
     </div>
   </div>
 </template>
@@ -75,11 +77,13 @@ import Vue from "vue";
 // import Component from "vue-class-component";
 import { defineComponent } from "@vue/composition-api";
 import HeadBar from "components/HeadBar.vue";
+import  Bottom from "../components/Bottom.vue";
 export default defineComponent({
   name: "AboutUs",
 
   components: {
     HeadBar,
+    Bottom,
   },
 
   data() {
@@ -362,5 +366,9 @@ height: 12px;
   position: absolute;
   top: 260px;
   left: 426px;
+}
+.bottom{
+  position: absolute;
+  top: 2000px;
 }
 </style>
