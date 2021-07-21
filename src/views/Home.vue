@@ -18,10 +18,12 @@
       <div class="sign-up">
         <p class="sign-up_header">报名信息录入</p>
         <div class="sign-up_form">
+          <v-app>
           <v-form ref="form">
             <div class="sign-up_left">
               <v-list>
-                <v-list-item class="list">
+                
+                <v-list-item class="list list-firstline">
                     <v-text-field
                         v-model="name"
                         :rules="nameRules"
@@ -30,27 +32,61 @@
                         single-line
                         solo
                         flat
-                        dense
                         background-color="#F3F3F3"
-                        class="input"
-                    ></v-text-field>
+                        dense
+                        class="input list-firstline-item"
+                        clearable
+                    ></v-text-field>   
+                </v-list-item>
+                <v-list-item class="list">
+                  <v-select
+                        v-model="select"
+                        label="组别"
+                        :items="groups"
+                        :rules="groupRules"
+                        single-line
+                        solo
+                        flat
+                        background-color="#F3F3F3"
+                        dense
+                        class="input group"
+                        item-text="name"
+                    ></v-select>
+                  <!-- <div class="sex-tip">性别</div> -->
                     <v-radio-group
                       v-model="row"
                       row
-                      class="sex"
+                      class="sex list-firstline-item"
                       mandatory
-                      
                     >
                       <v-radio
                         label="男"
                         value="radio-1"
+                        color="#666666"
+                        class="sex-option"
                       ></v-radio>
                       <v-radio
                         label="女"
                         value="radio-2"
+                        color="#666666"
+                        class="sex-option"
                       ></v-radio>
-                    </v-radio-group>                
+                    </v-radio-group>          
                 </v-list-item>
+                  <v-list-item class="list group_xs">
+                  <v-select
+                        label="组别"
+                        :items="groups"
+                        :rules="groupRules"
+                        single-line
+                        solo
+                        flat
+                        background-color="#F3F3F3"
+                        dense
+                        class="input "
+                        v-model="select"
+                    ></v-select>
+                  </v-list-item>
                 <v-list-item class="list">
                     <v-text-field
                       v-model="phone"
@@ -63,6 +99,7 @@
                       background-color="#F3F3F3"
                       dense
                       class="input"
+                      clearable
                     ></v-text-field>
                 </v-list-item>
                 <v-list-item class="list">
@@ -77,18 +114,20 @@
                         background-color="#F3F3F3"
                         dense
                         class="input"
+                        clearable
                     ></v-text-field>
                 </v-list-item>
                 <v-list-item class="list">
                     <v-select
-                      :items="grades"
-                      label="年级"
-                      solo
-                      flat
-                      background-color="#F3F3F3"
-                      dense
-                      single-line
-                      :rules="gradeRules"
+                        label="年级"
+                        :items="grades"
+                        :rules="gradeRules"
+                        single-line
+                        solo
+                        flat
+                        background-color="#F3F3F3"
+                        dense
+                        class="input"
                     ></v-select>
                 </v-list-item>
                 <v-list-item class="list"> 
@@ -103,10 +142,11 @@
                         background-color="#F3F3F3"
                         dense
                         class="input"
+                        clearable
                     ></v-text-field>    
                 </v-list-item> 
                 </v-list>
-                <button class="sign-up_submit" @click="validateField" type="button">
+                <button class="sign-up_submit" type="button" @click="validateField">
                   提交
               </button>
             </div>
@@ -125,47 +165,38 @@
               height="137"
               background-color="#F3F3F3"
               placeholder="点击此处上传作品集（非必填）"
-              
               ></v-file-input>
             </div>    
           </v-form>
+          </v-app>
         </div>
 
       </div>
     </div>
     <!-- 页尾 -->
-    <div class="footer">
-        <v-img
-          class="footer_logo"
-          contain
-          src="~assets/img/home/logo-white.png"
-          width="139"
-          height="46"
-        />
-        <p class="footer_message">© 2021 PIVOT STUDIO提供</p>
-        <div class="footer_contact">
-          <p>联系我们</p>
-          <p>邮箱：team@pivotstudio.cn</p>
-          <p>加入招新群</p>
-          <p>QQ群：435230136</p>
-        </div>
+    <div class="home_footer" v-show="hidShow">
+        <bottom/>
     </div>
   </div>
 
 </template>
 
 <script>
+import Bottom from '../components/Bottom.vue';
   export default {
+  components: { Bottom },
     name: 'Home',
-    components: {
-    },
     data() {
       return {
-        valid: false,
         time: "2021秋季",
         name: '',
         nameRules: [
           v => !!v || '姓名不能为空哦'
+        ],
+        select: '',
+        groups: [ '产品组', '运营组', '设计组', '前端组', '后端组', '移动组'],
+        groupRules: [
+          v => !!v || '组别不能为空哦'
         ],
         phone: '',
         phoneRules: [
@@ -176,7 +207,9 @@
         qqRules: [
           v => !!v || 'QQ不能为空哦'
         ],
-        grades: ['大一','大二','大三','大四','研一','研二','研三'],
+        grades: [
+          '大一','大二','大三','大四','研一','研二','研三'
+        ],
         gradeRules: [
           v => !!v || '年级不能为空哦'
         ],
@@ -186,7 +219,28 @@
         ],
         resumeRules: [
           v => !!v || '简历不能为空哦'
-        ]
+        ],
+        docmHeight: document.documentElement.clientHeight,
+        showHeight: document.documentElement.clientHeight,
+        hidShow: true
+      }
+    },
+    // 防止页尾在输入时上浮
+    watch: {
+      showHeight: function() {
+        if(this.docmHeight > this.showHeight) {
+          this.hidShow = false;
+        }else {
+          this.hidShow = true;
+        }
+      }
+    },
+    mounted() {
+      let vm = this;
+      window.onresize = () => {
+        return (()=>{
+          this.showHeight = document.body.clientHeight;
+        })()
       }
     },
     methods: {
@@ -200,8 +254,9 @@
       validateField() {
         var state = this.$refs.form.validate();
         console.log(state);
+        console.log(this.select);
         return false;
-      },
+      }
       // getTime() {
       //   let date = new Date();
       //   let year = date.getFullYear();
@@ -222,7 +277,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .main {
     position: absolute;
     top: 99px;
@@ -237,12 +292,9 @@
   }
   .time {
     position: absolute;
-    /* top: 39%; */
-    /* left: 15%; */
     top: 50%;
     margin-top: -10%;
-    right: 50%;
-    margin-right: 75px;
+    left: 14%;
     width: 400px;
     color: white;
     font: normal 400 48px "Source Han Serif TC";
@@ -254,9 +306,8 @@
     /* top: 72%;
     left: 20%; */
     top: 68%;
-    right: 50%;
-    margin-right: 130px;
-    width: 360px;
+    left: 14%;
+    width: 370px;
     height: 100px;
     display: flex;
     justify-content: space-around;
@@ -338,88 +389,130 @@
     outline: none;
     line-height: 64px;
   }
-
-  .click {
-    position: absolute;
-
-  }
-
   .register {
     position: absolute;
     width: 100%;
     top: 100%;
     height: 100%;
+    background-color: white;
   }
-
   .sign-up {
     width: 80%;
-    height: 80%;
-    margin: 5% auto;
+    margin: 2% auto;
   }
   .sign-up_header {
     font: normal 400 48px "Source Han Serif TC";
     color: #8D8D8D;
     margin-left: 5px;
     margin-bottom: 10px;
-  }  
+  }
   .sign-up_form {
     width: 100%;
-    height: 60%;
   }
-
   .sign-up_left {
     float: left;
-    width: 50%;
+    width: 45%;
   }
-
   .sign-up_right {
+    padding-top: 10px;
     float: right;
-    width: 50%;
+    width: 45%;
   }
   .list {
     padding-left: 0;
-    margin-left: -15px;
+  }
+
+  .group {
+    min-width: 110px;
+  }
+  .group_xs {
+    display: none;
+  }
+  .sex {
+    padding-left: 10%;
+    min-width: 180px;
+  }
+  .sex-option {
+    margin-top: -20px;
+  }
+  .sex-tip, .group-tip {
+    background-color: #f3f3f3;
+    min-width: 75px;
+    height: 36px;
+    border-radius: 3px;
+    text-indent: 12px;
+    line-height: 36px;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    margin-right: 30px;
+    color: #7a7a6a;
   }
   .sign-up_submit {
-    margin-top: 15px;
-    height: 71px;
+    margin-top: 2%;
+    padding: 10px 0;
     width: 222px;
     background-color: #333333;
     font: normal 700 40px "Source Han Serif TC";
     color: #F3F3F3;
     outline: none;
   }
-  .footer {
+  .home_footer {
     position: absolute;
-    top: 200%;
-    height: 250px;
+    top: 205%;
     width: 100%;
-    background-color: #2C2C2C;
   }
-  .footer_logo {
-    position: absolute;
-    left: 89px;
-    top: 20%;    
+  @media screen and (max-width: 767px) {
+    .sign-up_header {
+      font-size: 32px;
+      margin: 0;
+    }
+    .sign-up_left {
+      width: 50%;
+    }
+    .sex-tip {
+      display: none;
+    }
+    .group_xs {
+      display: block;
+    }
+    .group {
+      display: none !important;;
+    }
+    .join {
+      left: 5%;
+      width: 230px;
+    }
+    .join_btn {
+      width: 40px;
+      height: 40px;
+    }
+    .join_font {
+      font-size: 40px;
+    }
+    .time {
+      left: 4%;
+      top: 40%;
+      font-size: 30px;
+    }
+    .sign-up_submit {
+      font-size: 24px;
+      padding: 5px;
+      width: 110px;
+      margin-top: 0;
+    }
+    
+    @media screen and (max-height: 550px) {
+      .home_footer {
+        top: 225%;
+      }
+      .list {
+        margin-bottom: -5px;
+      }
+    }
+    @media screen and (max-height: 420px) {
+      .home_footer {
+        top: 250%;
+      }
+    }
   }
-  .footer_message {
-    position: absolute;
-    left: 101px;
-    bottom: 10%;
-    color: rgba(200, 200, 200, 0.5);
-    font: normal 400 18px "Source Han Serif SC";
-    letter-spacing: 0.2em;
-  }
-  .footer_contact {
-    position: absolute;
-    left: 821px;
-    top: 23%;
-    width: 291px;
-    height: 96px;
-    line-height: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #DADADA;
-    font: normal 700 14px "Source Han Serif SC";
-  }
-  
 </style>
