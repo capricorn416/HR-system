@@ -14,6 +14,7 @@
         />
       </div>
 
+      <div class="secondbox">
       <div class="second">
         <div class="content">我们做了什么？</div>
         <div class="box">
@@ -21,19 +22,30 @@
             v-for="(item, index) in datalist"
             :key="index"
             class="item"
-            :style="{backgroundcolor:item.color}"
+            :style="{ backgroundcolor: item.color }"
           >
-            <div class="avater">
+            <div
+              class="avater"
+              @mouseover="item.display = true"
+              @mouseleave="item.display = false"
+            >
               <img :src="item.pic" />
             </div>
-            <div class="dialog"></div>
+            <div class="dialog" >
+              <img :src="item.img1" class="i1" alt="img1" />
+              <p class="up">小程序</p>
+              <img :src="item.img2" class="i2" alt="img2" />
+              <p class="down">QQ社群</p>
+            </div>
+
             <div class="passage">
-              <p class="title">{{ item.title}} </p>
-              <p class="slogan" v-html="item.slogan"> </p>
-              <p class="pcontent">{{item.content}}</p>
+              <p class="title">{{ item.title }}</p>
+              <p class="slogan" v-html="item.slogan"></p>
+              <p class="pcontent">{{ item.content }}</p>
             </div>
           </div>
         </div>
+      </div>
       </div>
 
       <div class="third">
@@ -42,9 +54,10 @@
             TEAM@PIVOTSTUDIO.CN
         </div>
         <div class="code">
-            <img src="../assets/img/AboutUs/downimage 1.png" >
+          
+            <img src="../assets/img/AboutUs/downimage 1.png" alt="img1" >
              <p class="p1">QQ扫一扫，加入招新群</p>
-            <img src="../assets/img/AboutUs/downQR.png" class="two">
+            <img src="../assets/img/AboutUs/downQR.png" class="two"  alt="img2">
             <p class="p2">微信扫码关注我们的公众号</p>
         </div>
       </div>
@@ -57,42 +70,44 @@ import Vue from "vue";
 import { defineComponent } from "@vue/composition-api";
 import HeadBar from "components/HeadBar.vue";
 export default defineComponent({
-  name: 'AboutUs',
+  name: "AboutUs",
 
   components: {
-    HeadBar
+    HeadBar,
   },
 
- data() {
-      return {
+  data() {
+    return {
       datalist: [
-      {
-        pic: "../assets/img/AboutUs/方形Logo 1.png",
-        color: "#ECF0F1",
-        title: "1037树洞",
-        slogan:"——有时治愈，时常帮助，总是倾听 ",
-        content:
-          "HUSTer专属的的倾诉与倾听的空间 一个自由、友善、真诚的匿名治愈系社区。",
-      },
-      {
-        pic: "../assets/img/AboutUs/LOGO 1.png",
-        color: "#F1ECF1",
-        title: "BetweenUs ",
-        slogan:"——每一次问答，我都在走近你 <br/>  No more gap between us ",
-        content:
-          "帮助异地情侣互相了解，促进双方感情增温 的趣味问答产品",
-      },
-    ],
-        
-      }
-    },
+        {
+          pic: "/public/static/方形Logo 1.png",
+          color: "#ECF0F1",
+          title: "1037树洞",
+          slogan: "——有时治愈，时常帮助，总是倾听 ",
+          content:
+            "HUSTer专属的的倾诉与倾听的空间 一个自由、友善、真诚的匿名治愈系社区。",
+          img1: "/assets/img/AboutUs/"+'Husthole'+'.png',
+          img2: "/assets/img/AboutUs/QQ.png",
+          display: "true",
+        },
+        {
+          pic: "../assets/img/AboutUs/LOGO 1.png",
+          color: "#F1ECF1",
+          title: "BetweenUs ",
+          slogan: "——每一次问答，我都在走近你 <br/>  No more gap between us ",
+          content: "帮助异地情侣互相了解，促进双方感情增温 的趣味问答产品",
+          display: "false",
+        },
+      ],
+    };
+  },
   data: () => ({
     datalist: [
       {
         pic: "../assets/img/AboutUs/方形Logo 1.png",
         color: "#ECF0F1",
         title: "1037树洞",
-        slogan:"——有时治愈，时常帮助，总是倾听 ",
+        slogan: "——有时治愈，时常帮助，总是倾听 ",
         content:
           "HUSTer专属的的倾诉与倾听的空间 一个自由、友善、真诚的匿名治愈系社区。",
       },
@@ -100,9 +115,8 @@ export default defineComponent({
         pic: "../assets/img/AboutUs/LOGO 1.png",
         color: "#F1ECF1",
         title: "BetweenUs ",
-        slogan:"——每一次问答，我都在走近你 <br/>  No more gap between us ",
-        content:
-          "帮助异地情侣互相了解，促进双方感情增温 的趣味问答产品",
+        slogan: "——每一次问答，我都在走近你 <br/>  No more gap between us ",
+        content: "帮助异地情侣互相了解，促进双方感情增温 的趣味问答产品",
       },
     ],
   }),
@@ -110,7 +124,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.head{
+.head {
   position: absolute;
   z-index: 1;
 }
@@ -122,7 +136,6 @@ export default defineComponent({
   position: relative;
   border-radius: 5px;
 }
-
 
 .center .first-content {
   position: absolute;
@@ -153,7 +166,7 @@ export default defineComponent({
 .second .content {
   position: relative;
   width: 420px;
-  
+
   left: 130px;
   top: 0px;
 
@@ -170,17 +183,20 @@ export default defineComponent({
 
 /* .second .content .dialog {
 } */
-.second{
+/* .secondbox{
+  margin-top:603px ;
+  margin-left:20px ;
+} */
+.second {
   position: relative;
   width: 1400px;
-  top:603px;
-  left:20px ;
-
+  top: 603px;
+  left: 20px;
 }
 .second .box {
   position: relative;
   width: 1400px;
-  
+
   left: 20px;
   top: 112px;
   background-color: black;
@@ -201,6 +217,73 @@ export default defineComponent({
   top: 33px;
   border-radius: 24px;
 }
+
+.second .box .dialog {
+  position: absolute;
+  width: 420px;
+  height: 212px;
+  left: 483px;
+  top: 85px;
+  background: #ffffff;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  z-index: 1;
+}
+.second .box .dialog::before{
+            
+            content:'';
+            position: absolute;
+            border: 20px solid;
+            border-color: transparent #ffffff transparent transparent;
+            left: -40px;
+            top: 85px;
+        }
+.second .box .i1 {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 26px;
+  left: 32px;
+}
+.second .box .i2 {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 36px;
+  left: 234px;
+}
+.second .box .up {
+  position: absolute;
+  width: 62px;
+height: 12px;
+  left: 74px;
+  top: 193px;
+  font-family: Source Serif Pro;
+  font-size: 18px;
+  line-height: 12px;
+  /* identical to box height, or 67% */
+
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: #8d8d8d;
+}
+.second .box .down {
+  position: absolute;
+  width: 73px;
+height: 12px;
+  left: 275px;
+  top: 193px;
+  font-family: Source Serif Pro;
+  font-size: 18px;
+  line-height: 12px;
+  /* identical to box height, or 67% */
+
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: #8d8d8d;
+}
 .second .box .passage {
   position: absolute;
   width: 561px;
@@ -218,73 +301,70 @@ export default defineComponent({
 
   color: #000000;
 }
-.second .box p{
+.second .box p {
   margin-bottom: 20px;
   line-height: 120%;
 }
-.second .box .slogan{
-  font-size:24px ;
+.second .box .slogan {
+  font-size: 24px;
   line-height: 120%;
 }
-.second .box .pcontent{
-  font-size:25px ;
-  margin-top:50px ;
+.second .box .pcontent {
+  font-size: 25px;
+  margin-top: 50px;
   line-height: 120%;
 }
-.third{
-  
+.third {
   position: relative;
   width: 1440px;
   height: 100px;
   margin-top: 10px;
- 
 }
-.third .code{
+.third .code {
   position: absolute;
   top: 135px;
   left: 149px;
 }
-.third .email{
+.third .email {
   position: absolute;
   width: 393px;
   height: 73px;
-  left:142px ;
+  left: 142px;
   font-family: Source Han Sans CN;
   font-size: 24px;
- line-height: 36px; 
+  line-height: 36px;
 }
-.third .email p{
+.third .email p {
   font-family: Segoe UI;
   font-size: 36px;
-  margin-bottom:10px ;
-letter-spacing: 0.2em;
-text-transform: uppercase;
+  margin-bottom: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
-.third .code img{
+.third .code img {
   width: 250px;
-height: 250px;
+  height: 250px;
 }
-.third .code .two{
+.third .code .two {
   margin-left: 151px;
 }
-.third p{
-font-family: Segoe UI;
+.third p {
+  font-family: Segoe UI;
 
-font-size: 14px;
-line-height: 12px;
-/* identical to box height, or 86% */
+  font-size: 14px;
+  line-height: 12px;
+  /* identical to box height, or 86% */
 
-letter-spacing: 0.2em;
-text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
-.third .p1{
+.third .p1 {
   position: absolute;
   top: 260px;
   left: 37px;
-  
 }
-.third .p2{
- position: absolute;
+.third .p2 {
+  position: absolute;
   top: 260px;
   left: 426px;
 }
