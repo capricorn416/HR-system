@@ -19,8 +19,8 @@
       <!-- 导航部分 -->
       <div class="tab">
         <v-tab v-for="(item, index) in pages" :key="index" class="tab-item" @click="gotoPages(index)"
-        :class="{isSelected: index === currentIndex}">
-          {{ item }}
+        :class="{isSelected: isActive(index)}">
+          {{ item.name }}
         </v-tab>
       </div>
       
@@ -46,7 +46,7 @@
                 :key="index"
                 @click="gotoPages(index)"
               >
-                <v-list-item-title>{{ item }}</v-list-item-title>
+                <v-list-item-title>{{ item.name }}</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
@@ -62,26 +62,21 @@ export default {
 
   data: () => ({
     pages:[
-      '招新首页',
-      '部门介绍',
-      '关于我们'
+      {name: '招新首页', path: '/'},
+      {name: '部门介绍', path: '/intro'},
+      {name: '关于我们', path: '/about'}
     ],
-    currentIndex: 0
   }),
+  computed: {
+    isActive() {
+      return function(index) {
+        return this.$route.path === this.pages[index].path;
+      }
+    }
+  },
   methods: {
     gotoPages(index) {
-      this.currentIndex = index;
-      switch(index) {
-        case 0:
-          this.$router.push({ path: '/' });
-          break;
-        case 1:
-          this.$router.push({ path: '/intro' });
-          break;
-        case 2:
-          this.$router.push({ path: '/about' });
-          break;
-      }
+      this.$router.push({ path: this.pages[index].path });
     }
   }
 };

@@ -500,13 +500,18 @@ import Bottom from '../components/Bottom.vue';
       width: 110px;
       margin-top: 0;
     }
-
+    
     @media screen and (max-height: 550px) {
       .home_footer {
         top: 225%;
       }
       .list {
         margin-bottom: -5px;
+      }
+    }
+    @media screen and (max-height: 420px) {
+      .home_footer {
+        top: 250%;
       }
     }
   }
