@@ -1,6 +1,8 @@
 <template>
+
   <div>
-    <head-bar class="head"></head-bar>
+    <head-bar/>
+    <div class="main">
     <div class="center">
       <div class="first">
         <div class="first-content">
@@ -28,14 +30,14 @@
           >
             <div
               class="avater"
-               @mouseover="show = true"
-               
+               @mouseover="!this.show"
+               @mouseout="!!show"
             >
             
               
               <img :src="item.pic" />
             </div>
-            <div class="dialog" v-if='item.display&&show'>
+            <div class="dialog" v-if='item.display&&this.show'>
               <img :src="item.img1" class="i1" alt="img1" />
               <p class="up">小程序</p>
               <img :src="item.img2" class="i2" alt="img2" />
@@ -68,7 +70,10 @@
         </div>
       </div>
 
-       <footer class="bottom"> </footer>
+         <div class="bottom">
+          <bottom/>
+         </div>
+    </div>
     </div>
   </div>
 </template>
@@ -120,6 +125,12 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.main{
+  position: absolute;
+        top: 99px;
+        width: 100%;
+        background-color: #fff;
+}
 .head {
   position: absolute;
   z-index: 1;
@@ -189,9 +200,9 @@ export default defineComponent({
   top: 603px;
   left: 20px;
 }
-.second .box :hover .dialog{
+/* .second .box .avater :hover .dialog{
   display: block;
-}
+} */
 .second .box {
   position: relative;
   width: 1400px;
@@ -367,8 +378,5 @@ height: 12px;
   top: 260px;
   left: 426px;
 }
-.bottom{
-  position: absolute;
-  top: 2000px;
-}
+
 </style>

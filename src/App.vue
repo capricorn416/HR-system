@@ -1,6 +1,6 @@
 <template>
   <div>
-    <head-bar></head-bar>
+    <head-bar class="head"></head-bar>
     <router-view/>
   </div>
 </template>
@@ -17,3 +17,6 @@ export default {
   })
 };
 </script>
+<style scoped>
+ 
+</style>
