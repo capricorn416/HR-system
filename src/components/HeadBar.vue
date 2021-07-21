@@ -4,6 +4,7 @@
       color="#FFF"
       height="99"
       flat
+     
     >
       <div>
         <v-img
@@ -39,6 +40,7 @@ export default {
     currentIndex: 0
   }),
   methods: {
+    
     gotoPages(index) {
       this.currentIndex = index;
       switch(index) {
@@ -49,7 +51,7 @@ export default {
           this.$router.push({ path: '/introduction' });
           break;
         case 2:
-          this.$router.push({ path: '/about' });
+          this.$router.push({ path: '/aboutus' });
           break;
       }
     }
