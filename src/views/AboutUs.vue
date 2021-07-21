@@ -14,24 +14,28 @@
         />
       </div>
 
-      <div class="secondbox">
+      
       <div class="second">
         <div class="content">我们做了什么？</div>
         <div class="box">
+         
           <div
             v-for="(item, index) in datalist"
             :key="index"
             class="item"
             :style="{ backgroundcolor: item.color }"
+            
           >
             <div
               class="avater"
-              @mouseover="item.display = true"
-              @mouseleave="item.display = false"
+               @mouseover="show = true"
+               
             >
+            
+              
               <img :src="item.pic" />
             </div>
-            <div class="dialog" >
+            <div class="dialog" v-if='item.display&&show'>
               <img :src="item.img1" class="i1" alt="img1" />
               <p class="up">小程序</p>
               <img :src="item.img2" class="i2" alt="img2" />
@@ -44,8 +48,10 @@
               <p class="pcontent">{{ item.content }}</p>
             </div>
           </div>
+
+          
         </div>
-      </div>
+     
       </div>
 
       <div class="third">
@@ -78,48 +84,34 @@ export default defineComponent({
 
   data() {
     return {
+      show:false,
       datalist: [
         {
-          pic: "/assets/img/AboutUs/方形Logo 1.png",
+          pic: require("../assets/img/AboutUs/方形Logo 1.png"),
           color: "#ECF0F1",
           title: "1037树洞",
           slogan: "——有时治愈，时常帮助，总是倾听 ",
           content:
             "HUSTer专属的的倾诉与倾听的空间 一个自由、友善、真诚的匿名治愈系社区。",
-          img1: "/assets/img/AboutUs/Husthole.png",
-          img2: "/assets/img/AboutUs/QQ.png",
+          img1: require("../assets/img/AboutUs/Husthole.png"),
+          img2: require("../assets/img/AboutUs/QQ.png"),
           display: "true",
+          
+
         },
         {
-          pic: "../assets/img/AboutUs/LOGO 1.png",
+          pic: require("../assets/img/AboutUs/LOGO 1.png"),
           color: "#F1ECF1",
           title: "BetweenUs ",
           slogan: "——每一次问答，我都在走近你 <br/>  No more gap between us ",
           content: "帮助异地情侣互相了解，促进双方感情增温 的趣味问答产品",
           display: "false",
+          
         },
       ],
     };
   },
-  data: () => ({
-    datalist: [
-      {
-        pic: "../assets/img/AboutUs/方形Logo 1.png",
-        color: "#ECF0F1",
-        title: "1037树洞",
-        slogan: "——有时治愈，时常帮助，总是倾听 ",
-        content:
-          "HUSTer专属的的倾诉与倾听的空间 一个自由、友善、真诚的匿名治愈系社区。",
-      },
-      {
-        pic: "../assets/img/AboutUs/LOGO 1.png",
-        color: "#F1ECF1",
-        title: "BetweenUs ",
-        slogan: "——每一次问答，我都在走近你 <br/>  No more gap between us ",
-        content: "帮助异地情侣互相了解，促进双方感情增温 的趣味问答产品",
-      },
-    ],
-  }),
+  
 });
 </script>
 
@@ -183,15 +175,18 @@ export default defineComponent({
 
 /* .second .content .dialog {
 } */
-/* .secondbox{
-  margin-top:603px ;
-  margin-left:20px ;
-} */
+.secondbox{
+  padding-top:603px ;
+  padding-left:20px ;
+}
 .second {
   position: relative;
   width: 1400px;
   top: 603px;
   left: 20px;
+}
+.second .box :hover .dialog{
+  display: block;
 }
 .second .box {
   position: relative;
@@ -199,7 +194,6 @@ export default defineComponent({
 
   left: 20px;
   top: 112px;
-  background-color: black;
 }
 .second .box .item {
   position: relative;
@@ -210,7 +204,7 @@ export default defineComponent({
   background-color: #ecf0f1;
 }
 .second .box .avater {
-  position: absolute;
+  position: relative;
   width: 284px;
   height: 284px;
   left: 130px;
@@ -219,6 +213,7 @@ export default defineComponent({
 }
 
 .second .box .dialog {
+  display: none;
   position: absolute;
   width: 420px;
   height: 212px;
@@ -318,7 +313,7 @@ height: 12px;
   position: relative;
   width: 1440px;
   height: 100px;
-  margin-top: 10px;
+  margin-top: 800px;
 }
 .third .code {
   position: absolute;
@@ -337,7 +332,7 @@ height: 12px;
 .third .email p {
   font-family: Segoe UI;
   font-size: 36px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
