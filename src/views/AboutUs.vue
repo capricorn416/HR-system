@@ -80,13 +80,13 @@ export default defineComponent({
     return {
       datalist: [
         {
-          pic: "/public/static/方形Logo 1.png",
+          pic: "/assets/img/AboutUs/方形Logo 1.png",
           color: "#ECF0F1",
           title: "1037树洞",
           slogan: "——有时治愈，时常帮助，总是倾听 ",
           content:
             "HUSTer专属的的倾诉与倾听的空间 一个自由、友善、真诚的匿名治愈系社区。",
-          img1: "/assets/img/AboutUs/"+'Husthole'+'.png',
+          img1: "/assets/img/AboutUs/Husthole.png",
           img2: "/assets/img/AboutUs/QQ.png",
           display: "true",
         },
