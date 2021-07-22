@@ -30,14 +30,14 @@
           >
             <div
               class="avater"
-               @mouseover="enter"
-               @mouseout="leave"
+               @mouseover="enter(item)"
+               @mouseout="leave(item)"
             >
             
               
               <img :src="item.pic" />
             </div>
-            <div class="dialog" v-show="show">
+            <div class="dialog" v-show="item.display&&item.show">
               <img :src="item.img1" class="i1" alt="img1" />
               <p class="up">小程序</p>
               <img :src="item.img2" class="i2" alt="img2" />
@@ -70,10 +70,11 @@
         </div>
       </div>
 
-         <div class="bottom">
+         
+    </div>
+    <div class="bottom">
           <bottom/>
          </div>
-    </div>
     </div>
   </div>
 </template>
@@ -91,17 +92,17 @@ export default defineComponent({
     Bottom,
   },
   methods: {
-       enter()    {
-         this.show=true;
+       enter(item)    {
+         item.display=true;
        }    ,
-       leave(){
-         this.show=false;
+       leave(item){
+         item.display=false;
        }     
   },
 
   data() {
     return {
-      show:false,
+      
       datalist: [
         {
           pic: require("../assets/img/AboutUs/方形Logo 1.png"),
@@ -112,7 +113,8 @@ export default defineComponent({
             "HUSTer专属的的倾诉与倾听的空间 一个自由、友善、真诚的匿名治愈系社区。",
           img1: require("../assets/img/AboutUs/Husthole.png"),
           img2: require("../assets/img/AboutUs/QQ.png"),
-          display: "true",
+          display: true,
+          show:true,
           
 
         },
@@ -122,8 +124,8 @@ export default defineComponent({
           title: "BetweenUs ",
           slogan: "——每一次问答，我都在走近你 <br/>  No more gap between us ",
           content: "帮助异地情侣互相了解，促进双方感情增温 的趣味问答产品",
-          display: "false",
-          
+          display: false,
+          show:false,
         },
       ],
     };
@@ -236,7 +238,7 @@ export default defineComponent({
 }
 
 .second .box .dialog {
-  display: none;
+  
   position: absolute;
   width: 420px;
   height: 212px;
@@ -388,7 +390,7 @@ height: 12px;
 }
 .bottom{
   position:relative;
-  top: 2000px;
+  top: 400px;
   z-index: 1;
 }
 

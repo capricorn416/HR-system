@@ -65,7 +65,7 @@ export default {
     pages:[
       {name: '招新首页', path: '/'},
       {name: '部门介绍', path: '/intro'},
-      {name: '关于我们', path: '/about'}
+      {name: '关于我们', path: '/aboutus'}
     ],
   }),
   computed: {

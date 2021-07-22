@@ -151,7 +151,7 @@
               </button>
             </div>
             <div class="sign-up_right">
-              <v-file-input
+              <!-- <v-file-input
               solo
               flat
               background-color="#F3F3F3"
@@ -174,7 +174,7 @@
               flat
               background-color="#F3F3F3"
               height="162"
-              ></v-file-input>
+              ></v-file-input> -->
             </div>    
           </v-form>
           </v-app>
