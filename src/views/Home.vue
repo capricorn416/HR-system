@@ -5,8 +5,8 @@
       <div class="main">
         <p class="time">Pivot Studio<br/>{{time}}招新</p>
         <div class="join">
-          <button class="join_btn" @click="gotoRegister" @mouseover="changeColor">
-            <v-icon x-large class="join_icon" color="#ffffff" ref="icon">mdi-chevron-down</v-icon>   
+          <button class="join_btn" @click="gotoRegister">
+            <v-icon x-large dark class="join_icon">mdi-chevron-down</v-icon>   
           </button>
           <button class="join_font" @click="gotoRegister" >JOIN US</button>
         </div>
@@ -152,19 +152,19 @@
             </div>
             <div class="sign-up_right">
               <v-file-input
+              placeholder="点击此处上传简历"
               solo
               flat
               background-color="#F3F3F3"
-              height="137"
+              height="162"
               :rules="resumeRules"
-              placeholder="点击此处上传简历"
               ></v-file-input>
               <v-file-input
+              placeholder="点击此处上传作品集（非必填）"
               solo
               flat
-              height="137"
               background-color="#F3F3F3"
-              placeholder="点击此处上传作品集（非必填）"
+              height="162"
               ></v-file-input>
             </div>    
           </v-form>
@@ -366,11 +366,11 @@ import Bottom from '../components/Bottom.vue';
     animation: light 2s linear infinite;
   }
   .join_btn:hover::before {
-    background: lightgray;
+    background: lightgray;;
     box-shadow: 0 0 20px aqua; 
   }
   .join_btn:hover::after {
-    display: none;
+    animation: none;
   }
   @keyframes light{
     0%{
@@ -462,6 +462,9 @@ import Bottom from '../components/Bottom.vue';
     width: 100%;
   }
   @media screen and (max-width: 767px) {
+    .sign-up {
+      margin-top: 5%;
+    }
     .sign-up_header {
       font-size: 32px;
       margin: 0;
@@ -501,7 +504,7 @@ import Bottom from '../components/Bottom.vue';
       margin-top: 0;
     }
     
-    @media screen and (max-height: 550px) {
+    @media screen and (max-height: 570px) {
       .home_footer {
         top: 225%;
       }
@@ -509,7 +512,7 @@ import Bottom from '../components/Bottom.vue';
         margin-bottom: -5px;
       }
     }
-    @media screen and (max-height: 420px) {
+    @media screen and (max-height: 450px) {
       .home_footer {
         top: 250%;
       }

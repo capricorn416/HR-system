@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="head">
     <v-app-bar
       color="#FFF"
       height="99"
@@ -83,6 +83,9 @@ export default {
 </script>
 
 <style scoped>
+  .head {
+    height: 99px;
+  }
   .logo {
     position: absolute;
     left: 61px;
@@ -133,4 +136,5 @@ export default {
   }
 
 </style>
+
 
