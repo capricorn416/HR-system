@@ -30,14 +30,14 @@
           >
             <div
               class="avater"
-               @mouseover="!this.show"
-               @mouseout="!!show"
+               @mouseover="enter"
+               @mouseout="leave"
             >
             
               
               <img :src="item.pic" />
             </div>
-            <div class="dialog" v-if='item.display&&this.show'>
+            <div class="dialog" v-show="show">
               <img :src="item.img1" class="i1" alt="img1" />
               <p class="up">小程序</p>
               <img :src="item.img2" class="i2" alt="img2" />
@@ -89,6 +89,14 @@ export default defineComponent({
   components: {
     HeadBar,
     Bottom,
+  },
+  methods: {
+       enter()    {
+         this.show=true;
+       }    ,
+       leave(){
+         this.show=false;
+       }     
   },
 
   data() {
@@ -377,6 +385,11 @@ height: 12px;
   position: absolute;
   top: 260px;
   left: 426px;
+}
+.bottom{
+  position:relative;
+  top: 2000px;
+  z-index: 1;
 }
 
 </style>
