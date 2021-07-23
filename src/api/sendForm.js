@@ -4,6 +4,9 @@ export const sendForm = (data) => {
   return request({
     method: 'POST',
     url: '/resume',
-    data
+    data,
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
   })
 }

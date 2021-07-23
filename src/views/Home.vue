@@ -158,25 +158,25 @@
             </div>
             <div class="sign-up_right">
               <v-file-input
-              placeholder="点击此处上传简历"
+              label="点击此处上传简历"
               solo
               flat
               background-color="#F3F3F3"
               height="162"
               :rules="resumeRules"
-              ref="resume"
+              v-model="resume"
               ></v-file-input>
               <v-file-input
-              placeholder="点击此处上传作品集（非必填）"
+              label="点击此处上传作品集（非必填）"
               solo
               flat
               background-color="#F3F3F3"
               height="162"
-              ref="work"
+              v-model="work"
               ></v-file-input>
             </div>    
           </v-form>
-          <v-snackbar
+          <!-- <v-snackbar
             :value="success.state" centered flat color="success" outlined min-width="50%" height="100"
           >
           {{ success.info }}
@@ -185,7 +185,7 @@
             :value="error.state" centered flat color="success" outlined min-width="50%" height="100"
           >
           {{ error.info }}
-          </v-snackbar>
+          </v-snackbar> -->
           </v-app>
         </div>
       </div>
@@ -200,6 +200,7 @@
 
 <script>
 import Bottom from '../components/Bottom.vue';
+import {sendForm} from '@/api/sendForm'
   export default {
   components: { Bottom },
     name: 'Home',
@@ -262,7 +263,9 @@ import Bottom from '../components/Bottom.vue';
         error: {
           state: false,
           info: '报名信息提交失败'
-        }
+        },
+        resume: null,
+        work: null
 
       }
     },
@@ -305,19 +308,14 @@ import Bottom from '../components/Bottom.vue';
         formData.append('resume_file', this.resume);
         formData.append('work_file', this.work);
         if(state === true) {
-          console.log(this.name, this.group, this.sex, this.phone, this.qq, this.grade, this.major, this.resume, this.work);
-          console.log("------")
-          console.log(formData)
+          sendForm(formData).then((res) => {
+            alert('报名信息提交成功 ~')
+          }).catch((err) => {
+            alert('报名信息提交失败，请重试')
+          });
         }else {
           return
         }
-        var formData = new FormData();
-        
-        formData.append('file1', this.file1);
-        formData.append('file2', this.file2);
-        console.log(formData);
-        console.log(state);
-        console.log(this.select);
         return false;
       }
     },

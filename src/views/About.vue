@@ -80,6 +80,7 @@
 
 <script>
 import bottom from "components/Bottom.vue"
+import {getProductDesc} from '@/api/getDes'
 export default {
   name: 'About',
   components: {
@@ -122,7 +123,15 @@ export default {
       this.seen = false;
       this.current = null;
     }
-  }
+  },
+  // created() {
+  //   getProductDesc().then((res) => {
+  //     console.log(res.data.msg)
+  //     this.datalist = res.data.msg
+  //   }).catch((err) => {
+      
+  //   });
+  // }
 }
 </script>
 
