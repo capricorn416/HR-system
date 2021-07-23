@@ -10,7 +10,7 @@
                       <v-list-item class="section_item">
                           <v-card
                           flat
-                          color="#FBFBFB"
+                          color="#F3F3F3"
                           height="435"
                           width="100%"
                           >
@@ -30,9 +30,9 @@
                                     class="swiper"
                                   > 
                                     <v-carousel-item 
-                                      v-for="(item,i) in items"
+                                      v-for="(item,i) in group.img_urls"
                                       :key="i"
-                                      :src="item.src"
+                                      :src="item"
                                     >
                                     </v-carousel-item>
                                   </v-carousel> 
@@ -45,12 +45,10 @@
                             <div class="section_right">
                               <div class="section_font">
                                 <h1 class="section_font_header">
-                                  {{ group.name }}
+                                  {{ group.team_title }}
                                 </h1>
                                 <p class="section_font_info">
-                                  {{ group.info1 }}
-                                  <br/>
-                                  {{ group.info2 }}
+                                  {{ group.team_desc }}
                                 </p>
                               </div>
                             </div>
@@ -64,7 +62,7 @@
                       <v-list-item class="section_item">
                           <v-card
                           flat
-                          color="#FBFBFB"
+                          color="#F3F3F3"
                           height="435"
                           width="100%"
                           >
@@ -74,12 +72,10 @@
                               <div class="section_left" >
                                 <div class="section_font">
                                   <h1 class="section_font_header">
-                                    {{ group.name }}
+                                    {{ group.team_title }}
                                   </h1>
                                   <p class="section_font_info">
-                                    {{ group.info1 }}
-                                    <br/>
-                                    {{ group.info2 }}
+                                    {{ group.team_desc }}
                                   </p>
                                 </div>
                               </div>
@@ -99,9 +95,9 @@
                                     class="swiper"
                                   > 
                                     <v-carousel-item 
-                                      v-for="(item,i) in items"
+                                      v-for="(item,i) in group.img_urls"
                                       :key="i"
-                                      :src="item.src"
+                                      :src="item"
                                     >
                                     </v-carousel-item>
                                   </v-carousel> 
@@ -119,7 +115,7 @@
                 <v-list v-for="(group, index) in groups" :key="index" class="card_xs">
                     <v-list-item class="section_item">
                         <v-card
-                        color="#FBFBFB"
+                        color="#F3F3F3"
                         height="435"
                         width="100%"
                         >
@@ -140,9 +136,9 @@
                                   class="swiper"
                                 > 
                                   <v-carousel-item 
-                                    v-for="(item,i) in items"
-                                    :key="i"
-                                    :src="item.src"
+                                    v-for="(item,i) in group.img_urls"
+                                      :key="i"
+                                      :src="item"
                                   >
                                   </v-carousel-item>
                                 </v-carousel> 
@@ -155,12 +151,10 @@
                             <div class="section_right">
                               <div class="section_font">
                                 <h1 class="section_font_header">
-                                  {{ group.name }}
+                                  {{ group.team_title }}
                                 </h1>
                                 <p class="section_font_info">
-                                  {{ group.info1 }}
-                                  <br/>
-                                  {{ group.info2 }}
+                                  {{ group.team_desc }}
                                 </p>
                               </div>
                             </div>
@@ -254,6 +248,7 @@
 
 <script>
 import Bottom from '../components/Bottom.vue'
+import {getGroupDesc} from '@/api/getDes'
 export default {
     name: 'Intro',
     components: {
@@ -261,56 +256,22 @@ export default {
     },
     data() {
         return {
-            groups: [{
-                name: '产品组',
-                info1: '做什么——',
-                info2: '希望你——'
-            },
-            {
-                name: '设计组',
-                info1: '做什么——',
-                info2: '希望你——'
-            },
-            {
-                name: '运营组',
-                info1: '做什么——',
-                info2: '希望你——'
-            },
-            {
-                name: '前端组',
-                info1: '做什么——',
-                info2: '希望你——'
-            },
-            {
-                name: '后端组',
-                info1: '做什么——',
-                info2: '希望你——'
-            },
-            {
-                name: '移动组',
-                info1: '做什么——',
-                info2: '希望你——'
-            }
-            ],
+            groups: [],
             model: 0,
-            colors: [
-              'primary',
-              'secondary',
-              'yellow darken-2',
-              'red',
-              'orange',
-            ],items: [
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-          }
-        ],
         }
+    },
+    created() {
+      this.getInfo()
+    },
+    methods: {
+      getInfo() {
+        getGroupDesc().then((res) => {
+          console.log(res.data.msg)
+          this.groups = res.data.msg;
+        }).catch((err) => {
+          // console.log(err)
+        });
+      }
     }
 }
 </script>

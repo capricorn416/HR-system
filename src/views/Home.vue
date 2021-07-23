@@ -40,34 +40,35 @@
                 </v-list-item>
                 <v-list-item class="list">
                   <v-select
-                        v-model="select"
                         label="组别"
                         :items="groups"
                         :rules="groupRules"
+                        item-text="name"
+                        item-value="index"
                         single-line
                         solo
                         flat
                         background-color="#F3F3F3"
                         dense
-                        class="input group"
-                        item-text="name"
+                        class="input"
+                        v-model="group"
                     ></v-select>
                   <!-- <div class="sex-tip">性别</div> -->
                     <v-radio-group
-                      v-model="row"
+                      v-model="sex"
                       row
                       class="sex list-firstline-item"
                       mandatory
                     >
                       <v-radio
                         label="男"
-                        value="radio-1"
+                        value="2"
                         color="#666666"
                         class="sex-option"
                       ></v-radio>
                       <v-radio
                         label="女"
-                        value="radio-2"
+                        value="1"
                         color="#666666"
                         class="sex-option"
                       ></v-radio>
@@ -78,13 +79,15 @@
                         label="组别"
                         :items="groups"
                         :rules="groupRules"
+                        item-text="name"
+                        item-value="index"
                         single-line
                         solo
                         flat
                         background-color="#F3F3F3"
                         dense
                         class="input "
-                        v-model="select"
+                        v-model="group"
                     ></v-select>
                   </v-list-item>
                 <v-list-item class="list">
@@ -119,8 +122,11 @@
                 </v-list-item>
                 <v-list-item class="list">
                     <v-select
+                        v-model="grade"
                         label="年级"
                         :items="grades"
+                        item-text="name"
+                        item-value="index"
                         :rules="gradeRules"
                         single-line
                         solo
@@ -146,7 +152,7 @@
                     ></v-text-field>    
                 </v-list-item> 
                 </v-list>
-                <button class="sign-up_submit" type="button" @click="validateField">
+                <button class="sign-up_submit" type="button" @click="validateField" :disabled="loading">
                   提交
               </button>
             </div>
@@ -158,6 +164,7 @@
               background-color="#F3F3F3"
               height="162"
               :rules="resumeRules"
+              ref="resume"
               ></v-file-input>
               <v-file-input
               placeholder="点击此处上传作品集（非必填）"
@@ -165,12 +172,22 @@
               flat
               background-color="#F3F3F3"
               height="162"
+              ref="work"
               ></v-file-input>
             </div>    
           </v-form>
+          <v-snackbar
+            :value="success.state" centered flat color="success" outlined min-width="50%" height="100"
+          >
+          {{ success.info }}
+          </v-snackbar>
+          <v-snackbar
+            :value="error.state" centered flat color="success" outlined min-width="50%" height="100"
+          >
+          {{ error.info }}
+          </v-snackbar>
           </v-app>
         </div>
-
       </div>
     </div>
     <!-- 页尾 -->
@@ -193,23 +210,37 @@ import Bottom from '../components/Bottom.vue';
         nameRules: [
           v => !!v || '姓名不能为空哦'
         ],
-        select: '',
-        groups: [ '产品组', '运营组', '设计组', '前端组', '后端组', '移动组'],
+        group: '',
+        groups: [ 
+          {index: 1, name: '产品'},
+          {index: 2, name: '运营'},
+          {index: 3, name: '设计'},
+          {index: 4, name: '前端'},
+          {index: 5, name: '后端'},
+          {index: 6, name: '移动'}
+        ],
         groupRules: [
           v => !!v || '组别不能为空哦'
         ],
         phone: '',
         phoneRules: [
           v => !!v || '电话不能为空哦',
-          v => /1[0-9]{10}/.test(v) || '请输入正确的电话号码 ~'
+          v => /^1[0-9]{10}$/.test(v) || '请输入正确的电话号码 ~'
         ],
         qq: '',
         qqRules: [
           v => !!v || 'QQ不能为空哦'
         ],
         grades: [
-          '大一','大二','大三','大四','研一','研二','研三'
+          {index: 1, name: '大一'},
+          {index: 2, name: '大二'},
+          {index: 3, name: '大三'},
+          {index: 4, name: '大四'},
+          {index: 5, name: '研一'},
+          {index: 6, name: '研二'},
+          {index: 7, name: '研三'},
         ],
+        grade:'',
         gradeRules: [
           v => !!v || '年级不能为空哦'
         ],
@@ -222,7 +253,17 @@ import Bottom from '../components/Bottom.vue';
         ],
         docmHeight: document.documentElement.clientHeight,
         showHeight: document.documentElement.clientHeight,
-        hidShow: true
+        hidShow: true,
+        loading: false,
+        success: {
+          state: true,
+          info: '报名信息提交成功 ~'
+        },
+        error: {
+          state: false,
+          info: '报名信息提交失败'
+        }
+
       }
     },
     // 防止页尾在输入时上浮
@@ -253,27 +294,33 @@ import Bottom from '../components/Bottom.vue';
       },
       validateField() {
         var state = this.$refs.form.validate();
+        var formData = new FormData;
+        formData.append('name', this.name);
+        formData.append('sex', this.sex);
+        formData.append('phone_number', this.phone);
+        formData.append('qq_number', this.blah);
+        formData.append('grade', this.grade);
+        formData.append('major', this.major);
+        formData.append('group', this.group);
+        formData.append('resume_file', this.resume);
+        formData.append('work_file', this.work);
+        if(state === true) {
+          console.log(this.name, this.group, this.sex, this.phone, this.qq, this.grade, this.major, this.resume, this.work);
+          console.log("------")
+          console.log(formData)
+        }else {
+          return
+        }
+        var formData = new FormData();
+        
+        formData.append('file1', this.file1);
+        formData.append('file2', this.file2);
+        console.log(formData);
         console.log(state);
         console.log(this.select);
         return false;
       }
-      // getTime() {
-      //   let date = new Date();
-      //   let year = date.getFullYear();
-      //   let month = date.getMonth();
-      //   console.log(year, month);
-      //   if(month<=5) {
-      //     // 1到6月
-      //     this.time = year + '春季';
-      //   }else{
-      //     // 7到12月
-      //     this.time = year + '秋季'
-      //   }
-      // }
     },
-    // created() {
-    //   this.getTime();
-    // }
   }
 </script>
 
