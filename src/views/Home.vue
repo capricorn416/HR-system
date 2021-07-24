@@ -471,6 +471,9 @@ import Bottom from '../components/Bottom.vue';
     width: 100%;
   }
   @media screen and (max-width: 767px) {
+    .sign-up {
+      margin-top: 5%;
+    }
     .sign-up_header {
       font-size: 32px;
       margin: 0;
@@ -510,7 +513,7 @@ import Bottom from '../components/Bottom.vue';
       margin-top: 0;
     }
     
-    @media screen and (max-height: 550px) {
+    @media screen and (max-height: 570px) {
       .home_footer {
         top: 225%;
       }
@@ -518,7 +521,7 @@ import Bottom from '../components/Bottom.vue';
         margin-bottom: -5px;
       }
     }
-    @media screen and (max-height: 420px) {
+    @media screen and (max-height: 450px) {
       .home_footer {
         top: 250%;
       }

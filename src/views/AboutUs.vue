@@ -1,6 +1,7 @@
 <template>
 
-  <div>
+  <div> 
+     
     <head-bar/>
     <div class="main">
     <div class="center">
@@ -123,7 +124,7 @@ export default defineComponent({
           color: "#F1ECF1",
           title: "BetweenUs ",
           slogan: "——每一次问答，我都在走近你 <br/>  No more gap between us ",
-          content: "帮助异地情侣互相了解，促进双方感情增温 的趣味问答产品",
+          content: "帮助异地情侣互相了解，促进双方感情增温的趣味问答产品",
           display: false,
           show:false,
         },
@@ -146,20 +147,23 @@ export default defineComponent({
   z-index: 1;
 }
 .center {
-  width: 1440px;
+  width: 95%;
 
   margin: 0 auto;
   background: #ffffff;
   position: relative;
   border-radius: 5px;
 }
-
+.center .first{
+  height: 205px;
+  margin-top: 136px;
+  margin-left:150px ;
+}
 .center .first-content {
-  position: absolute;
+  float: left;
   width: 643px;
   height: 91px;
-  left: 150px;
-  top: 313px;
+   margin-top: 78px;
 
   font-family: Source Han Serif SC;
   font-size: 18px;
@@ -172,21 +176,15 @@ export default defineComponent({
   color: #000000;
 }
 .center .first img {
-  position: absolute;
+ float: left;
   width: 205px;
   height: 205px;
-  left: 958px;
-  top: 235px;
+  margin-left: 165px;
   border-radius: 50%;
 }
 
 .second .content {
-  position: relative;
-  width: 420px;
-
-  left: 130px;
-  top: 0px;
-
+ margin-left: 130px;
   font-family: Source Han Serif SC;
   font-size: 36px;
   line-height: 12px;
@@ -200,40 +198,29 @@ export default defineComponent({
 
 /* .second .content .dialog {
 } */
-.secondbox{
-  padding-top:603px ;
-  padding-left:20px ;
-}
-.second {
-  position: relative;
-  width: 1400px;
-  top: 603px;
-  left: 20px;
-}
-/* .second .box .avater :hover .dialog{
-  display: block;
-} */
-.second .box {
-  position: relative;
-  width: 1400px;
 
-  left: 20px;
-  top: 112px;
+.second { 
+  width: 1360px;
+  margin: 132px auto 0;
+  
+}
+.second .box {
+  width: 1360px;
+  margin-top: 112px;
 }
 .second .box .item {
   position: relative;
   width: 1360px;
   height: 350px;
-  margin-left: 20px;
   margin-bottom: 24px;
   background-color: #ecf0f1;
 }
 .second .box .avater {
-  position: relative;
+ float: left;
   width: 284px;
   height: 284px;
-  left: 130px;
-  top: 33px;
+  margin-left: 130px;
+  margin-top: 33px;
   border-radius: 24px;
 }
 
@@ -305,11 +292,11 @@ height: 12px;
   color: #8d8d8d;
 }
 .second .box .passage {
-  position: absolute;
+  float: left;
   width: 561px;
   height: 253px;
-  left: 632px;
-  top: 50px;
+  margin-left: 218px;
+  margin-top: 50px;
 
   font-family: Segoe UI;
   font-size: 30px;
@@ -338,7 +325,7 @@ height: 12px;
   position: relative;
   width: 1440px;
   height: 100px;
-  margin-top: 800px;
+  margin-top: 100px;
 }
 .third .code {
   position: absolute;
