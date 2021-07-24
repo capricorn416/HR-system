@@ -26,24 +26,24 @@
               <div
               class="avater"
               >
-              <img :src="item.pic"  @mouseenter="show(index)" @mouseleave="hide" />
+              <img :src="item.logo_url"  @mouseenter="show(index)" @mouseleave="hide" />
               </div>
 
               <div class="dialog" v-if="item.display && seen && index == current" >
                 <div>
-                  <img :src="item.img1" class="i1" alt="img1" />
+                  <img :src="require(item.img_urls[0])" class="i1" alt="img1" />
                   <p class="up">小程序</p>
                 </div>
                 <div>
-                  <img :src="item.img2" class="i2" alt="img2" />
+                  <img :src="require(item.img_urls[1])" class="i2" alt="img2" />
                   <p class="down">QQ社群</p>
                 </div>
               </div>
               
               <div class="passage">
-              <p class="title">{{ item.title }}</p>
+              <p class="title">{{ item.product_title }}</p>
               <p class="slogan" v-html="item.slogan"></p>
-              <p class="pcontent">{{ item.content }}</p>
+              <p class="pcontent">{{ item.product_desc }}</p>
               </div>
 
             </div>
@@ -124,14 +124,14 @@ export default {
       this.current = null;
     }
   },
-  // created() {
-  //   getProductDesc().then((res) => {
-  //     console.log(res.data.msg)
-  //     this.datalist = res.data.msg
-  //   }).catch((err) => {
+  created() {
+    getProductDesc().then((res) => {
+      console.log(res.data.msg);
+      this.datalist = res.data.msg;
+    }).catch((err) => {
       
-  //   });
-  // }
+    });
+  }
 }
 </script>
 
