@@ -32,13 +32,13 @@
             <div
               class="avater"
                @mouseover="enter(index)"
-               @mouseout="leave()"
+               @mouseout="leave(index)"
             >
             
               
               <img :src="item.logo_url" />
             </div>
-            <div class="dialog" v-show="isSeen && index === current">
+            <div class="dialog" v-show="isSeen">
               <img :src="item.img_urls[0]" class="i1" alt="img1" />
               <p class="up">小程序</p>
               <img :src="item.img_urls[1]" class="i2" alt="img2" />
@@ -104,7 +104,7 @@ export default({
       getMsg() {
         var datalist=[];
         getProductDesc().then((res) => {
-          // console.log(res.data.msg)
+          console.log(res.data.msg)
           this.datalist = res.data.msg;
         }).catch((err) => {
           // console.log(err)
@@ -125,7 +125,7 @@ export default({
       enter(index)    {
          this.isSeen = true;
          this.current = index;
-       },
+       }    ,
        leave(){
          this.isSeen = false;
         this.current = null;

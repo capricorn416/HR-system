@@ -36,7 +36,7 @@
             >
             
               
-              <img :src="item.logo_url" />
+              <img :src="require(item.logo_url)" />
             </div>
             <div class="dialog" v-show="isSeen && index === current">
               <img :src="item.img_urls[0]" class="i1" alt="img1" />
@@ -104,25 +104,25 @@ export default({
       getMsg() {
         var datalist=[];
         getProductDesc().then((res) => {
-          // console.log(res.data.msg)
+          console.log(res.data.msg)
           this.datalist = res.data.msg;
         }).catch((err) => {
           // console.log(err)
-        }),
-        function  ObjStory(type ,boolean) //声明对象
-     {
+        })
+    //     function  ObjStory(type ,boolean) //声明对象
+    //  {
         
-        this.show ==Boolean(type);
-        this.display == Boolean(boolean);
-     }
-        function push(){
-          this.status = !this.status
-          this.datalist[0].push(new  ObjStory (1,0));
-         this.datalist[1].push(new  ObjStory (1,0));
-         console.log(this.datalist.img_urls);}
+    //     this.show ==Boolean(type);
+    //     this.display == Boolean(boolean);
+    //  }
+    //     function push(){
+    //       this.status = !this.status
+    //       this.datalist[0].push(new  ObjStory (1,0));
+    //      this.datalist[1].push(new  ObjStory (1,0));
+    //      console.log(this.datalist.img_urls);}
       },
       
-      enter(index)    {
+      enter(index){
          this.isSeen = true;
          this.current = index;
        },

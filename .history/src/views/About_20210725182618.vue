@@ -104,7 +104,7 @@ export default({
       getMsg() {
         var datalist=[];
         getProductDesc().then((res) => {
-          // console.log(res.data.msg)
+          console.log(res.data.msg)
           this.datalist = res.data.msg;
         }).catch((err) => {
           // console.log(err)
