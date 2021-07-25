@@ -2,19 +2,19 @@
 
   <div> 
      
-    <head-bar/>
+   
     <div class="main">
     <div class="center">
       <div class="first">
         <div class="first-content">
-          团队介绍文案（暂定2020秋招文案）（待与运营对接）<br />
+          
           Pivot
           Studio成立于2020年11月，是⼀个创意驱动、怀抱好奇、充满热情的校园互联网团队，
           我们专注于开发创意丰富、设计简约、体验⼀流的校园产品。
         </div>
-        <img
+        <v-img class="img"
           src="../assets/img/AboutUs/PivotStudio_Logo_Squre_Solid_W-10.png"
-        />
+        ></v-img>
       </div>
 
       
@@ -89,7 +89,6 @@ export default defineComponent({
   name: "AboutUs",
 
   components: {
-    HeadBar,
     Bottom,
   },
   methods: {
@@ -114,7 +113,7 @@ export default defineComponent({
             "HUSTer专属的的倾诉与倾听的空间 一个自由、友善、真诚的匿名治愈系社区。",
           img1: require("../assets/img/AboutUs/Husthole.png"),
           img2: require("../assets/img/AboutUs/QQ.png"),
-          display: true,
+          display: false,
           show:true,
           
 
@@ -142,10 +141,7 @@ export default defineComponent({
         width: 100%;
         background-color: #fff;
 }
-.head {
-  position: absolute;
-  z-index: 1;
-}
+
 .center {
   width: 95%;
 
@@ -154,18 +150,18 @@ export default defineComponent({
   position: relative;
   border-radius: 5px;
 }
-.center .first{
+ .first{
   height: 205px;
-  margin-top: 136px;
-  margin-left:150px ;
+  margin-top: 11%;
+  margin-left:12% ;
 }
-.center .first-content {
+.first-content {
   float: left;
-  width: 643px;
+  width: 49%;
   height: 91px;
    margin-top: 78px;
 
-  font-family: Source Han Serif SC;
+  font-family: "Source Han Serif SC";
   font-size: 18px;
   line-height: 20px;
   /* or 111% */
@@ -175,17 +171,19 @@ export default defineComponent({
 
   color: #000000;
 }
-.center .first img {
+ .img {
  float: left;
-  width: 205px;
-  height: 205px;
-  margin-left: 165px;
+  width: 16%;
+  min-width: 180px;
+  margin-left: 12%;
   border-radius: 50%;
 }
 
 .second .content {
- margin-left: 130px;
+ 
   font-family: Source Han Serif SC;
+ margin-left: 9.5%;
+  font-family: "Source Han Serif SC";
   font-size: 36px;
   line-height: 12px;
   /* or 33% */
@@ -200,43 +198,44 @@ export default defineComponent({
 } */
 
 .second { 
-  width: 1360px;
+  width: 94%;
   margin: 132px auto 0;
   
 }
 .second .box {
-  width: 1360px;
+  width: 100%;
   margin-top: 112px;
 }
-.second .box .item {
+ .item {
   position: relative;
-  width: 1360px;
+  width: 100%;
   height: 350px;
   margin-bottom: 24px;
   background-color: #ecf0f1;
 }
-.second .box .avater {
+ .avater {
  float: left;
   width: 284px;
   height: 284px;
-  margin-left: 130px;
+  margin-left: 10%;
   margin-top: 33px;
   border-radius: 24px;
 }
 
-.second .box .dialog {
+ .dialog {
   
   position: absolute;
   width: 420px;
   height: 212px;
-  left: 483px;
+  left: 30%;
   top: 85px;
+  margin-left: 140px;
   background: #ffffff;
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   z-index: 1;
 }
-.second .box .dialog::before{
+ .dialog::before{
             
             content:'';
             position: absolute;
@@ -245,27 +244,27 @@ export default defineComponent({
             left: -40px;
             top: 85px;
         }
-.second .box .i1 {
+ .i1 {
   position: absolute;
   width: 150px;
   height: 150px;
   top: 26px;
   left: 32px;
 }
-.second .box .i2 {
+ .i2 {
   position: absolute;
   width: 150px;
   height: 150px;
   top: 36px;
   left: 234px;
 }
-.second .box .up {
+ .up {
   position: absolute;
   width: 62px;
 height: 12px;
   left: 74px;
   top: 193px;
-  font-family: Source Serif Pro;
+  font-family: "Source Serif Pro";
   font-size: 18px;
   line-height: 12px;
   /* identical to box height, or 67% */
@@ -275,13 +274,13 @@ height: 12px;
 
   color: #8d8d8d;
 }
-.second .box .down {
+ .down {
   position: absolute;
   width: 73px;
 height: 12px;
   left: 275px;
   top: 193px;
-  font-family: Source Serif Pro;
+  font-family:" Source Serif Pro";
   font-size: 18px;
   line-height: 12px;
   /* identical to box height, or 67% */
@@ -291,11 +290,11 @@ height: 12px;
 
   color: #8d8d8d;
 }
-.second .box .passage {
+ .passage {
   float: left;
-  width: 561px;
-  height: 253px;
-  margin-left: 218px;
+  width: 42%;
+  
+  margin-left: 16%;
   margin-top: 50px;
 
   font-family: Segoe UI;
@@ -308,54 +307,54 @@ height: 12px;
 
   color: #000000;
 }
-.second .box p {
+ .box p {
   margin-bottom: 20px;
   line-height: 120%;
 }
-.second .box .slogan {
+ .slogan {
   font-size: 24px;
   line-height: 120%;
 }
-.second .box .pcontent {
+.pcontent {
   font-size: 25px;
   margin-top: 50px;
   line-height: 120%;
 }
 .third {
   position: relative;
-  width: 1440px;
+  width: 100%;
   height: 100px;
   margin-top: 100px;
 }
-.third .code {
+ .code {
   position: absolute;
   top: 135px;
-  left: 149px;
+  left: 10%;
 }
-.third .email {
+ .email {
   position: absolute;
   width: 393px;
   height: 73px;
-  left: 142px;
+  left: 10%;
   font-family: Source Han Sans CN;
   font-size: 24px;
   line-height: 36px;
 }
-.third .email p {
+ .email  p {
   font-family: Segoe UI;
   font-size: 36px;
   margin-bottom: 20px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
-.third .code img {
+ .code img {
   width: 250px;
   height: 250px;
 }
-.third .code .two {
-  margin-left: 151px;
+ .two {
+  margin-left: 149px;
 }
-.third p {
+.code p {
   font-family: Segoe UI;
 
   font-size: 14px;
@@ -365,12 +364,13 @@ height: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
-.third .p1 {
+
+ .p1 {
   position: absolute;
   top: 260px;
   left: 37px;
 }
-.third .p2 {
+.p2 {
   position: absolute;
   top: 260px;
   left: 426px;
@@ -379,6 +379,122 @@ height: 12px;
   position:relative;
   top: 400px;
   z-index: 1;
+}
+@media screen and (max-width: 1100px) {
+    .box .passage {
+      margin-left:5.2% !important;
+    }
+  .slogan{
+     display: none;
+  }
+}  
+@media screen and (max-width: 772px) {
+  .center .first{height: 140px;}
+  .center .first .first-content{
+    width: 49%;
+    margin-top: 30px;
+    font-size: 16px;}
+  .first .img{
+    width: 32%;
+    max-width: 155px;
+    min-width: 0 ;
+    margin-left:12% ;
+  }
+  .center .second .content{
+     margin-left: 9.5%;
+     font-size: 30px;
+
+  }
+  .center .box{
+    margin-top: 58px;
+  }
+  .box .item{
+    height: 290px;
+  }
+  .box .avater{
+    width: 200px;
+    height: 200px;
+    margin-left: 7%;
+    margin-top: 33px;
+  }
+  .avater img{
+    width: 200px;
+  }
+  .box .dialog{
+     width: 250px;
+    height: 125px;
+    left: 22%;
+    top: 71px;
+    margin-left: 140px;
+  }
+  .box .dialog::before{
+    border: 17px solid;
+    left: -32px;
+    top: 47px;
+    border-color: transparent #ffffff transparent transparent;
+  }
+  .box .i1{
+    width: 98px;
+    height: 98px;
+    top: 8px;
+    left: 14px;
+  }
+  .box .up{
+      left: 38px;
+    top: 107px;
+    font-size: 14px;
+  }
+  .box .i2{
+    width: 95px;
+    height: 95px;
+    top: 14px;
+    left: 137px;
+  }
+  .box .down{
+      left: 154px;
+    top: 106px;
+    font-size: 14px;
+  }
+  .item .passage{
+    margin-top: 30px;
+    font-size: 26px;
+  }
+  .item .slogan{
+    font-size: 16px;
+    display: block;
+  }
+  .item .pcontent{
+    font-size: 18px;
+    margin-top: 27px;
+  }
+  .third .email p{
+    font-size: 30px;
+  }
+  .third .code img{
+    width: 188px;
+    height: 188px;
+
+  }
+  .third .code .p1{
+    top: 194px;
+    left: 8px;
+  }
+  .third .code .p1{
+    top: 194px;
+    left: 8px;
+  }
+  .third .code .two{
+
+    margin-left: 66px;
+  }
+  .third .code .p2{
+   top: 194px;
+    left: 250px;
+    width: 220px;
+}
+  
+
+
 }
 
 </style>
