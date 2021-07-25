@@ -26,7 +26,7 @@
             v-for="(item, index) in datalist"
             :key="index"
             class="item"
-            :style="{ backgroundcolor: item.color }"
+            
             
           >
             <div
@@ -36,19 +36,19 @@
             >
             
               
-              <img :src="item.pic" />
+              <img :src="item.logo_url" />
             </div>
-            <div class="dialog" v-show="item.display&&item.show">
-              <img :src="item.img1" class="i1" alt="img1" />
+            <div class="dialog" v-show="item.display">
+              <img :src="item.img_urls[0]" class="i1" alt="img1" />
               <p class="up">小程序</p>
-              <img :src="item.img2" class="i2" alt="img2" />
+              <img :src="item.img_urls[1]" class="i2" alt="img2" />
               <p class="down">QQ社群</p>
             </div>
 
             <div class="passage">
-              <p class="title">{{ item.title }}</p>
-              <p class="slogan" v-html="item.slogan"></p>
-              <p class="pcontent">{{ item.content }}</p>
+              <p class="title">{{ item.product_title }}</p>
+              <!-- <p class="slogan" v-html="item.slogan"></p> -->
+              <p class="pcontent">{{ item.product_desc }}</p>
             </div>
           </div>
 
@@ -79,62 +79,70 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="js">
 import Vue from "vue";
 // import Component from "vue-class-component";
 import { defineComponent } from "@vue/composition-api";
-import HeadBar from "components/HeadBar.vue";
+
+import {getProductDesc} from '@/api/getDes'
 import  Bottom from "../components/Bottom.vue";
 export default defineComponent({
   name: "AboutUs",
 
   components: {
     Bottom,
-  },
-  methods: {
-       enter(item)    {
-         item.display=true;
-       }    ,
-       leave(item){
-         item.display=false;
-       }     
+    
   },
 
   data() {
     return {
-      
-      datalist: [
-        {
-          pic: require("../assets/img/AboutUs/方形Logo 1.png"),
-          color: "#ECF0F1",
-          title: "1037树洞",
-          slogan: "——有时治愈，时常帮助，总是倾听 ",
-          content:
-            "HUSTer专属的的倾诉与倾听的空间 一个自由、友善、真诚的匿名治愈系社区。",
-          img1: require("../assets/img/AboutUs/Husthole.png"),
-          img2: require("../assets/img/AboutUs/QQ.png"),
-          display: false,
-          show:true,
-          
-
-        },
-        {
-          pic: require("../assets/img/AboutUs/LOGO 1.png"),
-          color: "#F1ECF1",
-          title: "BetweenUs ",
-          slogan: "——每一次问答，我都在走近你 <br/>  No more gap between us ",
-          content: "帮助异地情侣互相了解，促进双方感情增温的趣味问答产品",
-          display: false,
-          show:false,
-        },
-      ],
+     status: true,
+      datalist:[],
     };
   },
-  
+  created() {
+      this.getMsg()
+    },
+    methods: {
+      getMsg() {
+        var datalist=[];
+        getProductDesc().then((res) => {
+          console.log(res.data.msg)
+          this.datalist = res.data.msg;
+        }).catch((err) => {
+          // console.log(err)
+        }),
+
+        function  ObjStory(type ,boolean) //声明对象
+     {
+        
+        this.show ==Boolean(type);
+        this.display == Boolean(boolean);
+     }
+
+        function push(){
+          this.status = !this.status
+          this.datalist[0].push(new  ObjStory (1,0));
+
+         this.datalist[1].push(new  ObjStory (1,0));
+         console.log(this.datalist.img_urls);}
+      },
+      
+
+      enter(item)    {
+         item.display=true;
+       }    ,
+       leave(item){
+         item.display=false;
+       }  
+    }
 });
 </script>
 
 <style scoped>
+.item a:hover.box .dialog{
+  display: block;
+}
 .main{
   position: absolute;
         top: 99px;
