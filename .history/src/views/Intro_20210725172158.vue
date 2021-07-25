@@ -4,7 +4,7 @@
         <div class="main2">
             <div class="section">
                 <!-- 在中等屏幕及以上呈现 -->
-                <v-list v-for="(group, index) in groups" :key="group.team_title" class="card">
+                <v-list v-for="(group, index) in groups" :key="group" class="card">
                     <!-- 奇偶行交叉呈现: 轮播图在左-->
                     <div v-if="index % 2 == 0">
                       <v-list-item class="section_item">
@@ -266,7 +266,7 @@ export default {
     methods: {
       getInfo() {
         getGroupDesc().then((res) => {
-          // console.log(res.data.msg)
+          console.log(res.data.msg)
           this.groups = res.data.msg;
         }).catch((err) => {
           // console.log(err)

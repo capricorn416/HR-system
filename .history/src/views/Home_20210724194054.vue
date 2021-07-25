@@ -122,7 +122,10 @@
                 </v-list-item>
                 <v-list-item class="list">
                     <v-select
+<<<<<<< HEAD
                         v-model="grade"
+=======
+>>>>>>> 922f4e4d0cc548fb39f96e17429466c4b8a195cf
                         label="年级"
                         :items="grades"
                         item-text="name"
@@ -152,13 +155,27 @@
                     ></v-text-field>    
                 </v-list-item> 
                 </v-list>
+<<<<<<< HEAD
                 <button class="sign-up_submit" type="button" @click="validateField" :disabled="loading">
+=======
+                <button class="sign-up_submit" type="button" @click="validateField">
+>>>>>>> 922f4e4d0cc548fb39f96e17429466c4b8a195cf
                   提交
               </button>
             </div>
             <div class="sign-up_right">
+<<<<<<< HEAD
               <v-file-input
               label="点击此处上传简历"
+=======
+              <!-- <v-file-input
+              solo
+              flat
+              background-color="#F3F3F3"
+              height="137"
+              :rules="resumeRules"
+              placeholder="点击此处上传简历"
+>>>>>>> 922f4e4d0cc548fb39f96e17429466c4b8a195cf
               solo
               flat
               background-color="#F3F3F3"
@@ -167,13 +184,25 @@
               v-model="resume"
               ></v-file-input>
               <v-file-input
+<<<<<<< HEAD
               label="点击此处上传作品集（非必填）"
+=======
+              solo
+              flat
+              height="137"
+              background-color="#F3F3F3"
+              placeholder="点击此处上传作品集（非必填）"
+>>>>>>> 922f4e4d0cc548fb39f96e17429466c4b8a195cf
               solo
               flat
               background-color="#F3F3F3"
               height="162"
+<<<<<<< HEAD
               v-model="work"
               ></v-file-input>
+=======
+              ></v-file-input> -->
+>>>>>>> 922f4e4d0cc548fb39f96e17429466c4b8a195cf
             </div>    
           </v-form>
           <!-- <v-snackbar
@@ -200,7 +229,10 @@
 
 <script>
 import Bottom from '../components/Bottom.vue';
+<<<<<<< HEAD
 import {sendForm} from '@/api/sendForm'
+=======
+>>>>>>> 922f4e4d0cc548fb39f96e17429466c4b8a195cf
   export default {
   components: { Bottom },
     name: 'Home',
@@ -211,6 +243,7 @@ import {sendForm} from '@/api/sendForm'
         nameRules: [
           v => !!v || '姓名不能为空哦'
         ],
+<<<<<<< HEAD
         group: '',
         groups: [ 
           {index: 1, name: '产品'},
@@ -220,6 +253,10 @@ import {sendForm} from '@/api/sendForm'
           {index: 5, name: '后端'},
           {index: 6, name: '移动'}
         ],
+=======
+        select: '',
+        groups: [ '产品组', '运营组', '设计组', '前端组', '后端组', '移动组'],
+>>>>>>> 922f4e4d0cc548fb39f96e17429466c4b8a195cf
         groupRules: [
           v => !!v || '组别不能为空哦'
         ],
@@ -241,7 +278,10 @@ import {sendForm} from '@/api/sendForm'
           {index: 6, name: '研二'},
           {index: 7, name: '研三'},
         ],
+<<<<<<< HEAD
         grade:'',
+=======
+>>>>>>> 922f4e4d0cc548fb39f96e17429466c4b8a195cf
         gradeRules: [
           v => !!v || '年级不能为空哦'
         ],
@@ -265,8 +305,8 @@ import {sendForm} from '@/api/sendForm'
           info: '报名信息提交失败'
         },
         resume: null,
-        work: null,
-        sex: ''
+        work: null
+
       }
     },
     // 防止页尾在输入时上浮
@@ -297,8 +337,8 @@ import {sendForm} from '@/api/sendForm'
       },
       validateField() {
         var state = this.$refs.form.validate();
+<<<<<<< HEAD
         var formData = new FormData;
-        this.loading = true;
         formData.append('name', this.name);
         formData.append('sex', this.sex);
         formData.append('phone_number', this.phone);
@@ -310,11 +350,8 @@ import {sendForm} from '@/api/sendForm'
         formData.append('work_file', this.work);
         if(state === true) {
           sendForm(formData).then((res) => {
-            this.loading = false;
             alert('报名信息提交成功 ~')
           }).catch((err) => {
-            this.loading = false;
-            console.log(err);
             alert('报名信息提交失败，请重试')
           });
         }else {
@@ -322,6 +359,25 @@ import {sendForm} from '@/api/sendForm'
         }
         return false;
       }
+=======
+        console.log(state);
+        console.log(this.select);
+        return false;
+      }
+      // getTime() {
+      //   let date = new Date();
+      //   let year = date.getFullYear();
+      //   let month = date.getMonth();
+      //   console.log(year, month);
+      //   if(month<=5) {
+      //     // 1到6月
+      //     this.time = year + '春季';
+      //   }else{
+      //     // 7到12月
+      //     this.time = year + '秋季'
+      //   }
+      // }
+>>>>>>> 922f4e4d0cc548fb39f96e17429466c4b8a195cf
     },
   }
 </script>

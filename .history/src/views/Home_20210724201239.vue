@@ -265,8 +265,8 @@ import {sendForm} from '@/api/sendForm'
           info: '报名信息提交失败'
         },
         resume: null,
-        work: null,
-        sex: ''
+        work: null
+
       }
     },
     // 防止页尾在输入时上浮
@@ -298,7 +298,6 @@ import {sendForm} from '@/api/sendForm'
       validateField() {
         var state = this.$refs.form.validate();
         var formData = new FormData;
-        this.loading = true;
         formData.append('name', this.name);
         formData.append('sex', this.sex);
         formData.append('phone_number', this.phone);
@@ -310,11 +309,8 @@ import {sendForm} from '@/api/sendForm'
         formData.append('work_file', this.work);
         if(state === true) {
           sendForm(formData).then((res) => {
-            this.loading = false;
             alert('报名信息提交成功 ~')
           }).catch((err) => {
-            this.loading = false;
-            console.log(err);
             alert('报名信息提交失败，请重试')
           });
         }else {

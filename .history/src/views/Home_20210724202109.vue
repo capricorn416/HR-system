@@ -265,8 +265,8 @@ import {sendForm} from '@/api/sendForm'
           info: '报名信息提交失败'
         },
         resume: null,
-        work: null,
-        sex: ''
+        work: null
+
       }
     },
     // 防止页尾在输入时上浮
@@ -314,7 +314,6 @@ import {sendForm} from '@/api/sendForm'
             alert('报名信息提交成功 ~')
           }).catch((err) => {
             this.loading = false;
-            console.log(err);
             alert('报名信息提交失败，请重试')
           });
         }else {

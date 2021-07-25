@@ -152,7 +152,7 @@
                     ></v-text-field>    
                 </v-list-item> 
                 </v-list>
-                <button class="sign-up_submit" type="button" @click="validateField" :disabled="loading">
+                <button class="sign-up_submit" @click="validateField" :disabled="loading">
                   提交
               </button>
             </div>
@@ -265,8 +265,8 @@ import {sendForm} from '@/api/sendForm'
           info: '报名信息提交失败'
         },
         resume: null,
-        work: null,
-        sex: ''
+        work: null
+
       }
     },
     // 防止页尾在输入时上浮

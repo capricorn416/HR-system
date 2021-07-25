@@ -267,6 +267,7 @@ import {sendForm} from '@/api/sendForm'
         resume: null,
         work: null,
         sex: ''
+
       }
     },
     // 防止页尾在输入时上浮

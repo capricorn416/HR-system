@@ -265,8 +265,8 @@ import {sendForm} from '@/api/sendForm'
           info: '报名信息提交失败'
         },
         resume: null,
-        work: null,
-        sex: ''
+        work: null
+
       }
     },
     // 防止页尾在输入时上浮
@@ -304,7 +304,7 @@ import {sendForm} from '@/api/sendForm'
         formData.append('phone_number', this.phone);
         formData.append('qq_number', this.blah);
         formData.append('grade', this.grade);
-        formData.append('major', this.major);
+        // formData.append('major', this.major);
         formData.append('group', this.group);
         formData.append('resume_file', this.resume);
         formData.append('work_file', this.work);
@@ -314,7 +314,6 @@ import {sendForm} from '@/api/sendForm'
             alert('报名信息提交成功 ~')
           }).catch((err) => {
             this.loading = false;
-            console.log(err);
             alert('报名信息提交失败，请重试')
           });
         }else {

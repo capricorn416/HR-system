@@ -266,7 +266,7 @@ export default {
     methods: {
       getInfo() {
         getGroupDesc().then((res) => {
-          // console.log(res.data.msg)
+          console.log(res.data.msg)
           this.groups = res.data.msg;
         }).catch((err) => {
           // console.log(err)
