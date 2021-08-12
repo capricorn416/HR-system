@@ -1,4 +1,4 @@
-<template>
+<template id="body">
   <v-app>
     <div class="home">
       <div class="main">
@@ -274,7 +274,7 @@
     },
     methods: {
       gotoRegister() { 
-        let distance = document.querySelector('.register').offsetTop;
+        let distance = document.querySelector('.register').offsetTop + 99;
         window.scrollTo({
           top: distance,
           behavior: 'smooth'
@@ -427,7 +427,8 @@
   }
   .sign-up {
     width: 80%;
-    margin: 20px auto;
+    margin: 0 auto;
+    padding-top: 20px;
   }
   .sign-up_header {
     font: normal 400 48px "Source Han Serif TC";
