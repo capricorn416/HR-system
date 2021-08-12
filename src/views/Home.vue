@@ -317,8 +317,7 @@
     position: relative;
     width: 100%;
     height: calc(100vh - 99px);
-    background-color: black;
-    background-image: url("../assets/img/home/poster.png");
+    background-image: url("../assets/img/home/bg.png");
     background-repeat: no-repeat;
     background-size: auto 100%;
     background-position: center;

@@ -20,7 +20,15 @@ export default {
 </script>
 
 <style>
+  /* chrome和safari */
   html::-webkit-scrollbar {
     display: none;
+  }
+  
+  html {
+    /* FireFox */
+    scrollbar-width: none;
+    /* IE */
+    -ms-overflow-style: none;
   }
 </style>
