@@ -1,4 +1,4 @@
-<template id="body">
+<template>
   <v-app>
     <div class="home">
       <div class="main">
