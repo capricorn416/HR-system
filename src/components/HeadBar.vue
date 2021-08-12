@@ -112,6 +112,7 @@ export default {
     font: normal 400 14px "Source Han Serif SC";
     /* outline: none;
     cursor: pointer; */
+    cursor: pointer;
   }
   .tab_xs {
     position: absolute;

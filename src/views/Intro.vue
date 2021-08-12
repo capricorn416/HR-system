@@ -167,9 +167,7 @@
         </div>
 
         <!-- 页尾 -->
-        <div class="intro_footer">
-          <bottom/>
-        </div>
+        <bottom/>
     </div>
 
     

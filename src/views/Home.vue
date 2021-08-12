@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <!-- 招新首页 -->
+  <v-app>
     <div class="home">
       <div class="main">
         <p class="time">Pivot Studio<br/>{{time}}招新</p>
@@ -11,137 +10,88 @@
           <button class="join_font" @click="gotoRegister" >JOIN US</button>
         </div>
       </div>
-    </div>
 
-    <!-- 报名页面 -->
-    <div class="register">
-      <div class="sign-up">
-        <p class="sign-up_header">报名信息录入</p>
-        <div class="sign-up_form">
-          <v-app>
-          <v-form ref="form">
-            <div class="sign-up_left">
-              <v-list>
-                
-                <v-list-item class="list list-firstline">
-                    <v-text-field
-                        v-model="name"
-                        :rules="nameRules"
-                        label="姓名"
-                        placeholder="姓名"
-                        single-line
-                        solo
-                        flat
-                        background-color="#F3F3F3"
-                        dense
-                        class="input list-firstline-item"
-                        clearable
-                    ></v-text-field>   
-                </v-list-item>
-                <v-list-item class="list">
-                  <v-select
-                        label="组别"
-                        :items="groups"
-                        :rules="groupRules"
-                        item-text="name"
-                        item-value="index"
-                        single-line
-                        solo
-                        flat
-                        background-color="#F3F3F3"
-                        dense
-                        class="input"
-                        v-model="group"
-                    ></v-select>
-                  <!-- <div class="sex-tip">性别</div> -->
-                    <v-radio-group
-                      v-model="sex"
-                      row
-                      class="sex list-firstline-item"
-                      mandatory
-                    >
-                      <v-radio
-                        label="男"
-                        value="2"
-                        color="#666666"
-                        class="sex-option"
-                      ></v-radio>
-                      <v-radio
-                        label="女"
-                        value="1"
-                        color="#666666"
-                        class="sex-option"
-                      ></v-radio>
-                    </v-radio-group>          
-                </v-list-item>
-                  <v-list-item class="list group_xs">
-                  <v-select
-                        label="组别"
-                        :items="groups"
-                        :rules="groupRules"
-                        item-text="name"
-                        item-value="index"
-                        single-line
-                        solo
-                        flat
-                        background-color="#F3F3F3"
-                        dense
-                        class="input "
-                        v-model="group"
-                    ></v-select>
+      <div class="register">
+        <div class="sign-up">
+          <p class="sign-up_header">报名信息录入</p>
+          <div class="sign-up_form">
+            <v-app>
+            <v-form ref="form">
+              <div class="sign-up_left">
+                <v-list>      
+                  <v-list-item class="list list-firstline">
+                      <v-text-field
+                          v-model="name"
+                          :rules="nameRules"
+                          label="姓名"
+                          placeholder="姓名"
+                          single-line
+                          solo
+                          flat
+                          background-color="#F3F3F3"
+                          dense
+                          class="input list-firstline-item"
+                          clearable
+                      ></v-text-field>   
                   </v-list-item>
-                <v-list-item class="list">
-                    <v-text-field
-                      v-model="phone"
-                      :rules="phoneRules"
-                      label="电话"
-                      placeholder="电话"
-                      single-line
-                      solo
-                      flat
-                      background-color="#F3F3F3"
-                      dense
-                      class="input"
-                      clearable
-                    ></v-text-field>
-                </v-list-item>
-                <v-list-item class="list">
-                    <v-text-field
-                        v-model="qq"
-                        :rules="qqRules"
-                        label="QQ"
-                        placeholder="QQ"
-                        single-line
-                        solo
-                        flat
-                        background-color="#F3F3F3"
-                        dense
-                        class="input"
-                        clearable
-                    ></v-text-field>
-                </v-list-item>
-                <v-list-item class="list">
+                  <v-list-item class="list">
                     <v-select
-                        v-model="grade"
-                        label="年级"
-                        :items="grades"
-                        item-text="name"
-                        item-value="index"
-                        :rules="gradeRules"
-                        single-line
-                        solo
-                        flat
-                        background-color="#F3F3F3"
-                        dense
-                        class="input"
-                    ></v-select>
-                </v-list-item>
-                <v-list-item class="list"> 
-                    <v-text-field
-                        v-model="major"
-                        :rules="majorRules"
-                        label="专业"
-                        placeholder="专业"
+                          label="组别"
+                          :items="groups"
+                          :rules="groupRules"
+                          item-text="name"
+                          item-value="index"
+                          single-line
+                          solo
+                          flat
+                          background-color="#F3F3F3"
+                          dense
+                          class="input group"
+                          v-model="group"
+                      ></v-select>
+                    <!-- <div class="sex-tip">性别</div> -->
+                      <v-radio-group
+                        v-model="sex"
+                        row
+                        class="sex list-firstline-item"
+                        mandatory
+                      >
+                        <v-radio
+                          label="男"
+                          value="2"
+                          color="#666666"
+                          class="sex-option"
+                        ></v-radio>
+                        <v-radio
+                          label="女"
+                          value="1"
+                          color="#666666"
+                          class="sex-option"
+                        ></v-radio>
+                      </v-radio-group>          
+                  </v-list-item>
+                    <v-list-item class="list group_xs">
+                    <v-select
+                          label="组别"
+                          :items="groups"
+                          :rules="groupRules"
+                          item-text="name"
+                          item-value="index"
+                          single-line
+                          solo
+                          flat
+                          background-color="#F3F3F3"
+                          dense
+                          class="input "
+                          v-model="group"
+                      ></v-select>
+                    </v-list-item>
+                  <v-list-item class="list">
+                      <v-text-field
+                        v-model="phone"
+                        :rules="phoneRules"
+                        label="电话"
+                        placeholder="电话"
                         single-line
                         solo
                         flat
@@ -149,63 +99,116 @@
                         dense
                         class="input"
                         clearable
-                    ></v-text-field>    
-                </v-list-item> 
-                </v-list>
-                <button class="sign-up_submit" type="button" @click="validateField" :disabled="loading">
+                      ></v-text-field>
+                  </v-list-item>
+                  <v-list-item class="list">
+                      <v-text-field
+                          v-model="qq"
+                          :rules="qqRules"
+                          label="QQ"
+                          placeholder="QQ"
+                          single-line
+                          solo
+                          flat
+                          background-color="#F3F3F3"
+                          dense
+                          class="input"
+                          clearable
+                      ></v-text-field>
+                  </v-list-item>
+                  <v-list-item class="list">
+                      <v-select
+                          v-model="grade"
+                          label="年级"
+                          :items="grades"
+                          item-text="name"
+                          item-value="index"
+                          :rules="gradeRules"
+                          single-line
+                          solo
+                          flat
+                          background-color="#F3F3F3"
+                          dense
+                          class="input"
+                      ></v-select>
+                  </v-list-item>
+                  <v-list-item class="list"> 
+                      <v-text-field
+                          v-model="major"
+                          :rules="majorRules"
+                          label="专业"
+                          placeholder="专业"
+                          single-line
+                          solo
+                          flat
+                          background-color="#F3F3F3"
+                          dense
+                          class="input"
+                          clearable
+                      ></v-text-field>    
+                  </v-list-item> 
+                  </v-list>
+                  <!-- <v-btn class="sign-up_submit" type="button" @click="validateField">
+                    提交
+                </v-btn> -->
+                <v-btn color="#333333" class="sign-up_submit"
+                  :loading="loading"
+                  :disabled="loading"
+                  @click="validateField"
+                  >
                   提交
-              </button>
-            </div>
-            <div class="sign-up_right">
-              <v-file-input
-              label="点击此处上传简历"
-              solo
-              flat
-              background-color="#F3F3F3"
-              height="162"
-              :rules="resumeRules"
-              v-model="resume"
-              ></v-file-input>
-              <v-file-input
-              label="点击此处上传作品集（非必填）"
-              solo
-              flat
-              background-color="#F3F3F3"
-              height="162"
-              v-model="work"
-              ></v-file-input>
-            </div>    
-          </v-form>
-          <!-- <v-snackbar
-            :value="success.state" centered flat color="success" outlined min-width="50%" height="100"
-          >
-          {{ success.info }}
-          </v-snackbar>
-          <v-snackbar
-            :value="error.state" centered flat color="success" outlined min-width="50%" height="100"
-          >
-          {{ error.info }}
-          </v-snackbar> -->
-          </v-app>
+                </v-btn>
+              </div>
+              <div class="sign-up_right">
+                <v-file-input
+                label="点击此处上传简历"
+                solo
+                flat
+                background-color="#F3F3F3"
+                height="162"
+                :rules="resumeRules"
+                v-model="resume"
+                ></v-file-input>
+                <v-file-input
+                label="点击此处上传作品集（非必填）"
+                solo
+                flat
+                background-color="#F3F3F3"
+                height="162"
+                v-model="work"
+                ></v-file-input>
+              </div>    
+            </v-form>
+            <!-- <v-snackbar
+              :value="success.state" centered flat color="success" outlined min-width="50%" height="100"
+            >
+            {{ success.info }}
+            </v-snackbar>
+            <v-snackbar
+              :value="error.state" centered flat color="success" outlined min-width="50%" height="100"
+            >
+            {{ error.info }}
+            </v-snackbar> -->
+            </v-app>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- 页尾 -->
-    <div class="home_footer" v-show="hidShow">
-        <bottom/>
-    </div>
-  </div>
 
+      <bottom/>
+    </div>
+  </v-app>
 </template>
 
 <script>
-import Bottom from '../components/Bottom.vue';
-import {sendForm} from '@/api/sendForm'
+  import Bottom from '../components/Bottom.vue';
+  import {sendForm} from '@/api/sendForm'
   export default {
   components: { Bottom },
     name: 'Home',
     data() {
       return {
+        loader: null,
+        loading: false,
         time: "2021秋季",
         name: '',
         nameRules: [
@@ -269,24 +272,6 @@ import {sendForm} from '@/api/sendForm'
         sex: ''
       }
     },
-    // 防止页尾在输入时上浮
-    watch: {
-      showHeight: function() {
-        if(this.docmHeight > this.showHeight) {
-          this.hidShow = false;
-        }else {
-          this.hidShow = true;
-        }
-      }
-    },
-    mounted() {
-      let vm = this;
-      window.onresize = () => {
-        return (()=>{
-          this.showHeight = document.body.clientHeight;
-        })()
-      }
-    },
     methods: {
       gotoRegister() { 
         let distance = document.querySelector('.register').offsetTop;
@@ -297,8 +282,8 @@ import {sendForm} from '@/api/sendForm'
       },
       validateField() {
         var state = this.$refs.form.validate();
-        var formData = new FormData;
-        this.loading = true;
+        var formData = new FormData();
+        
         formData.append('name', this.name);
         formData.append('sex', this.sex);
         formData.append('phone_number', this.phone);
@@ -309,6 +294,7 @@ import {sendForm} from '@/api/sendForm'
         formData.append('resume_file', this.resume);
         formData.append('work_file', this.work);
         if(state === true) {
+          this.loading = true;
           sendForm(formData).then((res) => {
             this.loading = false;
             alert('报名信息提交成功 ~')
@@ -328,16 +314,14 @@ import {sendForm} from '@/api/sendForm'
 
 <style scoped>
   .main {
-    position: absolute;
-    top: 99px;
-    bottom: 0px;
+    position: relative;
     width: 100%;
+    height: calc(100vh - 99px);
+    background-color: black;
     background-image: url("../assets/img/home/poster.png");
     background-repeat: no-repeat;
-    /* background-size: 100% 100%; */
     background-size: auto 100%;
     background-position: center;
-    background-color: black;
   }
   .time {
     position: absolute;
@@ -349,7 +333,6 @@ import {sendForm} from '@/api/sendForm'
     font: normal 400 48px "Source Han Serif TC";
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
-
   .join {
     position: absolute;
     /* top: 72%;
@@ -439,15 +422,12 @@ import {sendForm} from '@/api/sendForm'
     line-height: 64px;
   }
   .register {
-    position: absolute;
-    width: 100%;
-    top: 100%;
-    height: 100%;
-    background-color: white;
+    height: 700px;
+    background: white;
   }
   .sign-up {
     width: 80%;
-    margin: 2% auto;
+    margin: 20px auto;
   }
   .sign-up_header {
     font: normal 400 48px "Source Han Serif TC";
@@ -498,22 +478,13 @@ import {sendForm} from '@/api/sendForm'
   }
   .sign-up_submit {
     margin-top: 2%;
-    padding: 10px 0;
-    width: 222px;
-    background-color: #333333;
     font: normal 700 40px "Source Han Serif TC";
     color: #F3F3F3;
-    outline: none;
+    padding: 40px !important;
+    width: 222px;
   }
-  .home_footer {
-    position: absolute;
-    top: 205%;
-    width: 100%;
-  }
+
   @media screen and (max-width: 767px) {
-    .sign-up {
-      margin-top: 5%;
-    }
     .sign-up_header {
       font-size: 32px;
       margin: 0;
@@ -528,7 +499,7 @@ import {sendForm} from '@/api/sendForm'
       display: block;
     }
     .group {
-      display: none !important;;
+      display: none !important;
     }
     .join {
       left: 5%;
@@ -548,23 +519,8 @@ import {sendForm} from '@/api/sendForm'
     }
     .sign-up_submit {
       font-size: 24px;
-      padding: 5px;
+      padding: 25px !important;
       width: 110px;
-      margin-top: 0;
     }
-    
-    @media screen and (max-height: 570px) {
-      .home_footer {
-        top: 225%;
-      }
-      .list {
-        margin-bottom: -5px;
-      }
-    }
-    @media screen and (max-height: 450px) {
-      .home_footer {
-        top: 250%;
-      }
-    }
-  }
+  }  
 </style>

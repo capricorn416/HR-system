@@ -8,12 +8,14 @@
             width="139"
             height="46"
             />
-            <p class="footer_message">© 2021 PIVOT STUDIO提供</p>
+            <p class="footer_message">© 2021 PIVOT STUDIO提供 <br>
+              <a href="https://beian.miit.gov.cn/" class="beian">蜀ICP备2020029188号-1</a>
+            </p>
             <div class="footer_contact">
-            <p>联系我们</p>
-            <p>邮箱：team@pivotstudio.cn</p>
-            <p>加入招新群</p>
-            <p>QQ群：435230136</p>
+              <p>联系我们</p>
+              <p>邮箱：team@pivotstudio.cn</p>
+              <p>加入招新群</p>
+              <p>QQ群：435230136</p>
             </div>
         </div>
     </div>
@@ -41,6 +43,7 @@ export default {
     color: rgba(200, 200, 200, 0.5);
     font: normal 400 18px "Source Han Serif SC";
     letter-spacing: 0.2em;
+    line-height: 30px;
   }
   .footer_contact {
     position: absolute;
@@ -53,6 +56,10 @@ export default {
     text-transform: uppercase;
     color: #DADADA;
     font: normal 700 14px "Source Han Serif SC";
+  }
+  .beian {
+    text-decoration: none;
+    color: rgba(200, 200, 200, 0.5);
   }
   @media screen and (max-width: 768px) {
     .footer_logo,
