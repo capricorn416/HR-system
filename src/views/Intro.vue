@@ -178,6 +178,7 @@
     .main2 {
         position: relative;
         width: 100%;
+        cursor: default;
     }
     .section {
         position: relative;

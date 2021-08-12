@@ -44,6 +44,7 @@ export default {
     font: normal 400 18px "Source Han Serif SC";
     letter-spacing: 0.2em;
     line-height: 30px;
+    cursor: default;
   }
   .footer_contact {
     position: absolute;

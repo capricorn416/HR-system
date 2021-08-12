@@ -313,6 +313,19 @@
 </script>
 
 <style scoped>
+.time, .sign-up_header {
+  cursor: default;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.join_font, .list, .sign-up_right {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
   .main {
     position: relative;
     width: 100%;
