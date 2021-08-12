@@ -5,10 +5,10 @@
       <div class="main">
         <p class="time">Pivot Studio<br/>{{time}}招新</p>
         <div class="join">
-          <button class="join_btn" @click="gotoRegister">
+          <button class="join_btn" @click="changePage(1)">
             <v-icon x-large dark class="join_icon">mdi-chevron-down</v-icon>   
           </button>
-          <button class="join_font" @click="gotoRegister" >JOIN US</button>
+          <button class="join_font" @click="changePage(1)" >JOIN US</button>
         </div>
       </div>
     </div>
@@ -266,7 +266,9 @@ import {sendForm} from '@/api/sendForm'
         },
         resume: null,
         work: null,
-        sex: ''
+        sex: '',
+        pageSelector: ['body', '.register', '.home_footer'],
+        page: 0,
       }
     },
     // 防止页尾在输入时上浮
@@ -274,8 +276,10 @@ import {sendForm} from '@/api/sendForm'
       showHeight: function() {
         if(this.docmHeight > this.showHeight) {
           this.hidShow = false;
+          this.pageSelector = ['body', '.register']
         }else {
           this.hidShow = true;
+          this.pageSelector = ['body', '.register', '.home_footer']
         }
       }
     },
@@ -286,14 +290,26 @@ import {sendForm} from '@/api/sendForm'
           this.showHeight = document.body.clientHeight;
         })()
       }
+      document.addEventListener("mousewheel", (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        if (e.deltaY > 0) {
+          this.changePage(this.page+1)
+        } else {
+          this.changePage(this.page-1)
+        }
+      }, {passive: false})
     },
     methods: {
-      gotoRegister() { 
-        let distance = document.querySelector('.register').offsetTop;
-        window.scrollTo({
-          top: distance,
-          behavior: 'smooth'
-        })
+      changePage (targetPage) {
+        if (targetPage >= 0 && targetPage < this.pageSelector.length) {
+          let distance = document.querySelector(this.pageSelector[targetPage]).offsetTop
+          this.page = targetPage
+          window.scrollTo({
+            top: distance,
+            behavior: 'smooth'
+          })
+        }
       },
       validateField() {
         var state = this.$refs.form.validate();
@@ -332,7 +348,7 @@ import {sendForm} from '@/api/sendForm'
     top: 99px;
     bottom: 0px;
     width: 100%;
-    background-image: url("../assets/img/home/poster.png");
+    background-image: url(https://static2.pivotstudio.cn/hrsystem/static/imgs/bg.png);
     background-repeat: no-repeat;
     /* background-size: 100% 100%; */
     background-size: auto 100%;
