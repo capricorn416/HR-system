@@ -104,7 +104,7 @@ export default({
       getMsg() {
         var datalist=[];
         getProductDesc().then((res) => {
-          // console.log(res.data.msg)
+          console.log(res.data.msg)
           this.datalist = res.data.msg;
         }).catch((err) => {
           // console.log(err)
@@ -135,6 +135,16 @@ export default({
 </script>
 
 <style scoped>
+.first, .second, .third .email p, .third .code {
+  cursor: default;
+}
+.second .content, .third .email p, .third .code {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+}
 .item a:hover.box .dialog{
   display: block;
 }
@@ -473,4 +483,45 @@ height: 12px;
 }
   
 }
+@media screen and (max-width: 600px) {
+  .third .code img {
+    width: 100px;
+    height: 100px;
+  }
+  .third .code .p1 {
+    top: 105px;
+    font-size: 10px;
+    left: 0px;
+  }
+   .third .code .p2 {
+    top: 105px;
+    font-size: 10px;
+    left: 150px;
+  }
+  .second .avater {
+    width: 100px;
+    height: 100px;
+  }
+  .second .avater img {
+    width: 100px;
+  }
+  .second .title {
+    font-size: 18px;
+    width: calc(50vw);
+  }
+  .second .pcontent {
+    font-size: 14px;
+    width: calc(45vw);
+    margin-top: 0;
+  }
+  .second .content, .third .email p {
+    font-size: 26px !important;
+  }
+  .second .content, .third .email {
+    font-size: 20px !important;
+  }
+  .two {
+    margin-left: 50px !important;
+  }
+}  
 </style>

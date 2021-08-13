@@ -155,13 +155,15 @@
                   :loading="loading"
                   :disabled="loading"
                   @click="validateField"
+                  :width="$vuetify.breakpoint.xs ? 110: 222"
+                  :height="$vuetify.breakpoint.xs ? 50: 80"
                   >
                   提交
                 </v-btn>
               </div>
               <div class="sign-up_right">
                 <v-file-input
-                label="点击此处上传简历"
+                :label="$vuetify.breakpoint.xs ? '简历': '点击此处上传简历'"
                 solo
                 flat
                 background-color="#F3F3F3"
@@ -170,7 +172,7 @@
                 v-model="resume"
                 ></v-file-input>
                 <v-file-input
-                label="点击此处上传作品集（非必填）"
+                :label="$vuetify.breakpoint.xs ? '作品集（非必填）': '点击此处上传作品集（非必填）'"
                 solo
                 flat
                 background-color="#F3F3F3"
@@ -493,8 +495,9 @@
     margin-top: 2%;
     font: normal 700 40px "Source Han Serif TC";
     color: #F3F3F3;
-    padding: 40px !important;
-    width: 222px;
+    /* padding: 40px !important;
+    width: 222px; */
+    
   }
 
   @media screen and (max-width: 767px) {
@@ -530,10 +533,11 @@
       top: 40%;
       font-size: 30px;
     }
+  }
+  @media screen and (max-width: 599px) {
     .sign-up_submit {
       font-size: 24px;
-      padding: 25px !important;
-      width: 110px;
     }
-  }  
+  }
+   
 </style>
