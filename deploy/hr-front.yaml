@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hr-front
+  name: hr-front
+  namespace: pivothr
+spec:
+  ports:
+    - name: "8110"
+      port: 8110
+      targetPort: 8110
+  selector:
+    app: hr-front
+status:
+  loadBalancer: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hr-front
+  name: hr-front
+  namespace: pivothr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hr-front
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+
+      labels:
+        app: hr-front
+    spec:
+      priorityClassName: high-priority
+      containers:
+      - image: registry.cn-hangzhou.aliyuncs.com/pivotstudio/pivothr-front:latest
+        name: hr-front
+        ports:
+          - containerPort: 8110
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests: 
+            cpu: 100m
+            memory: 50Mi
+      restartPolicy: Always
+status: {}
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hr-front
+  namespace: pivothr
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hr-front
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 60
+
+
