@@ -315,6 +315,10 @@
 </script>
 
 <style scoped>
+::v-deep
+div.v-input__slot>div.v-text-field__slot{
+  height: 100%!important;
+}
 .time, .sign-up_header {
   cursor: default;
   user-select: none;
