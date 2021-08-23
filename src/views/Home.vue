@@ -307,7 +307,7 @@
             re(res)
           })
         })
-        formData.append('resume_url', "https://pshrimg.nickxiao.icu/"+ rekey);
+        formData.append('resume_key', "https://pshrimg.nickxiao.icu/"+ rekey);
         const token2 =  (await tp2).token;
         const workkey = this.work.name.split(' ').join('-')
         const ob2 = qiniu.upload(this.work,workkey,token2)
@@ -319,7 +319,7 @@
             re(res)
           })
         })
-        formData.append('work_url', "https://pshrimg.nickxiao.icu/"+ workkey);
+        formData.append('work_key', "https://pshrimg.nickxiao.icu/"+ workkey);
         if(state === true) {
           this.loading = true;
           sendForm(formData).then((res) => {
