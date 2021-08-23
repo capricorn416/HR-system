@@ -1,13 +1,13 @@
 <template>
   <v-app>
     <div class="home">
-      <div class="main">
-        <p class="time">Pivot Studio<br/>{{time}}招新</p>
+      <div class="main" @click="roll">
+        <p class="time">Pivot Studio <br class="br"/> {{time}}招新</p>
         <div class="join">
           <button class="join_btn" @click="gotoRegister">
             <v-icon x-large dark class="join_icon">mdi-chevron-down</v-icon>   
           </button>
-          <button class="join_font" @click="gotoRegister" >JOIN US</button>
+          <button class="join_font" @click.stop="gotoRegister" >JOIN US</button>
         </div>
       </div>
 
@@ -32,6 +32,7 @@
                           dense
                           class="input list-firstline-item"
                           clearable
+                          color="rgb(111,111,111)"
                       ></v-text-field>   
                   </v-list-item>
                   <v-list-item class="list">
@@ -48,8 +49,8 @@
                           dense
                           class="input group"
                           v-model="group"
+                          color="rgb(111,111,111)"
                       ></v-select>
-                    <!-- <div class="sex-tip">性别</div> -->
                       <v-radio-group
                         v-model="sex"
                         row
@@ -84,6 +85,7 @@
                           dense
                           class="input "
                           v-model="group"
+                          color="rgb(111,111,111)"
                       ></v-select>
                     </v-list-item>
                   <v-list-item class="list">
@@ -99,6 +101,7 @@
                         dense
                         class="input"
                         clearable
+                        color="rgb(111,111,111)"
                       ></v-text-field>
                   </v-list-item>
                   <v-list-item class="list">
@@ -114,6 +117,7 @@
                           dense
                           class="input"
                           clearable
+                          color="rgb(111,111,111)"
                       ></v-text-field>
                   </v-list-item>
                   <v-list-item class="list">
@@ -130,6 +134,7 @@
                           background-color="#F3F3F3"
                           dense
                           class="input"
+                          color="rgb(111,111,111)"
                       ></v-select>
                   </v-list-item>
                   <v-list-item class="list"> 
@@ -145,21 +150,10 @@
                           dense
                           class="input"
                           clearable
+                          color="rgb(111,111,111)"
                       ></v-text-field>    
                   </v-list-item> 
                   </v-list>
-                  <!-- <v-btn class="sign-up_submit" type="button" @click="validateField">
-                    提交
-                </v-btn> -->
-                <v-btn color="#333333" class="sign-up_submit"
-                  :loading="loading"
-                  :disabled="loading"
-                  @click="validateField"
-                  :width="$vuetify.breakpoint.xs ? 110: 222"
-                  :height="$vuetify.breakpoint.xs ? 50: 80"
-                  >
-                  提交
-                </v-btn>
               </div>
               <div class="sign-up_right">
                 <v-file-input
@@ -170,6 +164,9 @@
                 height="162"
                 :rules="resumeRules"
                 v-model="resume"
+                color="rgb(111,111,111)"
+                prepend-icon=''
+                class="file-input"
                 ></v-file-input>
                 <v-file-input
                 :label="$vuetify.breakpoint.xs ? '作品集（非必填）': '点击此处上传作品集（非必填）'"
@@ -178,19 +175,21 @@
                 background-color="#F3F3F3"
                 height="162"
                 v-model="work"
+                color="rgb(111,111,111)"
+                prepend-icon=''
                 ></v-file-input>
+                <v-btn color="#333333" class="sign-up_submit"
+                  :loading="loading"
+                  :disabled="loading"
+                  @click="validateField"
+                  width="90"
+                  height="32"
+                  >
+                  提交
+                  <img src="~assets/img/home/Shape.png" alt="" srcset="">
+                </v-btn>
               </div>    
             </v-form>
-            <!-- <v-snackbar
-              :value="success.state" centered flat color="success" outlined min-width="50%" height="100"
-            >
-            {{ success.info }}
-            </v-snackbar>
-            <v-snackbar
-              :value="error.state" centered flat color="success" outlined min-width="50%" height="100"
-            >
-            {{ error.info }}
-            </v-snackbar> -->
             </v-app>
           </div>
         </div>
@@ -271,16 +270,18 @@
         },
         resume: null,
         work: null,
-        sex: ''
+        sex: '',
+        oldScrollTop: 0
       }
     },
     methods: {
       gotoRegister() { 
-        let distance = document.querySelector('.register').offsetTop + 99;
+        let distance = document.querySelector('.register').offsetTop + 69;
         window.scrollTo({
           top: distance,
           behavior: 'smooth'
         })
+
       },
       validateField() {
         var state = this.$refs.form.validate();
@@ -309,12 +310,13 @@
           return
         }
         return false;
-      }
-    },
+      },
+    }
   }
 </script>
 
 <style scoped>
+
 .time, .sign-up_header {
   cursor: default;
   user-select: none;
@@ -331,7 +333,7 @@
   .main {
     position: relative;
     width: 100%;
-    height: calc(100vh - 99px);
+    height: calc(100vh - 69px);
     background-image: url("../assets/img/home/bg.png");
     background-repeat: no-repeat;
     background-size: auto 100%;
@@ -339,34 +341,36 @@
   }
   .time {
     position: absolute;
-    top: 50%;
-    margin-top: -10%;
-    left: 14%;
-    width: 400px;
-    color: white;
-    font: normal 400 48px "Source Han Serif TC";
+    top: 103px;
+    left: 84px;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 64px;
+    color: #FFFFFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
   .join {
     position: absolute;
-    /* top: 72%;
-    left: 20%; */
     top: 68%;
     left: 14%;
-    width: 370px;
+    width: 240px;
     height: 100px;
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
-  
+  .br {
+    display: none;
+  }
   .join_btn {
     position: relative;
     top: -5px;
     transition: 1s;
     z-index: 1000;
-    width: 65px;
-    height: 65px;
+    width: 47px;
+    height: 47px;
     background-color: linear-gradient(45deg, transparent, transparent 40%, aqua);
     outline: none;
     border-radius: 50%;
@@ -412,7 +416,7 @@
     animation: light 2s linear infinite;
   }
   .join_btn:hover::before {
-    background: lightgray;;
+    background: lightgray;
     box-shadow: 0 0 20px aqua; 
   }
   .join_btn:hover::after {
@@ -431,24 +435,24 @@
   }
   .join_font {
     color: white;
-    font: normal 700 64px "Source Han Serif TC";
+    font: normal 700 36px "Source Han Serif TC";
     outline: none;
     line-height: 64px;
   }
   .register {
-    height: 700px;
+    height: 720px;
     background: white;
   }
   .sign-up {
     width: 80%;
     margin: 0 auto;
-    padding-top: 20px;
+    padding-top: 10vh;
   }
   .sign-up_header {
-    font: normal 400 48px "Source Han Serif TC";
+    font: normal 400 24px "Source Han Serif TC";
     color: #8D8D8D;
     margin-left: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
   .sign-up_form {
     width: 100%;
@@ -492,19 +496,18 @@
     color: #7a7a6a;
   }
   .sign-up_submit {
-    margin-top: 2%;
-    font: normal 700 40px "Source Han Serif TC";
+    float: right;
+    margin-top: 17px;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
     color: #F3F3F3;
-    /* padding: 40px !important;
-    width: 222px; */
-    
   }
-
+  .sign-up_submit img {
+    margin-left: 15px;
+  }
   @media screen and (max-width: 767px) {
-    .sign-up_header {
-      font-size: 32px;
-      margin: 0;
-    }
     .sign-up_left {
       width: 50%;
     }
@@ -519,25 +522,25 @@
     }
     .join {
       left: 5%;
-      width: 230px;
+      width: 190px;
+    }
+    .time {
+      left: 5%;
+      font-size: 24px;
+      line-height: 32px;
+    }
+    .br {
+      display: block;
+    }
+    .join_font {
+      font-size: 28px;
     }
     .join_btn {
       width: 40px;
       height: 40px;
     }
-    .join_font {
-      font-size: 40px;
-    }
-    .time {
-      left: 4%;
-      top: 40%;
-      font-size: 30px;
+    .join_icon {
+      font-size: 24px !important;
     }
   }
-  @media screen and (max-width: 599px) {
-    .sign-up_submit {
-      font-size: 24px;
-    }
-  }
-   
 </style>

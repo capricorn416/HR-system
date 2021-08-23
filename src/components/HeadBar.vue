@@ -84,39 +84,37 @@ export default {
 
 <style scoped>
   .head {
-    height: 99px;
+    height: 69px;
   }
   .logo {
     position: absolute;
     left: 61px;
-    top: 29px;
+    top: 14px;
     width: 120px;
-    height: 50px;
   }
 
   .tab {
     position: absolute;
-    /* left: 562px; */
-    left: 42%;
+    left: 39.03%;
     width: 500px;
+    top: 27px;
     color: black;
   }
   .tab-item {
+    outline: none;
     display: inline-block;
     width: 68px;
-    /* padding: 2px 3px 2px 2px; */
     padding: 2px 2px 2px 4px;
     margin-right: 66px;
     text-align-last: justify;
     color: #333333;
     font: normal 400 14px "Source Han Serif SC";
-    /* outline: none;
-    cursor: pointer; */
     cursor: pointer;
   }
   .tab_xs {
     position: absolute;
     right: 5%;
+    top: 12px;
     display: none;
   }
   .isSelected {
