@@ -204,6 +204,8 @@
 <script>
   import Bottom from '../components/Bottom.vue';
   import {sendForm} from '@/api/sendForm'
+  import { getUploadToken } from '@/api/qiniu'
+  const qiniu = require('qiniu-js')
   export default {
   components: { Bottom },
     name: 'Home',
@@ -282,10 +284,11 @@
           behavior: 'smooth'
         })
       },
-      validateField() {
+      async validateField() {
         var state = this.$refs.form.validate();
         var formData = new FormData();
-        
+        const tp1 = getUploadToken();
+        const tp2 = getUploadToken();
         formData.append('name', this.name);
         formData.append('sex', this.sex);
         formData.append('phone_number', this.phone);
@@ -293,8 +296,30 @@
         formData.append('grade', this.grade);
         formData.append('major', this.major);
         formData.append('group', this.group);
-        formData.append('resume_file', this.resume);
-        formData.append('work_file', this.work);
+        const token1 =  (await tp1).token;
+        const rekey = this.resume.name.split(' ').join('-')
+        const ob = qiniu.upload(this.resume,rekey,token1)
+        await new Promise((re,rj)=>{
+          ob.subscribe(null,err=>{
+            alert('文件上传失败');
+            rj(err)
+          },res=>{
+            re(res)
+          })
+        })
+        formData.append('resume_url', "https://pshrimg.nickxiao.icu/"+ rekey);
+        const token2 =  (await tp2).token;
+        const workkey = this.work.name.split(' ').join('-')
+        const ob2 = qiniu.upload(this.work,workkey,token2)
+        await new Promise((re,rj)=>{
+          ob2.subscribe(null,err=>{
+            alert('文件上传失败');
+            rj(err)
+          },res=>{
+            re(res)
+          })
+        })
+        formData.append('work_url', "https://pshrimg.nickxiao.icu/"+ workkey);
         if(state === true) {
           this.loading = true;
           sendForm(formData).then((res) => {
