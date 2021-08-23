@@ -297,7 +297,8 @@
         formData.append('major', this.major);
         formData.append('group', this.group);
         const token1 =  (await tp1).token;
-        const rekey = this.resume.name.split(' ').join('-')
+        
+        const rekey = this.phone+this.group+this.resume.name.split(' ').join('-')
         const ob = qiniu.upload(this.resume,rekey,token1)
         await new Promise((re,rj)=>{
           ob.subscribe(null,err=>{
@@ -309,7 +310,7 @@
         })
         formData.append('resume_key', rekey);
         const token2 =  (await tp2).token;
-        const workkey = this.work.name.split(' ').join('-')
+        const workkey = this.phone+this.group+this.work.name.split(' ').join('-')
         const ob2 = qiniu.upload(this.work,workkey,token2)
         await new Promise((re,rj)=>{
           ob2.subscribe(null,err=>{
