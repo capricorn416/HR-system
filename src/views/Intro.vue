@@ -11,7 +11,6 @@
                           <v-card
                           flat
                           color="#F3F3F3"
-                          height="232"
                           width="100%"
                           class="section_card"
                           >
@@ -65,7 +64,6 @@
                           <v-card
                           flat
                           color="#F3F3F3"
-                          height="232"
                           width="100%"
                           class="section_card"
                           >
@@ -120,7 +118,6 @@
                     <v-list-item class="section_item">
                         <v-card
                         color="#F3F3F3"
-                        height="400"
                         width="100%"
                         >
                         <!-- 轮播图在上，文字在下 -->
@@ -133,7 +130,7 @@
                                 <v-carousel
                                   show-arrows-on-hover
                                   v-model="model" 
-                                  height="180" 
+                                  height="150" 
                                   hide-delimiter-background
                                   cycle
                                   interval="3000"
@@ -233,13 +230,18 @@
       }
       .section_swiper {
         margin: 0;
-        height: 200px;
+        height: 150px;
       }
       .section_font {
-        margin: -30px 20px 0 20px;
+        margin: -20px 15px 10px 15px;
       }
       .section_font_header {
+        font-size: 18px;
         margin-bottom: 5px;
+      }
+      .section_font_info {
+        font-size: 12px;
+        line-height: 18px;
       }
       .card {
         display: none;
