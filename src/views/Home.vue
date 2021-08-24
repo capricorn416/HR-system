@@ -310,17 +310,19 @@
         })
         formData.append('resume_key', rekey);
         const token2 =  (await tp2).token;
-        const workkey = this.phone+'/'+this.group+'/'+this.name.split(' ').join('-')+'-'+this.work.name.split(' ').join('-')
-        const ob2 = qiniu.upload(this.work,workkey,token2)
-        await new Promise((re,rj)=>{
-          ob2.subscribe(null,err=>{
-            alert('文件上传失败');
-            rj(err)
-          },res=>{
-            re(res)
+        if (this.work) {
+          const workkey = this.phone+'/'+this.group+'/'+this.name.split(' ').join('-')+'-'+this.work.name.split(' ').join('-')
+          const ob2 = qiniu.upload(this.work,workkey,token2)
+          await new Promise((re,rj)=>{
+            ob2.subscribe(null,err=>{
+              alert('文件上传失败');
+              rj(err)
+            },res=>{
+              re(res)
+            })
           })
-        })
-        formData.append('work_key',  workkey);
+          formData.append('work_key',  workkey); 
+        }
         if(state === true) {
           this.loading = true;
           sendForm(formData).then((res) => {
