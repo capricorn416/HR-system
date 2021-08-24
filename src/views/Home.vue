@@ -372,7 +372,8 @@ div.v-input__slot>div.v-text-field__slot{
   }
   .time {
     position: absolute;
-    top: 103px;
+    /* top: 103px; */
+    top: 15%;
     left: 84px;
     font-family: Segoe UI;
     font-style: normal;
