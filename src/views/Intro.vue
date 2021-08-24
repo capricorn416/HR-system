@@ -263,20 +263,6 @@ export default {
         return {
             groups: [],
             model: 0,
-            items: [
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-          },
-        ],
         }
     },
     created() {
@@ -284,11 +270,10 @@ export default {
     },
     methods: {
       getInfo() {
-        getGroupDesc().then((res) => {
-          // console.log(res.data.msg)
+        getGroupDesc().then((res) => {  
           this.groups = res.data.msg;
         }).catch((err) => {
-          // console.log(err)
+          
         });
       }
     }

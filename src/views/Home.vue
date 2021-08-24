@@ -1,13 +1,13 @@
 <template>
   <v-app>
     <div class="home">
-      <div class="main" @click="roll">
-        <p class="time">Pivot Studio <br class="br"/> {{time}}招新</p>
+      <div class="main">
+        <p class="time">Pivot Studio<br class="br"/>{{time}}招新</p>
         <div class="join">
           <button class="join_btn" @click="gotoRegister">
             <v-icon x-large dark class="join_icon">mdi-chevron-down</v-icon>   
           </button>
-          <button class="join_font" @click.stop="gotoRegister" >JOIN US</button>
+          <button class="join_font" @click="gotoRegister" >JOIN US</button>
         </div>
       </div>
 
@@ -51,6 +51,7 @@
                           v-model="group"
                           color="rgb(111,111,111)"
                       ></v-select>
+                    <!-- <div class="sex-tip">性别</div> -->
                       <v-radio-group
                         v-model="sex"
                         row
@@ -177,6 +178,7 @@
                 v-model="work"
                 color="rgb(111,111,111)"
                 prepend-icon=''
+                class="file-input"
                 ></v-file-input>
                 <v-btn color="#333333" class="sign-up_submit"
                   :loading="loading"
@@ -190,6 +192,16 @@
                 </v-btn>
               </div>    
             </v-form>
+            <!-- <v-snackbar
+              :value="success.state" centered flat color="success" outlined min-width="50%" height="100"
+            >
+            {{ success.info }}
+            </v-snackbar>
+            <v-snackbar
+              :value="error.state" centered flat color="success" outlined min-width="50%" height="100"
+            >
+            {{ error.info }}
+            </v-snackbar> -->
             </v-app>
           </div>
         </div>
@@ -203,6 +215,8 @@
 <script>
   import Bottom from '../components/Bottom.vue';
   import {sendForm} from '@/api/sendForm'
+  import { getUploadToken } from '@/api/qiniu'
+  const qiniu = require('qiniu-js')
   export default {
   components: { Bottom },
     name: 'Home',
@@ -270,8 +284,7 @@
         },
         resume: null,
         work: null,
-        sex: '',
-        oldScrollTop: 0
+        sex: ''
       }
     },
     methods: {
@@ -281,42 +294,81 @@
           top: distance,
           behavior: 'smooth'
         })
-
       },
-      validateField() {
+      async validateField() {
         var state = this.$refs.form.validate();
-        var formData = new FormData();
         
-        formData.append('name', this.name);
-        formData.append('sex', this.sex);
-        formData.append('phone_number', this.phone);
-        formData.append('qq_number', this.qq);
-        formData.append('grade', this.grade);
-        formData.append('major', this.major);
-        formData.append('group', this.group);
-        formData.append('resume_file', this.resume);
-        formData.append('work_file', this.work);
-        if(state === true) {
+        if(state === false) {
+          return false
+        }else {
           this.loading = true;
+          var formData = new FormData();
+          const tp1 = getUploadToken();
+          const tp2 = getUploadToken();
+          formData.append('name', this.name);
+          formData.append('sex', this.sex);
+          formData.append('phone_number', this.phone);
+          formData.append('qq_number', this.qq);
+          formData.append('grade', this.grade);
+          formData.append('major', this.major);
+          formData.append('group', this.group);
+          const token1 =  (await tp1).token;
+          const rekey = this.resume.name.split(' ').join('-')
+          const ob = qiniu.upload(this.resume,rekey,token1)
+          await new Promise((re,rj)=>{
+            ob.subscribe(null,err=>{
+              alert('文件上传失败');
+              rj(err)
+            },res=>{
+              re(res)
+            })
+          })
+          formData.append('resume_url', "https://pshrimg.nickxiao.icu/"+ rekey);
+          const token2 =  (await tp2).token;
+          const workkey = this.work.name.split(' ').join('-')
+          const ob2 = qiniu.upload(this.work,workkey,token2)
+          await new Promise((re,rj)=>{
+            ob2.subscribe(null,err=>{
+              alert('文件上传失败');
+              rj(err)
+            },res=>{
+              re(res)
+            })
+          })
+          formData.append('work_url', "https://pshrimg.nickxiao.icu/"+ workkey);
+          
           sendForm(formData).then((res) => {
+            console.log(res);
             this.loading = false;
-            alert('报名信息提交成功 ~')
+            this.$router.push({ path: '/message' });
           }).catch((err) => {
             this.loading = false;
             console.log(err);
             alert('报名信息提交失败，请重试')
           });
-        }else {
-          return
         }
-        return false;
-      },
-    }
+      }
+    },
   }
 </script>
 
 <style scoped>
-
+::v-deep
+div.v-input__slot>div.v-text-field__slot{
+  height: 100%!important;
+}
+::v-deep
+.file-input .v-label {
+  /* left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  margin: auto !important;
+  text-align: center !important; */
+  /* white-space: normal !important;
+  overflow: initial !important;
+  text-overflow: initial !important; */
+}
 .time, .sign-up_header {
   cursor: default;
   user-select: none;
