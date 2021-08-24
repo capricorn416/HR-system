@@ -192,16 +192,6 @@
                 </v-btn>
               </div>    
             </v-form>
-            <!-- <v-snackbar
-              :value="success.state" centered flat color="success" outlined min-width="50%" height="100"
-            >
-            {{ success.info }}
-            </v-snackbar>
-            <v-snackbar
-              :value="error.state" centered flat color="success" outlined min-width="50%" height="100"
-            >
-            {{ error.info }}
-            </v-snackbar> -->
             </v-app>
           </div>
         </div>
@@ -258,6 +248,7 @@
           {index: 5, name: '研一'},
           {index: 6, name: '研二'},
           {index: 7, name: '研三'},
+          {index: 8, name: '其他'}
         ],
         grade:'',
         gradeRules: [
@@ -297,10 +288,9 @@
       },
       async validateField() {
         var state = this.$refs.form.validate();
-        
         if(state === false) {
           return false
-        }else {
+        } else {
           this.loading = true;
           var formData = new FormData();
           const tp1 = getUploadToken();
@@ -313,7 +303,8 @@
           formData.append('major', this.major);
           formData.append('group', this.group);
           const token1 =  (await tp1).token;
-          const rekey = this.resume.name.split(' ').join('-')
+          const rel = this.resume.name.split('.')
+          const rekey = this.phone+'/'+this.group+'/'+this.name.split(' ').join('-')+'简历.'+rel[rel.length-1]
           const ob = qiniu.upload(this.resume,rekey,token1)
           await new Promise((re,rj)=>{
             ob.subscribe(null,err=>{
@@ -323,24 +314,24 @@
               re(res)
             })
           })
-          formData.append('resume_url', "https://pshrimg.nickxiao.icu/"+ rekey);
+          formData.append('resume_key', rekey);
           const token2 =  (await tp2).token;
-          const workkey = this.work.name.split(' ').join('-')
-          const ob2 = qiniu.upload(this.work,workkey,token2)
-          await new Promise((re,rj)=>{
-            ob2.subscribe(null,err=>{
-              alert('文件上传失败');
-              rj(err)
-            },res=>{
-              re(res)
+          if (this.work) {
+            const workkey = this.phone+'/'+this.group+'/'+this.name.split(' ').join('-')+'-'+this.work.name.split(' ').join('-')
+            const ob2 = qiniu.upload(this.work,workkey,token2)
+            await new Promise((re,rj)=>{
+              ob2.subscribe(null,err=>{
+                alert('文件上传失败');
+                rj(err)
+              },res=>{
+                re(res)
+              })
             })
-          })
-          formData.append('work_url', "https://pshrimg.nickxiao.icu/"+ workkey);
-          
+            formData.append('work_key',  workkey); 
+          }
           sendForm(formData).then((res) => {
-            console.log(res);
             this.loading = false;
-            this.$router.push({ path: '/message' });
+            this.$router.push({path: '/message'})
           }).catch((err) => {
             this.loading = false;
             console.log(err);
@@ -355,19 +346,7 @@
 <style scoped>
 ::v-deep
 div.v-input__slot>div.v-text-field__slot{
-  height: 100%!important;
-}
-::v-deep
-.file-input .v-label {
-  /* left: 0 !important;
-  right: 0 !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  margin: auto !important;
-  text-align: center !important; */
-  /* white-space: normal !important;
-  overflow: initial !important;
-  text-overflow: initial !important; */
+  height: 100% !important;
 }
 .time, .sign-up_header {
   cursor: default;
