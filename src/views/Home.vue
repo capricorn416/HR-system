@@ -196,7 +196,7 @@
           </div>
         </div>
       </div>
-
+      
       <bottom/>
     </div>
   </v-app>
@@ -510,7 +510,7 @@ div.v-input__slot>div.v-text-field__slot{
   }
   .sex {
     padding-left: 10%;
-    min-width: 180px;
+    min-width: 190px;
   }
   .sex-option {
     margin-top: -20px;
