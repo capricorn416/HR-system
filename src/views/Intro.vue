@@ -231,7 +231,7 @@
     .card_xs {
       display: none;
     }
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 1080px) {
       .section {
         margin-top: 50px;
       }
@@ -239,9 +239,11 @@
         margin: 0;
         height: 150px;
       }
+          @media screen and (max-width: 600px) {
       .section_font {
         margin: -20px 15px 10px 15px;
       }
+          }
       .section_font_header {
         font-size: 18px;
         margin-bottom: 5px;
