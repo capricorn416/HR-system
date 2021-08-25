@@ -31,14 +31,14 @@
           >
             <div
               class="avater"
-               @mouseover="enter(item)"
-               @mouseout="leave(item)"
+               @mouseover="enter(index)"
+               @mouseout="leave()"
             >
             
               
               <img :src="item.logo_url" />
             </div>
-            <div class="dialog" v-show="item.display">
+            <div class="dialog" v-show="isSeen && index === current">
               <img :src="item.img_urls[0]" class="i1" alt="img1" />
               <p class="up">小程序</p>
               <img :src="item.img_urls[1]" class="i2" alt="img2" />
@@ -98,6 +98,8 @@ export default defineComponent({
     return {
      status: true,
       datalist:[],
+         isSeen: false,
+      current: 0
     };
   },
   created() {
@@ -129,13 +131,17 @@ export default defineComponent({
       }
       
       },
-      enter(item){
-         item.display=true;
-         console.log(item.display);
+      enter(index){
+         this.isSeen = true;
+         this.current = index;
+        //  item.display=true;
+        //  console.log(item.display);
        },
-       leave(item){
-         item.display=false;
-         console.log(item.display);
+       leave(){
+         this.isSeen = false;
+        this.current = null;
+        //  item.display=false;
+        //  console.log(item.display);
        }  
     }
 });
@@ -225,15 +231,19 @@ export default defineComponent({
 }
  .avater {
  float: left;
-  width: 284px;
-  height: 284px;
+  width: 274px;
+  height: 274px;
   margin-left: 10%;
   margin-top: 33px;
   border-radius: 24px;
 }
+.avater img{
+  width: 284px;
+  height: 284px;
+}
 
  .dialog {
-  
+  display: block;
   position: absolute;
   width: 420px;
   height: 212px;
@@ -273,7 +283,7 @@ export default defineComponent({
   width: 62px;
 height: 12px;
   left: 74px;
-  top: 193px;
+  top: 185px;
   font-family: "Source Serif Pro";
   font-size: 18px;
   line-height: 12px;
@@ -289,7 +299,7 @@ height: 12px;
   width: 73px;
 height: 12px;
   left: 275px;
-  top: 193px;
+  top: 185px;
   font-family:" Source Serif Pro";
   font-size: 18px;
   line-height: 12px;
@@ -422,26 +432,27 @@ height: 12px;
     height: 290px;
   }
   .box .avater{
-    width: 200px;
-    height: 200px;
+    width: 155px;
+    height: 155px;
     margin-left: 7%;
     margin-top: 33px;
   }
   .avater img{
-    width: 200px;
+    width: 155px;
+    height: 155px;
   }
   .box .dialog{
      width: 250px;
     height: 125px;
-    left: 22%;
-    top: 71px;
+    left: -26%;
+    top: 206px;
     margin-left: 140px;
   }
   .box .dialog::before{
     border: 17px solid;
-    left: -32px;
-    top: 47px;
-    border-color: transparent #ffffff transparent transparent;
+    left: 45px;
+    top: -33px;
+    border-color: transparent transparent #fff transparent;
   }
   .box .i1{
     width: 98px;
@@ -467,39 +478,38 @@ height: 12px;
   }
   .item .passage{
     margin-top: 30px;
-    font-size: 26px;
+    font-size: 22px;
   }
   .item .slogan{
     font-size: 16px;
     display: block;
   }
   .item .pcontent{
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 27px;
   }
   .third .email p{
     font-size: 30px;
   }
   .third .code img{
-    width: 188px;
-    height: 188px;
+    width: 151px;
+    height: 151px;
+    margin-right: 14px;
 
   }
   .third .code .p1{
-    top: 194px;
-    left: 8px;
+   top: 154px;
+    left: 1px;
+    font-size: 10px;
   }
-  .third .code .p1{
-    top: 194px;
-    left: 8px;
+  .third .two{
+    margin-left: 0px;
   }
-  .third .code .two{
-
-    margin-left: 66px;
-  }
+  
   .third .code .p2{
-   top: 194px;
-    left: 250px;
+  top: 154px;
+    left: 160px;
+     font-size: 10px;
     width: 220px;
 }
   
