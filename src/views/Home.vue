@@ -348,6 +348,15 @@
 div.v-input__slot>div.v-text-field__slot{
   height: 100% !important;
 }
+::v-deep
+.sex.v-input .v-label {
+  font-family: Segoe UI;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 12px;
+  color: #2C2C2C;
+}
 .time, .sign-up_header {
   cursor: default;
   user-select: none;
