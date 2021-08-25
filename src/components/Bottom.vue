@@ -5,15 +5,17 @@
             class="footer_logo"
             contain
             src="~assets/img/home/logo-white.png"
-            width="139"
-            height="46"
+            width="94"
+            
             />
-            <p class="footer_message">© 2021 PIVOT STUDIO提供</p>
+            <p class="footer_message">© 2021 PIVOT STUDIO提供 |
+              <a href="https://beian.miit.gov.cn/" class="beian">蜀ICP备2020029188号-1</a>
+            </p>
             <div class="footer_contact">
-            <p>联系我们</p>
-            <p>邮箱：team@pivotstudio.cn</p>
-            <p>加入招新群</p>
-            <p>QQ群：435230136</p>
+              <p>联系我们</p>
+              <p><img src="~assets/img/bottom/letter.png" alt="" srcset=""> Email: team@pivotstudio.cn</p>
+              <p><img src="~assets/img/bottom/position.png" alt=""> Address: Wuhan, Hubei</p>
+              <p><img src="~assets/img/bottom/qq.png" alt="" srcset=""> QQ group: 435230136</p>
             </div>
         </div>
     </div>
@@ -25,34 +27,46 @@ export default {
 </script>
 <style scoped>
   .footer {
-    height: 250px;
+    height: 130px;
     background-color: #2c2c2c;
     position: relative;
   }
   .footer_logo {
     position: absolute;
-    left: 89px;
-    top: 55px;    
+    left: 33px;
+    top: 34px;    
   }
   .footer_message {
     position: absolute;
-    left: 101px;
-    bottom: 27px;
-    color: rgba(200, 200, 200, 0.5);
-    font: normal 400 18px "Source Han Serif SC";
+    left: 33px;
+    top: 90px;
+    color: #fff;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 350;
+    font-size: 14px;
     letter-spacing: 0.2em;
+    cursor: default;
   }
   .footer_contact {
     position: absolute;
-    left: 61%;
-    top: 65px;
+    right: 40px;
+    top: 28px;
     width: 291px;
-    height: 96px;
-    line-height: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #DADADA;
-    font: normal 700 14px "Source Han Serif SC";
+    text-align: right;
+  }
+  p {
+    margin: 0;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    color: #fff;
+  }
+  .beian {
+    text-decoration: none;
+    color: #fff;
   }
   @media screen and (max-width: 768px) {
     .footer_logo,
@@ -61,6 +75,10 @@ export default {
     }
   .footer_contact {
     left: 12%;
+    text-align: left;
+  }
+  p {
+    font-weight: normal;
   }
 }  
 </style>
