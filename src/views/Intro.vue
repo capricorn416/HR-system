@@ -29,6 +29,7 @@
                                     interval="3000"
                                     class="swiper"
                                     hide-delimiters
+                                    :show-arrows="group.img_urls.length>1"
                                   > 
                                     <v-carousel-item 
                                       v-for="(item,i) in group.img_urls"
@@ -95,6 +96,7 @@
                                     interval="3000"
                                     class="swiper"
                                     hide-delimiters
+                                    :show-arrows="group.img_urls.length>1"
                                   > 
                                     <v-carousel-item 
                                       v-for="(item,i) in group.img_urls"
@@ -136,6 +138,7 @@
                                   interval="3000"
                                   class="swiper"
                                   hide-delimiters
+                                  :show-arrows="group.img_urls.length>1"
                                 > 
                                   <v-carousel-item 
                                     v-for="(item,i) in group.img_urls"

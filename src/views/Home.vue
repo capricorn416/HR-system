@@ -203,7 +203,7 @@
 </template>
 
 <script>
-  import Bottom from '../components/Bottom.vue';
+  import Bottom from '../components/Bottom.vue'
   import {sendForm} from '@/api/sendForm'
   import { getUploadToken } from '@/api/qiniu'
   const qiniu = require('qiniu-js')

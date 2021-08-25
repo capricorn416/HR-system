@@ -12,7 +12,7 @@
           contain
           src="~assets/img/home/PivotStudio_Logo_Full_Horizontal.png"
           transition="scale-transition"
-
+          @click="gotoPages(0)"
         />
       </div>
 
@@ -91,6 +91,7 @@ export default {
     left: 61px;
     top: 14px;
     width: 120px;
+    cursor: pointer;
   }
 
   .tab {
