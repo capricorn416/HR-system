@@ -1,12 +1,12 @@
 <template>
   <div>
-    <head-bar></head-bar>
+    <head-bar/>
     <router-view/>
   </div>
 </template>
 
 <script>
-import HeadBar from 'components/HeadBar.vue'
+import HeadBar from './components/HeadBar.vue'
 export default {
   name: 'App',
   components: {
@@ -17,3 +17,17 @@ export default {
   })
 };
 </script>
+
+<style>
+  /* chrome和safari */
+  html::-webkit-scrollbar {
+    display: none;
+  }
+  
+  html {
+    /* FireFox */
+    scrollbar-width: none;
+    /* IE */
+    -ms-overflow-style: none;
+  }
+</style>
