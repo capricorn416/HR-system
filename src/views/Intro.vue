@@ -84,9 +84,9 @@
                               </div>
                             </v-col>
                             <!-- 轮播图部分 -->
-                            <v-col cols="12" sm="4">
+                            <v-col cols="12" sm="4" align-self="end">
                               <div class="section_right">
-                                <div class="section_swiper">
+                                <div class="section_swiper" style="float:right">
                                 <v-app>
                                   <v-carousel
                                     show-arrows-on-hover

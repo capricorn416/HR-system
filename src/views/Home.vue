@@ -3,7 +3,7 @@
     <div class="home">
       <div class="main">
         <p class="time">Pivot Studio<br class="br"/>{{time}}招新</p>
-        <div class="join">
+        <div id="join" class="join">
           <button class="join_btn" @click="gotoRegister">
             <v-icon x-large dark class="join_icon">mdi-chevron-down</v-icon>   
           </button>
@@ -13,7 +13,7 @@
 
       <div class="register">
         <div class="sign-up">
-          <p class="sign-up_header">报名信息录入</p>
+          <p id="sign" class="sign-up_header">报名信息录入</p>
           <div class="sign-up_form">
             <v-app>
             <v-form ref="form">
@@ -340,6 +340,62 @@
         }
       }
     },
+    created:()=>{
+      const isElementInViewport = (el) => {
+
+        // Special bonus for those using jQuery
+        if (typeof jQuery === "function" && el instanceof jQuery) {
+            el = el[0];
+        }
+
+        var rect = el.getBoundingClientRect();
+
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
+        );
+      }
+      var lastScrollTop = 0;
+      var disable = false;
+      var disableup = false;
+      window.addEventListener('scroll',(e)=>{
+        try {
+          var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+          if (st > lastScrollTop){
+            // downscroll code
+            if (!disable&&isElementInViewport(document.getElementById('join'))) {
+              disable = true;
+              let distance = document.querySelector('.register').offsetTop + 69;
+              window.scrollTo({
+                top: distance,
+                behavior: 'smooth'
+              })
+              setTimeout(()=>{
+                disable = false;
+              },1000)
+            }
+          } else {
+              // upscroll code
+            if (!disableup&&!isElementInViewport(document.getElementById('join'))) {
+              disableup = true;
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+              })
+              setTimeout(()=>{
+                disableup = false;
+              },1000)
+            }
+          }
+          lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+        } catch (error) {
+          
+        }
+
+      })
+    }
   }
 </script>
 
