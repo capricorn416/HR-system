@@ -18,14 +18,14 @@
                             <!-- 轮播图部分 -->
                             <v-col cols="12" sm="4">
                               <div class="section_left" >
-                                <div class="section_swiper">
+                                <div class="section_swiper" >
                                 <v-app>
                                   <v-carousel
                                     show-arrows-on-hover
                                     v-model="model" 
-                                    height="139"
                                     hide-delimiter-background
                                     cycle
+                                    height="100%"
                                     interval="3000"
                                     class="swiper"
                                     hide-delimiters
@@ -35,6 +35,7 @@
                                       v-for="(item,i) in group.img_urls"
                                       :key="i"
                                       :src="item"
+                                      height="100%"
                                     >
                                     </v-carousel-item>
                                   </v-carousel> 
@@ -180,6 +181,9 @@
 </template>
 
 <style>
+  .section_swiper{
+    width: fit-content;
+  }
     .main2 {
         position: relative;
         width: 100%;
