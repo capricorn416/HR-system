@@ -115,7 +115,44 @@ export default defineComponent({
       ],
     };
   },
-  
+  created() {
+      this.getMsg()
+    },
+    methods: {
+      getMsg() {
+        var datalist=[];
+        getProductDesc().then((res) => {
+          console.log(res.data.msg)
+          this.datalist = res.data.msg;
+        }).catch((err) => {
+          // console.log(err)
+        }),
+
+        function  ObjStory(type ,boolean) //声明对象
+     {
+        
+        this.show ==Boolean(type);
+        this.display == Boolean(boolean);
+     },
+
+        function push(){
+          this.status = !this.status
+          this.datalist[0].push(new  ObjStory (1,0));
+          
+         this.datalist[1].push(new  ObjStory (1,0));
+         
+      }
+      
+      },
+      enter(item){
+         item.display=true;
+         console.log(item.display);
+       },
+       leave(item){
+         item.display=false;
+         console.log(item.display);
+       }  
+    }
 });
 </script>
 
