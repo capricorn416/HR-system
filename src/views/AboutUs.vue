@@ -38,7 +38,7 @@
               
               <img :src="item.logo_url" />
             </div>
-            <div class="dialog" v-show="isSeen && index === current">
+            <div class="dialog" v-show="isSeen && index === current && item.img_urls.length != 0">
               <img :src="item.img_urls[0]" class="i1" alt="img1" />
               <p class="up">小程序</p>
               <img :src="item.img_urls[1]" class="i2" alt="img2" />
@@ -81,19 +81,24 @@
 </template>
 <script lang="js">
 import Vue from "vue";
+// import Component from "vue-class-component";
+import { defineComponent } from "@vue/composition-api";
+
 import {getProductDesc} from '@/api/getDes'
 import  Bottom from "../components/Bottom.vue";
-export default({
-  name: "About",
+export default defineComponent({
+  name: "AboutUs",
+
   components: {
     Bottom,
     
   },
+
   data() {
     return {
      status: true,
       datalist:[],
-      isSeen: false,
+         isSeen: false,
       current: 0
     };
   },
@@ -109,42 +114,40 @@ export default({
         }).catch((err) => {
           // console.log(err)
         }),
+
         function  ObjStory(type ,boolean) //声明对象
      {
         
         this.show ==Boolean(type);
         this.display == Boolean(boolean);
-     }
+     },
+
         function push(){
           this.status = !this.status
           this.datalist[0].push(new  ObjStory (1,0));
+          
          this.datalist[1].push(new  ObjStory (1,0));
-         console.log(this.datalist.img_urls);}
-      },
+         
+      }
       
-      enter(index)    {
+      },
+      enter(index){
          this.isSeen = true;
          this.current = index;
+        //  item.display=true;
+        //  console.log(item.display);
        },
        leave(){
          this.isSeen = false;
         this.current = null;
+        //  item.display=false;
+        //  console.log(item.display);
        }  
     }
 });
 </script>
 
 <style scoped>
-.first, .second, .third .email p, .third .code {
-  cursor: default;
-}
-.second .content, .third .email p, .third .code {
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-
-}
 .item a:hover.box .dialog{
   display: block;
 }
@@ -154,8 +157,10 @@ export default({
         width: 100%;
         background-color: #fff;
 }
+
 .center {
   width: 95%;
+
   margin: 0 auto;
   background: #ffffff;
   position: relative;
@@ -171,12 +176,15 @@ export default({
   width: 49%;
   height: 91px;
    margin-top: 78px;
+
   font-family: "Source Han Serif SC";
   font-size: 18px;
   line-height: 20px;
   /* or 111% */
+
   letter-spacing: 0.105em;
   text-transform: uppercase;
+
   color: #000000;
 }
  .img {
@@ -186,6 +194,7 @@ export default({
   margin-left: 12%;
   border-radius: 50%;
 }
+
 .second .content {
  
   font-family: Source Han Serif SC;
@@ -194,12 +203,16 @@ export default({
   font-size: 36px;
   line-height: 12px;
   /* or 33% */
+
   letter-spacing: 0.2em;
   text-transform: uppercase;
+
   color: #000000;
 }
+
 /* .second .content .dialog {
 } */
+
 .second { 
   width: 94%;
   margin: 132px auto 0;
@@ -218,14 +231,19 @@ export default({
 }
  .avater {
  float: left;
-  width: 284px;
-  height: 284px;
+  width: 274px;
+  height: 274px;
   margin-left: 10%;
   margin-top: 33px;
   border-radius: 24px;
 }
+.avater img{
+  width: 284px;
+  height: 284px;
+}
+
  .dialog {
-  
+  display: block;
   position: absolute;
   width: 420px;
   height: 212px;
@@ -265,13 +283,15 @@ export default({
   width: 62px;
 height: 12px;
   left: 74px;
-  top: 193px;
+  top: 185px;
   font-family: "Source Serif Pro";
   font-size: 18px;
   line-height: 12px;
   /* identical to box height, or 67% */
+
   letter-spacing: 0.1em;
   text-transform: uppercase;
+
   color: #8d8d8d;
 }
  .down {
@@ -279,13 +299,15 @@ height: 12px;
   width: 73px;
 height: 12px;
   left: 275px;
-  top: 193px;
+  top: 185px;
   font-family:" Source Serif Pro";
   font-size: 18px;
   line-height: 12px;
   /* identical to box height, or 67% */
+
   letter-spacing: 0.1em;
   text-transform: uppercase;
+
   color: #8d8d8d;
 }
  .passage {
@@ -294,12 +316,15 @@ height: 12px;
   
   margin-left: 16%;
   margin-top: 50px;
+
   font-family: Segoe UI;
   font-size: 30px;
   line-height: 120%;
   /* or 40% */
+
   letter-spacing: 0.2em;
   text-transform: uppercase;
+
   color: #000000;
 }
  .box p {
@@ -351,12 +376,15 @@ height: 12px;
 }
 .code p {
   font-family: Segoe UI;
+
   font-size: 14px;
   line-height: 12px;
   /* identical to box height, or 86% */
+
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
+
  .p1 {
   position: absolute;
   top: 260px;
@@ -395,6 +423,7 @@ height: 12px;
   .center .second .content{
      margin-left: 9.5%;
      font-size: 30px;
+
   }
   .center .box{
     margin-top: 58px;
@@ -403,26 +432,27 @@ height: 12px;
     height: 290px;
   }
   .box .avater{
-    width: 200px;
-    height: 200px;
+    width: 155px;
+    height: 155px;
     margin-left: 7%;
     margin-top: 33px;
   }
   .avater img{
-    width: 200px;
+    width: 155px;
+    height: 155px;
   }
   .box .dialog{
      width: 250px;
     height: 125px;
-    left: 22%;
-    top: 71px;
+    left: -26%;
+    top: 206px;
     margin-left: 140px;
   }
   .box .dialog::before{
     border: 17px solid;
-    left: -32px;
-    top: 47px;
-    border-color: transparent #ffffff transparent transparent;
+    left: 45px;
+    top: -33px;
+    border-color: transparent transparent #fff transparent;
   }
   .box .i1{
     width: 98px;
@@ -448,80 +478,43 @@ height: 12px;
   }
   .item .passage{
     margin-top: 30px;
-    font-size: 26px;
+    font-size: 22px;
   }
   .item .slogan{
     font-size: 16px;
     display: block;
   }
   .item .pcontent{
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 27px;
   }
   .third .email p{
     font-size: 30px;
   }
   .third .code img{
-    width: 188px;
-    height: 188px;
+    width: 151px;
+    height: 151px;
+    margin-right: 14px;
+
   }
   .third .code .p1{
-    top: 194px;
-    left: 8px;
+   top: 154px;
+    left: 1px;
+    font-size: 10px;
   }
-  .third .code .p1{
-    top: 194px;
-    left: 8px;
+  .third .two{
+    margin-left: 0px;
   }
-  .third .code .two{
-    margin-left: 66px;
-  }
+  
   .third .code .p2{
-   top: 194px;
-    left: 250px;
+  top: 154px;
+    left: 160px;
+     font-size: 10px;
     width: 220px;
 }
   
+
+
 }
-@media screen and (max-width: 600px) {
-  .third .code img {
-    width: 100px;
-    height: 100px;
-  }
-  .third .code .p1 {
-    top: 105px;
-    font-size: 10px;
-    left: 0px;
-  }
-   .third .code .p2 {
-    top: 105px;
-    font-size: 10px;
-    left: 150px;
-  }
-  .second .avater {
-    width: 100px;
-    height: 100px;
-  }
-  .second .avater img {
-    width: 100px;
-  }
-  .second .title {
-    font-size: 18px;
-    width: calc(50vw);
-  }
-  .second .pcontent {
-    font-size: 14px;
-    width: calc(45vw);
-    margin-top: 0;
-  }
-  .second .content, .third .email p {
-    font-size: 26px !important;
-  }
-  .second .content, .third .email {
-    font-size: 20px !important;
-  }
-  .two {
-    margin-left: 50px !important;
-  }
-}  
+
 </style>
