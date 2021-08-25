@@ -118,22 +118,24 @@ export default defineComponent({
         
         this.show ==Boolean(type);
         this.display == Boolean(boolean);
-     }
+     },
 
         function push(){
           this.status = !this.status
           this.datalist[0].push(new  ObjStory (1,0));
-
+          
          this.datalist[1].push(new  ObjStory (1,0));
-         console.log(this.datalist.img_urls);}
-      },
+         
+      }
       
-
-      enter(item)    {
+      },
+      enter(item){
          item.display=true;
-       }    ,
+         console.log(item.display);
+       },
        leave(item){
          item.display=false;
+         console.log(item.display);
        }  
     }
 });

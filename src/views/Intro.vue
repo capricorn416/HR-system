@@ -4,30 +4,32 @@
         <div class="main2">
             <div class="section">
                 <!-- 在中等屏幕及以上呈现 -->
-                <v-list v-for="(group, index) in groups" :key="index" class="card">
+                <v-list v-for="(group, index) in groups" :key="group.team_title" class="card">
                     <!-- 奇偶行交叉呈现: 轮播图在左-->
-                    <div v-if="index % 2 == 0">
+                    <div v-if="index % 2 == 0" class="even">
                       <v-list-item class="section_item">
                           <v-card
                           flat
                           color="#F3F3F3"
-                          height="435"
                           width="100%"
+                          class="section_card"
                           >
                           <v-row>
                             <!-- 轮播图部分 -->
-                            <v-col cols="12" sm="6">
+                            <v-col cols="12" sm="4">
                               <div class="section_left" >
                                 <div class="section_swiper">
                                 <v-app>
                                   <v-carousel
                                     show-arrows-on-hover
                                     v-model="model" 
-                                    height="274" 
+                                    height="139"
                                     hide-delimiter-background
                                     cycle
                                     interval="3000"
                                     class="swiper"
+                                    hide-delimiters
+                                    :show-arrows="group.img_urls.length>1"
                                   > 
                                     <v-carousel-item 
                                       v-for="(item,i) in group.img_urls"
@@ -41,7 +43,7 @@
                               </div>
                             </v-col>
                             <!-- 文字部分 -->
-                            <v-col cols="12" sm="6">
+                            <v-col cols="12" sm="8">
                             <div class="section_right">
                               <div class="section_font">
                                 <h1 class="section_font_header">
@@ -58,17 +60,17 @@
                       </v-list-item>
                     </div>
                     <!-- 轮播图在右 -->
-                    <div v-else>
+                    <div v-else class="odd">
                       <v-list-item class="section_item">
                           <v-card
                           flat
                           color="#F3F3F3"
-                          height="435"
                           width="100%"
+                          class="section_card"
                           >
                           <v-row>
                             <!-- 文字部分 -->
-                            <v-col cols="12" sm="6">
+                            <v-col cols="12" sm="8">
                               <div class="section_left" >
                                 <div class="section_font">
                                   <h1 class="section_font_header">
@@ -81,18 +83,20 @@
                               </div>
                             </v-col>
                             <!-- 轮播图部分 -->
-                            <v-col cols="12" sm="6">
+                            <v-col cols="12" sm="4">
                               <div class="section_right">
                                 <div class="section_swiper">
                                 <v-app>
                                   <v-carousel
                                     show-arrows-on-hover
                                     v-model="model" 
-                                    height="274" 
+                                    height="139" 
                                     hide-delimiter-background
                                     cycle
                                     interval="3000"
                                     class="swiper"
+                                    hide-delimiters
+                                    :show-arrows="group.img_urls.length>1"
                                   > 
                                     <v-carousel-item 
                                       v-for="(item,i) in group.img_urls"
@@ -116,7 +120,6 @@
                     <v-list-item class="section_item">
                         <v-card
                         color="#F3F3F3"
-                        height="435"
                         width="100%"
                         >
                         <!-- 轮播图在上，文字在下 -->
@@ -129,11 +132,13 @@
                                 <v-carousel
                                   show-arrows-on-hover
                                   v-model="model" 
-                                  height="274" 
+                                  height="150" 
                                   hide-delimiter-background
                                   cycle
                                   interval="3000"
                                   class="swiper"
+                                  hide-delimiters
+                                  :show-arrows="group.img_urls.length>1"
                                 > 
                                   <v-carousel-item 
                                     v-for="(item,i) in group.img_urls"
@@ -167,9 +172,7 @@
         </div>
 
         <!-- 页尾 -->
-        <div class="intro_footer">
-          <bottom/>
-        </div>
+        <bottom/>
     </div>
 
     
@@ -180,61 +183,68 @@
     .main2 {
         position: relative;
         width: 100%;
+        cursor: default;
     }
     .section {
         position: relative;
         width: 84%;
-        margin: 7% auto;
+        margin: 134px auto;
     }
     .section_item {
-      margin-bottom: 153px;
+      margin-bottom: 50px;
     }
-    .section_swiper {
-      margin: 50px 40px 40px 40px;
-      height: 274px;
+    .section_card {
+      padding: 49px 83px 44px 71px;
+    }
+    .even .section_font {
+      margin-left: 47px !important;
+    }
+    .odd .section_font {
+      margin-right: 47px !important;
+    }
+    .section_font_header {
+      font-family: Segoe UI;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      color: #535353;
+      margin-bottom: 10px;
+    }
+    .section_font_info {
+      font-family: Advent Pro;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 25px;
+      color: #A2A2A2;
     }
     .v-application--wrap {
       min-height: 0;
     }
-    .section_font {
-      margin-top: 40px;
-      margin-left: 10%;
-      margin-right: 10%;
-    }
-    .section_font_header {
-      font: normal 400 48px 'Source Han Serif TC';
-      color: #BDBDBD;
-      line-height: 64px;
-      margin-bottom: 20px;
-    }
-    .section_font_info {
-      font: normal 400 16px 'Advent Pro';
-      color: #000;
+    .section_left {
+      text-align: right;
     }
     .card_xs {
       display: none;
     }
-    .intro_footer {
-      position: relative;
-      height: 250px;
-    }
     @media screen and (max-width: 600px) {
+      .section {
+        margin-top: 50px;
+      }
       .section_swiper {
         margin: 0;
-        height: 200px;
-      }
-      .swiper {
-        height: 200px!important;
+        height: 150px;
       }
       .section_font {
-        margin: -20px 20px 0 20px;
+        margin: -20px 15px 10px 15px;
       }
       .section_font_header {
-        font-size: 32px;
-        margin-bottom: 0;
+        font-size: 18px;
+        margin-bottom: 5px;
       }
       .section_font_info {
-        font-size: 14px;
+        font-size: 12px;
+        line-height: 18px;
       }
       .card {
         display: none;
@@ -265,11 +275,10 @@ export default {
     },
     methods: {
       getInfo() {
-        getGroupDesc().then((res) => {
-          console.log(res.data.msg)
+        getGroupDesc().then((res) => {  
           this.groups = res.data.msg;
         }).catch((err) => {
-          // console.log(err)
+          
         });
       }
     }
