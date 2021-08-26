@@ -65,7 +65,7 @@
                       <v-list-item class="section_item">
                           <v-card
                           flat
-                          color="#F3F3F3"
+                          color="#FAFAFA"
                           width="100%"
                           class="section_card"
                           >
@@ -120,7 +120,7 @@
                 <v-list v-for="(group, index) in groups" :key="index" class="card_xs">
                     <v-list-item class="section_item">
                         <v-card
-                        color="#F3F3F3"
+                        :color="index%2===0?'#F3F3F3':'#FAFAFA'"
                         width="100%"
                         >
                         <!-- 轮播图在上，文字在下 -->
@@ -181,6 +181,9 @@
 </template>
 
 <style>
+  .theme--light.v-application {
+    background: none;
+  }
   .section_swiper{
     width: fit-content;
   }

@@ -11,7 +11,7 @@
         <v-img
           class="logo"
           contain
-          src="~assets/img/home/PivotStudio_Logo_Full_Horizontal.png"
+          src="~assets/img/home/logo.jpg"
           transition="scale-transition"
           @click="gotoPages(0)"
         />

@@ -2,7 +2,6 @@
   <v-app>
     <div class="home">
       <div class="main">
-        <p class="time">Pivot Studio<br class="br"/>{{time}}招新</p>
         <div id="join" class="join">
           <button class="join_btn" @click="gotoRegister">
             <v-icon x-large dark class="join_icon">mdi-chevron-down</v-icon>   
@@ -413,6 +412,10 @@ div.v-input__slot>div.v-text-field__slot{
   line-height: 12px;
   color: #2C2C2C;
 }
+::v-deep 
+.v-messages__message {
+  line-height: 14px !important;
+}
 .time, .sign-up_header {
   cursor: default;
   user-select: none;
@@ -430,23 +433,10 @@ div.v-input__slot>div.v-text-field__slot{
     position: relative;
     width: 100%;
     height: calc(100vh - 69px);
-    background-image: url("../assets/img/home/bg.png");
+    background-image: url("../assets/img/home/bg.jpg");
     background-repeat: no-repeat;
     background-size: auto 100%;
     background-position: center;
-  }
-  .time {
-    position: absolute;
-    /* top: 103px; */
-    top: 18%;
-    left: 84px;
-    font-family: Segoe UI;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 36px;
-    line-height: 64px;
-    color: #FFFFFF;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
   .join {
     position: absolute;
@@ -457,9 +447,6 @@ div.v-input__slot>div.v-text-field__slot{
     display: flex;
     justify-content: space-around;
     align-items: center;
-  }
-  .br {
-    display: none;
   }
   .join_btn {
     position: relative;
@@ -625,9 +612,6 @@ div.v-input__slot>div.v-text-field__slot{
       left: 5%;
       font-size: 24px;
       line-height: 32px;
-    }
-    .br {
-      display: block;
     }
     .join_font {
       font-size: 28px;
