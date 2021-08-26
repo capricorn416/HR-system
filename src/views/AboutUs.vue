@@ -27,7 +27,25 @@
           <v-row align="center"
             justify="center">
             <v-col sm="4" cols="12" class=" text-center">
-              <v-avatar size="180" tile><v-img :src="item.logo_url"/></v-avatar>
+              <v-tooltip :disabled="item.img_urls.length===0" color="white" right >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-avatar size="180" tile
+                    v-bind="attrs"
+                    v-on="on"
+                  ><v-img :src="item.logo_url"/></v-avatar>
+                </template>
+                <v-container>
+                  <v-row>
+                    <v-col>
+                      <v-img :src="item.img_urls[0]"/>
+                    </v-col>
+                    <v-col>
+                      <v-img :src="item.img_urls[1]"/>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-tooltip>
+              
             </v-col>
             <v-col sm="8" cols="12">
               <v-card-title>{{item.product_title}}</v-card-title>
@@ -145,5 +163,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 </style>
