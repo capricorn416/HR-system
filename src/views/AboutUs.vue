@@ -16,7 +16,12 @@
 
       
       <div class="second">
-        <div class="content">我们做了什么？</div>
+        <div class="content">
+           <button>
+             <v-icon large style="color: #202020;">mdi-chevron-down</v-icon>
+             </button>
+          我们做了什么？
+          </div>
         <div class="box">
          
           <div
@@ -56,7 +61,10 @@
 
       <div class="third">
         <div class="email">
-            <p> 想要联系我们？</p>
+           <button>
+             <v-icon large style="color: #202020;">mdi-chevron-down</v-icon>
+             </button> 
+           <p> 想要联系我们？</p>
             TEAM@PIVOTSTUDIO.CN
         </div>
         <div class="code">
@@ -159,7 +167,9 @@ export default defineComponent({
 <style scoped>
 .head {
   position: absolute;
-  z-index: 1;
+      
+        width: 100%;
+        background-color: #fff;
 }
 .center {
   width: 1440px;
@@ -169,30 +179,34 @@ export default defineComponent({
   position: relative;
   border-radius: 5px;
 }
-
-.center .first-content {
-  position: absolute;
-  width: 643px;
+ .first{
+  height: 205px;
+  margin-top: 11%;
+  margin-left:18% ;
+}
+.first-content {
+  float: left;
+  width: 49%;
   height: 91px;
   left: 150px;
   top: 313px;
 
   font-family: Source Han Serif SC;
   font-size: 18px;
-  line-height: 20px;
+  line-height: 35px;
   /* or 111% */
 
   letter-spacing: 0.105em;
   text-transform: uppercase;
 
-  color: #000000;
+  color: #757575;
 }
-.center .first img {
-  position: absolute;
-  width: 205px;
-  height: 205px;
-  left: 958px;
-  top: 235px;
+ .img {
+ float: left;
+  width: 8%;
+  min-width: 107px;
+  margin-left: 17%;
+  margin-top: 5%;
   border-radius: 50%;
 }
 
@@ -204,7 +218,9 @@ export default defineComponent({
   top: 0px;
 
   font-family: Source Han Serif SC;
-  font-size: 36px;
+ margin-left: 9.5%;
+  font-family: "Source Han Serif SC";
+  font-size: 24px;
   line-height: 12px;
   /* or 33% */
 
@@ -367,7 +383,7 @@ height: 12px;
   height: 73px;
   left: 142px;
   font-family: Source Han Sans CN;
-  font-size: 24px;
+  font-size: 21px;
   line-height: 36px;
 }
 .third .email p {
@@ -405,7 +421,130 @@ height: 12px;
   left: 426px;
 }
 .bottom{
-  position: absolute;
-  top: 2000px;
+  position:relative;
+  top: 400px;
+  z-index: 1;
+}
+@media screen and (max-width: 1100px) {
+    .box .passage {
+      margin-left:5.2% !important;
+    }
+  .slogan{
+     display: none;
+  }
+}  
+@media screen and (max-width: 772px) {
+  .center .first{height: 140px;}
+  .center .first .first-content{
+    width: 49%;
+    margin-top: 30px;
+    font-size: 16px;}
+  .first .img{
+    width: 32%;
+    max-width: 155px;
+    min-width: 0 ;
+    margin-left:12% ;
+  }
+  .center .second .content{
+     margin-left: 9.5%;
+     font-size: 25px;
+
+  }
+  .center .box{
+    margin-top: 58px;
+  }
+  .box .item{
+    height: 290px;
+  }
+  .box .avater{
+    width: 120px;
+    height: 120px;
+    margin-left: 7%;
+    margin-top: 33px;
+  }
+  .avater img{
+    width: 120px;
+    height: 120px;
+  }
+  .box .dialog{
+     width: 250px;
+    height: 125px;
+    left: -35%;
+    top: 172px;
+    margin-left: 140px;
+  }
+  .box .dialog::before{
+    border: 17px solid;
+    left: 45px;
+    top: -33px;
+    border-color: transparent transparent #fff transparent;
+  }
+  .box .i1{
+    width: 98px;
+    height: 98px;
+    top: 8px;
+    left: 14px;
+  }
+  .box .up{
+      left: 38px;
+    top: 107px;
+    font-size: 14px;
+  }
+  .box .i2{
+    width: 95px;
+    height: 95px;
+    top: 14px;
+    left: 137px;
+  }
+  .box .down{
+      left: 154px;
+    top: 106px;
+    font-size: 14px;
+  }
+  .item .passage{
+    margin-top: 30px;
+    font-size: 20px;
+  }
+  .item .slogan{
+    font-size: 16px;
+    display: block;
+  }
+  .item .pcontent{
+    font-size: 16px;
+    margin-top: 27px;
+  }
+  .third .code{
+   left: 5%;
+  }
+  .third .email{
+    left: 5%;
+  }
+  .third .email p{
+    font-size: 26px;
+  }
+  .third .code img{
+    width: 151px;
+    height: 151px;
+    margin-right: 14px;
+
+  }
+  .third .code .p1{
+   top: 154px;
+    left: 1px;
+    font-size: 10px;
+  }
+  .third .two{
+    margin-left: 0px;
+  }
+  
+  .third .code .p2{
+  top: 154px;
+    left: 160px;
+     font-size: 10px;
+    width: 220px;
+}
+  
+
+
 }
 </style>
