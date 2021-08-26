@@ -29,14 +29,15 @@
         justify="center"
         v-for="(item, index) in datalist"
         :key="index">
-        <v-card color="#F3F3F3" width="100%" :class="{'pa-10':$vuetify.breakpoint.smAndUp}" class=" pt-10 card" >
+        <v-card color="#F3F3F3" width="100%" :class="{'pa-10':$vuetify.breakpoint.smAndUp}" class=" pt-10" >
           <v-row align="center"
             justify="center" >
             <v-col sm="4" cols="12" class=" text-center">
               <v-tooltip :disabled="item.img_urls.length===0" color="transparent" right >
                 <template v-slot:activator="{ on, attrs }">
                   <v-avatar size="180" tile
-                  class="border-radius:4px;"
+                  style=" min-width:0px"
+                  class=" avater"
                     v-bind="attrs"
                     v-on="on"
                   ><v-img :src="item.logo_url"/></v-avatar>
@@ -64,7 +65,7 @@
               </v-tooltip>
               
             </v-col>
-            <v-col sm="8" cols="6" >
+            <v-col sm="8" cols="12" >
               <v-card-title class="pro-title" v-html="item.product_title"></v-card-title>
               <v-card-text class="pro-text" v-html="item.product_desc"></v-card-text>
             </v-col>
@@ -93,7 +94,7 @@
         <v-col sm="4" cols="6" offset-sm="1" offset="0"
         style="max-width:155px;"
          class="bottom "
-         :class="{'mr-5':$vuetify.breakpoint.smAndUp,'ma-5':!$vuetify.breakpoint.smAndUp}">
+         :class="{'mr-5':$vuetify.breakpoint.smAndUp}">
           <v-container class="code1">
             <v-row>
               <v-img  src="../assets/img/AboutUs/downimage 1.png"/>
@@ -266,7 +267,7 @@ color: #4E4E4E;
   position: absolute;
   left: 40px;
  top: -90px;
-min-width: 420px;
+width: 380px;
 height: 212px;
 background: #FFFFFF;
 box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.1);
@@ -276,7 +277,7 @@ border-radius: 12px;
   width: 130px;
   height: 130px;
   top: 20px;
-  left: 23px;
+  left: 20px;
 }
 .dialog .tips{
   margin: 16px 0  0 43px;
@@ -369,16 +370,45 @@ color: #757575
 
 }
 .bottom{
-/* margin-right: px!important; */
+margin-right: 0px!important;
 }
+
 .code2{
    position:absolute;
    left: 50%;
   width: 100px;
  margin-left: 26px;
 }
+
 .p1{
   margin-left: 0px!important;
+}
+.pro-text{
+width: 100%;
+font-size: 14px;
+margin-left: 0px;
+}
+.pro-title{
+  width: 129px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+.avater{
+  width: 110px!important;
+  height: 110px!important;
+}
+.dialog{
+   min-width: 310px;
+  max-width: 340px;
+  left: -235px;
+  top: 100px;
+}
+.triangle{
+  position: absolute;
+    border: 19px solid;
+    left: -82px;
+    top: 62px;
+    border-color: transparent transparent  #FFF transparent;
 }
 }
 </style>
