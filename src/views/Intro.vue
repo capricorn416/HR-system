@@ -18,7 +18,7 @@
                             <!-- 轮播图部分 -->
                             <v-col cols="12" sm="4">
                               <div class="section_left" >
-                                <div class="section_swiper" >
+                                <div class="section_swiper">
                                 <v-app>
                                   <v-carousel
                                     show-arrows-on-hover
@@ -91,7 +91,7 @@
                                   <v-carousel
                                     show-arrows-on-hover
                                     v-model="model" 
-                                    height="139" 
+                                    height="100%" 
                                     hide-delimiter-background
                                     cycle
                                     interval="3000"
@@ -181,6 +181,11 @@
 </template>
 
 <style>
+  .col-sm-4, .col-sm-6  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .theme--light.v-application {
     background: none;
   }
@@ -206,6 +211,7 @@
     .even .section_font {
       margin-left: 47px !important;
     }
+    
     .odd .section_font {
       margin-right: 47px !important;
     }
