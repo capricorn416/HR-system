@@ -4,32 +4,39 @@
       <v-row align="center"
       justify="center" class=" mt-16 mb-16">
         <v-col cols="12" offset="0" offset-sm="0" sm="7" >
-          <div class=" text-h6" > PIVOT STUDIO成立于2020年11月，是⼀个创意驱动、怀抱好奇、充满热情的校园互联网团队， 我们专注于开发创意丰富、设计简约、体验⼀流的校园产品。</div>
+          <div class=" first-content" > Pivot Studio成立于2020年11月，是⼀个创意驱动、怀抱好奇、充满热情的校园互联网团队， 我们专注于开发创意丰富、设计简约、体验⼀流的校园产品。</div>
         </v-col>
-        <v-col cols="12" sm="3" class=" text-center">
-          <v-avatar size="180" >
+        <v-col cols="12" sm="3" class=" text-center fir-box">
+          <v-avatar class="first-logo" size="107" >
             <v-img src="../assets/img/AboutUs/PivotStudio_Logo_Squre_Solid_W-10.png" />
           </v-avatar>
         </v-col>
       </v-row>
-      <v-row class="mt-16 text-h4">
-        <v-col offset-sm="1" offset="0">
+      <v-row class="mt-16 text-h4 ">
+        
+
+
+        <v-col offset-sm="1" offset="0" class="sec-title">
+        <button @click="gotoContent">
+            <v-icon large color="black"> mdi-chevron-down</v-icon>   
+          </button>
         我们做了什么？
         </v-col>
       </v-row>
       <v-row
-        class=" pa-10"
+        class=" pa-10 pb-0"
         align="center"
         justify="center"
         v-for="(item, index) in datalist"
         :key="index">
-        <v-card color="#F3F3F3" width="100%" :class="{'pa-10':$vuetify.breakpoint.smAndUp}" class=" pt-10" >
+        <v-card color="#F3F3F3" width="100%" :class="{'pa-10':$vuetify.breakpoint.smAndUp}" class=" pt-10 card" >
           <v-row align="center"
-            justify="center">
+            justify="center" >
             <v-col sm="4" cols="12" class=" text-center">
-              <v-tooltip :disabled="item.img_urls.length===0" color="white" right >
+              <v-tooltip :disabled="item.img_urls.length===0" color="transparent" right >
                 <template v-slot:activator="{ on, attrs }">
                   <v-avatar size="180" tile
+                  class="border-radius:4px;"
                     v-bind="attrs"
                     v-on="on"
                   ><v-img :src="item.logo_url"/></v-avatar>
@@ -37,61 +44,86 @@
                 <v-container>
                   <v-row>
                     <v-col>
-                      <v-img :src="item.img_urls[0]"/>
+                      <div class="triangle"></div>
                     </v-col>
+                  </v-row>
+                </v-container>
+                <v-container class="dialog">
+                  <v-row>
+                    <v-col color="black">
+                      <v-img class="img" :src="item.img_urls[0]"/>
+                       <v-card-text class="tips">小程序</v-card-text>
+                    </v-col>
+                   
                     <v-col>
-                      <v-img :src="item.img_urls[1]"/>
+                      <v-img class="img" :src="item.img_urls[1]"/>
+                      <v-card-text class="tips">QQ社群</v-card-text>
                     </v-col>
                   </v-row>
                 </v-container>
               </v-tooltip>
               
             </v-col>
-            <v-col sm="8" cols="12">
-              <v-card-title>{{item.product_title}}</v-card-title>
-              <v-card-text>{{item.product_desc}}</v-card-text>
+            <v-col sm="8" cols="6" >
+              <v-card-title class="pro-title" v-html="item.product_title"></v-card-title>
+              <v-card-text class="pro-text" v-html="item.product_desc"></v-card-text>
             </v-col>
           </v-row>
         </v-card>
       </v-row>
+
+
       <v-row align="center"
-      justify="center" class="mt-16">
-        <v-col offset-sm="1" offset="0" class=" text-h4">
+      justify="center" class="mt-16 center">
+       
+        <v-col offset-sm="1" offset="0" class=" text-h4 third-title  ">
+            <button @click="gotoCode">
+            <v-icon large color="black">mdi-chevron-down</v-icon>   
+            </button>
         想要联系我们？
         </v-col>
-      </v-row>
-      <v-row align="center"
-      justify="center">
-        <v-col offset-sm="1" offset="0" class=" text-h5 subtitle-1">
-        TEAM@PIVOTSTUDIO.CN
-        </v-col>
-      </v-row>
-      <v-row align="center"
-      justify="center">
-        <v-col sm="4" cols="12" class="subtitle-1"
+        </v-row>
+        <v-row align="center"
+          justify="center">
+          <v-col offset-sm="1" offset="0" class=" link">
+           邮箱：team@pivotstudio.cn
+           </v-col>
+        </v-row>
+      
+        <v-col sm="4" cols="6" offset-sm="1" offset="0"
+        style="max-width:155px;"
+         class="bottom "
          :class="{'mr-5':$vuetify.breakpoint.smAndUp,'ma-5':!$vuetify.breakpoint.smAndUp}">
-          <v-container>
+          <v-container class="code1">
             <v-row>
-              <v-img src="../assets/img/AboutUs/downimage 1.png"/>
+              <v-img  src="../assets/img/AboutUs/downimage 1.png"/>
             </v-row>
-            <v-row class=" subtitle-1 text-center">
-              QQ扫一扫，加入招新群
+            <v-row class=" p1 text-center ml-6">
+              招新QQ群
             </v-row>
           </v-container>
         </v-col>
-        <v-col sm="4" cols="12" class="subtitle-1"
+        <v-col sm="4" cols="12"  offset-sm="1" offset="0"
+          style="max-width:151px; padding:0px;"
+          
          :class="{'ml-5':$vuetify.breakpoint.smAndUp,'ma-5':!$vuetify.breakpoint.smAndUp}">
-          <v-container>
+          <v-container class="code2">
           <v-row>
-            <v-img src="../assets/img/AboutUs/downimage 1.png"/>
+            <v-img  src="../assets/img/AboutUs/downQR.png"/>
           </v-row>
-          <v-row class=" subtitle-1 text-center">
-            微信扫码关注我们的公众号
+          <v-row class=" p1 text-center ml-1">
+            Pivot Studio公众号
           </v-row>
           </v-container>
         </v-col>
-      </v-row>
+      
+      
     </v-container>
+    <v-row>
+        <v-col class="pa-0">
+          <bottom/>
+          </v-col>
+          </v-row>
   </v-app>
 </template>
 <script lang="js">
@@ -101,14 +133,12 @@ import { defineComponent } from "@vue/composition-api";
 
 import {getProductDesc} from '@/api/getDes'
 import  Bottom from "../components/Bottom.vue";
-export default defineComponent({
+export default 
+  {
+    components: { Bottom },
   name: "AboutUs",
 
-  components: {
-    Bottom,
-    
-  },
-
+  
   data() {
     return {
      status: true,
@@ -121,6 +151,23 @@ export default defineComponent({
       this.getMsg()
     },
     methods: {
+       gotoContent() { 
+        let scroll1 = document.querySelector('.sec-title').offsetTop + 20;
+        　
+        window.scrollTo({
+          top: scroll1,
+          behavior: 'smooth'
+        })
+        },
+        gotoCode() { 
+        let scroll2 = document.querySelector('.third-title').offsetTop + 10;
+        　
+        window.scrollTo({
+          top: scroll2,
+          behavior: 'smooth'
+        })
+        },
+
       getMsg() {
         var datalist=[];
         getProductDesc().then((res) => {
@@ -159,8 +206,179 @@ export default defineComponent({
         //  console.log(item.display);
        }  
     }
-});
+};
 </script>
 
 <style scoped>
+/* .container{
+  margin: 0;
+} */
+.first-content{
+   float: left;
+  width: 82%;
+  height: 91px;
+   margin-top: 130px;
+   margin-left: 10%;
+   
+  font-family: "Source Han Serif SC";
+  font-size: 18px;
+ line-height: 37px;
+  color: #757575;
+
+  letter-spacing: 0.105em;
+}
+.first-logo{
+float: left;
+  width: 16%;
+  min-width: 180px;
+  margin-left: 27%;
+  margin-top: 39%;
+  border-radius: 50%;
+}
+.card{
+  width: 1400px!important;
+  min-height: 268px;
+
+}
+.sec-title{
+  font-size: 24px;
+line-height: 12px;
+font-family: Segoe UI;
+}
+.pro-text{
+ width: 60%;
+ margin-left: 22%;
+font-family: Segoe UI;
+font-size: 16px;
+line-height: 30px;
+color: #4E4E4E;
+}
+.pro-title{
+ margin-left: 22%;
+ margin-bottom: 10px;
+  font-family: Segoe UI;
+font-weight: bold;
+font-size: 24px;
+line-height: 10px;
+color: #4E4E4E;
+}
+.dialog{
+  position: absolute;
+  left: 40px;
+ top: -90px;
+min-width: 420px;
+height: 212px;
+background: #FFFFFF;
+box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.1);
+border-radius: 12px;
+}
+.dialog .img{
+  width: 130px;
+  height: 130px;
+  top: 20px;
+  left: 23px;
+}
+.dialog .tips{
+  margin: 16px 0  0 43px;
+  top: 10px;
+  left: 10px;
+  font-family: Source Serif Pro;
+font-size: 14px;
+line-height: 12px;
+letter-spacing: 0.1em;
+color: #8D8D8D;
+}
+.triangle{
+  position: absolute;
+    border: 21px solid;
+    left: -3px;
+    top: 0px;
+    border-color: transparent #FFF  transparent transparent;
+  }
+  .third-title
+  { margin-top: 100px;
+    font-family: Segoe UI;
+font-size: 24px!important;
+line-height: 12px;
+text-transform: uppercase;
+
+color: #000000;
+
+  }
+  .link{
+    margin-top: -10px;
+ padding-left: 53px;
+ font-family: Segoe UI;
+font-weight: 350;
+font-size: 18px;
+line-height: 64px;
+color: #757575;
+  }
+  .code1{
+    
+    margin-bottom: 159px;
+    width: 151px;
+height: 151px;
+margin-left: 28px;
+padding-top: 43px;
+  }
+  .code2{
+    /* position: absolute;
+    left: 10px; */
+    width: 151px;
+ height: 151px;
+ padding-left:-20px ;
+ margin-top: -159px;
+  }
+  .bottom{
+    height: 400px;
+    margin-right: 60px!important;
+  }
+  .p1{
+font-family: Segoe UI;
+font-weight: 350;
+font-size: 14px;
+
+color: #757575
+  }
+  
+@media (min-width: 1264px)
+{
+.container {
+    max-width: 1400px;
+}
+
+}
+
+@media (max-width: 600px)
+{
+.fir-box{
+  height: 150px;
+}
+.first-content{
+  font-size: 14px;
+  margin-top: 40px;
+}
+.first-logo{
+  margin-top: 17%;
+  margin-left: 36%;
+}
+.code1{
+  width: 100px;
+  position:absolute;
+
+}
+.bottom{
+/* margin-right: px!important; */
+}
+.code2{
+   position:absolute;
+   left: 50%;
+  width: 100px;
+ margin-left: 26px;
+}
+.p1{
+  margin-left: 0px!important;
+}
+}
 </style>
