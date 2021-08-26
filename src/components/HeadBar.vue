@@ -76,7 +76,6 @@ export default {
     }
   },
   methods: {
-    
     gotoPages(index) {
       this.$router.push({ path: this.pages[index].path });
     }

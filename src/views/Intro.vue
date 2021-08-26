@@ -18,14 +18,14 @@
                             <!-- 轮播图部分 -->
                             <v-col cols="12" sm="4">
                               <div class="section_left" >
-                                <div class="section_swiper">
+                                <div class="section_swiper" >
                                 <v-app>
                                   <v-carousel
                                     show-arrows-on-hover
                                     v-model="model" 
-                                    height="139"
                                     hide-delimiter-background
                                     cycle
+                                    height="100%"
                                     interval="3000"
                                     class="swiper"
                                     hide-delimiters
@@ -35,6 +35,7 @@
                                       v-for="(item,i) in group.img_urls"
                                       :key="i"
                                       :src="item"
+                                      height="100%"
                                     >
                                     </v-carousel-item>
                                   </v-carousel> 
@@ -83,9 +84,9 @@
                               </div>
                             </v-col>
                             <!-- 轮播图部分 -->
-                            <v-col cols="12" sm="4">
+                            <v-col cols="12" sm="4" align-self="end">
                               <div class="section_right">
-                                <div class="section_swiper">
+                                <div class="section_swiper" style="float:right">
                                 <v-app>
                                   <v-carousel
                                     show-arrows-on-hover
@@ -180,6 +181,9 @@
 </template>
 
 <style>
+  .section_swiper{
+    width: fit-content;
+  }
     .main2 {
         position: relative;
         width: 100%;
@@ -227,17 +231,20 @@
     .card_xs {
       display: none;
     }
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 1080px) {
       .section {
         margin-top: 50px;
       }
       .section_swiper {
+        width: auto;
         margin: 0;
         height: 150px;
       }
+          @media screen and (max-width: 600px) {
       .section_font {
         margin: -20px 15px 10px 15px;
       }
+          }
       .section_font_header {
         font-size: 18px;
         margin-bottom: 5px;
