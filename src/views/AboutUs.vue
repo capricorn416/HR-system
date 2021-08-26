@@ -29,7 +29,7 @@
         justify="center"
         v-for="(item, index) in datalist"
         :key="index">
-        <v-card color="#F3F3F3" width="100%" :class="{'pa-10':$vuetify.breakpoint.smAndUp}" class=" pt-10" >
+        <v-card color="#F3F3F3" width="100%" :class="{'pa-10':$vuetify.breakpoint.smAndUp}" class=" pt-10" flat>
           <v-row align="center"
             justify="center" >
             <v-col sm="4" cols="12" class=" text-center">
