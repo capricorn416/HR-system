@@ -2,12 +2,12 @@
   <v-app>
     <v-container fill-height>
       <v-row align="center"
-      justify="center" class=" mt-16 mb-16">
-        <v-col cols="12" offset="0" offset-sm="0" sm="7" >
+      justify="center" class="mt-16 mb-16" :style="$vuetify.breakpoint.smAndUp?'margin-top:200px!important':''">
+        <v-col cols="12" offset="0" offset-sm="1" sm="6" >
           <div class=" first-content" > Pivot Studio成立于2020年11月，是⼀个创意驱动、怀抱好奇、充满热情的校园互联网团队， 我们专注于开发创意丰富、设计简约、体验⼀流的校园产品。</div>
         </v-col>
-        <v-col cols="12" sm="3" class=" text-center fir-box">
-          <v-avatar class="first-logo" size="107" >
+        <v-col cols="12" sm="3" class=" text-center ">
+          <v-avatar size="107" >
             <v-img src="../assets/img/AboutUs/PivotStudio_Logo_Squre_Solid_W-10.png" />
           </v-avatar>
         </v-col>
@@ -90,33 +90,35 @@
            邮箱：team@pivotstudio.cn
            </v-col>
         </v-row>
-      
-        <v-col sm="4" cols="6" offset-sm="1" offset="0"
-        style="max-width:155px;"
+        <v-container>
+        <v-row :style="$vuetify.breakpoint.smAndUp?'width:60%':''">
+        <v-col sm="2" cols="6" offset-sm="2" offset="0"
          class="bottom "
-         :class="{'mr-5':$vuetify.breakpoint.smAndUp}">
-          <v-container class="code1">
+         style="max-width:155px"
+         :class="{'pr-5':$vuetify.breakpoint.smAndUp}">
+          <v-container >
             <v-row>
               <v-img  src="../assets/img/AboutUs/downimage 1.png"/>
             </v-row>
-            <v-row class=" p1 text-center ml-6">
-              招新QQ群
+            <v-row class=" p1 text-center">
+              <v-col> 招新QQ群</v-col>
             </v-row>
           </v-container>
         </v-col>
-        <v-col sm="4" cols="12"  offset-sm="1" offset="0"
-          style="max-width:151px; padding:0px;"
+        <v-col sm="2" cols="6"  offset-sm="0" offset="0" style="max-width:155px"
           
-         :class="{'ml-5':$vuetify.breakpoint.smAndUp,'ma-5':!$vuetify.breakpoint.smAndUp}">
-          <v-container class="code2">
+         :class="{'pl-5':$vuetify.breakpoint.smAndUp}">
+          <v-container>
           <v-row>
             <v-img  src="../assets/img/AboutUs/downQR.png"/>
           </v-row>
-          <v-row class=" p1 text-center ml-1">
-            Pivot Studio公众号
+          <v-row class=" p1 text-center ">
+            <v-col> PS公众号</v-col>
           </v-row>
           </v-container>
         </v-col>
+        </v-row>
+        </v-container>
       
       
     </v-container>
@@ -216,25 +218,12 @@ export default
 } */
 .first-content{
    float: left;
-  width: 82%;
-  height: 91px;
-   margin-top: 130px;
-   margin-left: 10%;
    
   font-family: "Source Han Serif SC";
   font-size: 18px;
  line-height: 37px;
   color: #757575;
-
   letter-spacing: 0.105em;
-}
-.first-logo{
-float: left;
-  width: 16%;
-  min-width: 180px;
-  margin-left: 27%;
-  margin-top: 39%;
-  border-radius: 50%;
 }
 .card{
   width: 1400px!important;
@@ -315,22 +304,7 @@ font-size: 18px;
 line-height: 64px;
 color: #757575;
   }
-  .code1{
-    
-    margin-bottom: 159px;
-    width: 151px;
-height: 151px;
-margin-left: 28px;
-padding-top: 43px;
-  }
-  .code2{
-    /* position: absolute;
-    left: 10px; */
-    width: 151px;
- height: 151px;
- padding-left:-20px ;
- margin-top: -159px;
-  }
+
   .bottom{
     height: 400px;
     margin-right: 60px!important;
@@ -364,21 +338,10 @@ color: #757575
   margin-top: 17%;
   margin-left: 36%;
 }
-.code1{
-  width: 100px;
-  position:absolute;
-
-}
 .bottom{
 margin-right: 0px!important;
 }
 
-.code2{
-   position:absolute;
-   left: 50%;
-  width: 100px;
- margin-left: 26px;
-}
 
 .p1{
   margin-left: 0px!important;
