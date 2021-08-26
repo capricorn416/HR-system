@@ -93,7 +93,7 @@
       
         <v-col sm="4" cols="6" offset-sm="1" offset="0"
         style="max-width:155px;"
-         class="bottom "
+         class="bottom"
          :class="{'mr-5':$vuetify.breakpoint.smAndUp}">
           <v-container class="code1">
             <v-row>
@@ -107,12 +107,12 @@
         <v-col sm="4" cols="12"  offset-sm="1" offset="0"
           style="max-width:151px; padding:0px;"
           
-         :class="{'ml-5':$vuetify.breakpoint.smAndUp,'ma-5':!$vuetify.breakpoint.smAndUp}">
+         :class="{'ml-5':$vuetify.breakpoint.smAndUp}">
           <v-container class="code2">
           <v-row>
             <v-img  src="../assets/img/AboutUs/downQR.png"/>
           </v-row>
-          <v-row class=" p1 text-center ml-1">
+          <v-row class=" p1 p2 text-center ml-1">
             Pivot Studio公众号
           </v-row>
           </v-container>
@@ -377,11 +377,15 @@ margin-right: 0px!important;
    position:absolute;
    left: 50%;
   width: 100px;
- margin-left: 26px;
+ margin-left: 24px;
 }
 
 .p1{
   margin-left: 0px!important;
+}
+.p2{
+ width: 120px;
+    margin-left: -12px!important;
 }
 .pro-text{
 width: 100%;
@@ -389,7 +393,7 @@ font-size: 14px;
 margin-left: 0px;
 }
 .pro-title{
-  width: 129px;
+  width: 136px;
   margin: 0 auto;
   font-size: 18px;
 }
