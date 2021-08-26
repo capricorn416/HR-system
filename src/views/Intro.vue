@@ -236,6 +236,7 @@
         margin-top: 50px;
       }
       .section_swiper {
+        width: auto;
         margin: 0;
         height: 150px;
       }
