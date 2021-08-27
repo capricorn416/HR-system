@@ -29,7 +29,7 @@
         justify="center"
         v-for="(item, index) in datalist"
         :key="index">
-        <v-card color="#F3F3F3" width="100%" :class="{'pa-10':$vuetify.breakpoint.smAndUp}" class=" pt-10" flat>
+        <v-card :color="colors[index]" width="100%" :class="{'pa-10':$vuetify.breakpoint.smAndUp}" class=" pt-10" flat>
           <v-row align="center"
             justify="center" >
             <v-col sm="4" cols="12" class=" text-center">
@@ -146,8 +146,9 @@ export default
     return {
      status: true,
       datalist:[],
-         isSeen: false,
-      current: 0
+      isSeen: false,
+      current: 0,
+      colors: ['#F3F8F2', '#FDF6FC']
     };
   },
   created() {
@@ -216,6 +217,10 @@ export default
 /* .container{
   margin: 0;
 } */
+::v-deep 
+.v-application--wrap {
+  min-height: 0;
+}
 .first-content{
    float: left;
    

@@ -122,6 +122,7 @@
                         <v-card
                         :color="index%2===0?'#F3F3F3':'#FAFAFA'"
                         width="100%"
+                        flat
                         >
                         <!-- 轮播图在上，文字在下 -->
                         <v-row>

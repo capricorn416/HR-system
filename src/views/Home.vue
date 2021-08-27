@@ -416,6 +416,10 @@ div.v-input__slot>div.v-text-field__slot{
 .v-messages__message {
   line-height: 14px !important;
 }
+::v-deep 
+.v-application--wrap {
+  min-height: 0;
+}
 .time, .sign-up_header {
   cursor: default;
   user-select: none;
