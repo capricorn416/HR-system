@@ -303,7 +303,7 @@
           formData.append('group', this.group);
           const token1 =  (await tp1).token;
           const rel = this.resume.name.split('.')
-          const rekey = (new Date().toString())+ this.phone+'/'+this.group+'/'+this.resume.name+'/'+this.name.split(' ').join('-')+'简历.'+rel[rel.length-1]
+          const rekey = (new Date().getTime().toString())+ this.phone+'/'+this.group+'/'+this.name.split(' ').join('-')+'简历.'+rel[rel.length-1]
           const ob = qiniu.upload(this.resume,rekey,token1)
           await new Promise((re,rj)=>{
             ob.subscribe(null,err=>{
@@ -316,7 +316,7 @@
           formData.append('resume_key', rekey);
           const token2 =  (await tp2).token;
           if (this.work) {
-            const workkey = (new Date().toString())+ this.phone+'/'+this.group+'/'+this.work.name+'/'+this.name.split(' ').join('-')+'-'+this.work.name.split(' ').join('-')
+            const workkey = (new Date().getTime().toString())+ this.phone+'/'+this.group+'/'+'/'+this.name.split(' ').join('-')+'-'+this.work.name.split(' ').join('-')
             const ob2 = qiniu.upload(this.work,workkey,token2)
             await new Promise((re,rj)=>{
               ob2.subscribe(null,err=>{
