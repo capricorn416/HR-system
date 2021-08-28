@@ -11,7 +11,7 @@
         <v-img
           class="logo"
           contain
-          src="~assets/img/home/logo.jpg"
+          src="~assets/img/home/logo-dark.png"
           transition="scale-transition"
           @click="gotoPages(0)"
         />
