@@ -170,6 +170,46 @@
                         </v-card>
                     </v-list-item>
                 </v-list>
+                <div v-if="loading">
+                  <v-container >
+                    <v-row >
+                      <v-col sm="5" cols="12">
+                        <v-skeleton-loader  type="image"/>
+                      </v-col>
+                      <v-col sm="7" cols="12">
+                        <v-skeleton-loader  type="paragraph@3"/>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                  <v-container >
+                    <v-row v-if="$vuetify.breakpoint.mdAndUp" >
+                      <v-col sm="7" cols="12">
+                        <v-skeleton-loader  type="paragraph@3"/>
+                      </v-col>
+                      <v-col sm="5" cols="12">
+                        <v-skeleton-loader  type="image"/>
+                      </v-col>
+                    </v-row>
+                    <v-row v-else >
+                      <v-col sm="5" cols="12">
+                        <v-skeleton-loader  type="image"/>
+                      </v-col>
+                      <v-col sm="7" cols="12">
+                        <v-skeleton-loader  type="paragraph@3"/>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                  <v-container >
+                    <v-row >
+                      <v-col sm="5" cols="12">
+                        <v-skeleton-loader  type="image"/>
+                      </v-col>
+                      <v-col sm="7" cols="12">
+                        <v-skeleton-loader  type="paragraph@3"/>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </div>
             </div>
         </div>
 
@@ -285,6 +325,7 @@ export default {
         return {
             groups: [],
             model: 0,
+            loading: true
         }
     },
     created() {
@@ -294,6 +335,7 @@ export default {
       getInfo() {
         getGroupDesc().then((res) => {  
           this.groups = res.data.msg;
+          this.loading = false
         }).catch((err) => {
           
         });
