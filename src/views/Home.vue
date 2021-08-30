@@ -15,7 +15,7 @@
           <p id="sign" class="sign-up_header">报名信息录入</p>
           <div class="sign-up_form">
             <v-app>
-            <v-form ref="form">
+            <v-form ref="form" >
               <div class="sign-up_left">
                 <v-list>      
                   <v-list-item class="list list-firstline">
@@ -376,17 +376,17 @@
               },1000)
             }
           } else {
-              // upscroll code
-            if (!disableup&&!isElementInViewport(document.getElementById('join'))) {
-              disableup = true;
-              window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-              })
-              setTimeout(()=>{
-                disableup = false;
-              },1000)
-            }
+            //   // upscroll code
+            // if (!disableup&&!isElementInViewport(document.getElementById('join'))) {
+            //   disableup = true;
+            //   window.scrollTo({
+            //     top: 0,
+            //     behavior: 'smooth'
+            //   })
+            //   setTimeout(()=>{
+            //     disableup = false;
+            //   },1000)
+            // }
           }
           lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
         } catch (error) {
