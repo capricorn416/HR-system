@@ -225,7 +225,8 @@
           {index: 3, name: '设计'},
           {index: 4, name: '前端'},
           {index: 5, name: '后端'},
-          {index: 6, name: '移动'}
+          {index: 6, name: '移动'},
+          {index: 7, name: '游戏'}
         ],
         groupRules: [
           v => !!v || '组别不能为空哦'
