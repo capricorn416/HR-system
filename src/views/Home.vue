@@ -11,6 +11,13 @@
       </div>
 
       <div class="register">
+        <v-overlay :value="overlay" absolute>
+          <v-card width="250">
+            <v-card-text class="text-subtitle-1 text-center">
+              抱歉，目前不处于招新期
+            </v-card-text>
+          </v-card>
+        </v-overlay>
         <div class="sign-up">
           <p id="sign" class="sign-up_header">报名信息录入</p>
           <div class="sign-up_form">
@@ -211,6 +218,7 @@
     name: 'Home',
     data() {
       return {
+        overlay: new Date() > new Date("September 30,2021 23:59:59"),
         loader: null,
         loading: false,
         time: "2021秋季",
@@ -220,12 +228,12 @@
         ],
         group: '',
         groups: [ 
-          {index: 1, name: '产品', disabled: true},
-          {index: 2, name: '运营', disabled: true},
-          {index: 3, name: '设计', disabled: true},
-          {index: 4, name: '前端', disabled: true},
-          {index: 5, name: '后端', disabled: true},
-          {index: 6, name: '移动', disabled: true},
+          {index: 1, name: '产品', disabled: new Date() > new Date("September 18,2021 23:59:59")},
+          {index: 2, name: '运营', disabled: new Date() > new Date("September 18,2021 23:59:59")},
+          {index: 3, name: '设计', disabled: new Date() > new Date("September 18,2021 23:59:59")},
+          {index: 4, name: '前端', disabled: new Date() > new Date("September 18,2021 23:59:59")},
+          {index: 5, name: '后端', disabled: new Date() > new Date("September 18,2021 23:59:59")},
+          {index: 6, name: '移动', disabled: new Date() > new Date("September 18,2021 23:59:59")},
           {index: 7, name: '游戏'}
         ],
         groupRules: [
@@ -531,6 +539,7 @@ div.v-input__slot>div.v-text-field__slot{
   .register {
     height: 720px;
     background: white;
+    position: relative;
   }
   .sign-up {
     width: 80%;
