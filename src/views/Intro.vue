@@ -277,6 +277,7 @@
     }
     .section_left {
       text-align: right;
+      width: 100%;
     }
     .card_xs {
       display: none;

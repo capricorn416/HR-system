@@ -220,12 +220,12 @@
         ],
         group: '',
         groups: [ 
-          {index: 1, name: '产品'},
-          {index: 2, name: '运营'},
-          {index: 3, name: '设计'},
-          {index: 4, name: '前端'},
-          {index: 5, name: '后端'},
-          {index: 6, name: '移动'},
+          {index: 1, name: '产品', disabled: new Date() > new Date("September 18,2021 23:59:59")},
+          {index: 2, name: '运营', disabled: new Date() > new Date("September 18,2021 23:59:59")},
+          {index: 3, name: '设计', disabled: new Date() > new Date("September 18,2021 23:59:59")},
+          {index: 4, name: '前端', disabled: new Date() > new Date("September 18,2021 23:59:59")},
+          {index: 5, name: '后端', disabled: new Date() > new Date("September 18,2021 23:59:59")},
+          {index: 6, name: '移动', disabled: new Date() > new Date("September 18,2021 23:59:59")},
           {index: 7, name: '游戏'}
         ],
         groupRules: [
