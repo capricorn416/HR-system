@@ -232,6 +232,10 @@ export default
   display: none;
 }
 ::v-deep 
+.col-sm-4, .col-sm-6 {
+  display: block !important;
+}
+::v-deep 
 .v-application--wrap {
   min-height: 0;
 }
