@@ -218,7 +218,7 @@
     name: 'Home',
     data() {
       return {
-        overlay: new Date() > new Date("September 30,2021 23:59:59"),
+        overlay: true,
         loader: null,
         loading: false,
         time: "2021秋季",

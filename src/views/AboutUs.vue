@@ -32,7 +32,7 @@
         <v-card :color="colors[index]" width="100%" :class="{'pa-10':$vuetify.breakpoint.smAndUp}" class=" pt-10" flat>
           <v-row align="center"
             justify="center" >
-            <v-col sm="4" cols="12" class=" text-center">
+            <v-col sm="3" cols="12" class=" text-center">
               <v-tooltip :disabled="item.img_urls.length===0" color="transparent" right >
                 <template v-slot:activator="{ on, attrs }">
                   <v-avatar size="180" tile
@@ -60,14 +60,22 @@
                       <v-img class="img" :src="item.img_urls[1]"/>
                       <v-card-text class="tips">QQ社群</v-card-text>
                     </v-col>
+
+                    <v-col>
+                      <v-img class="img" src="../assets/img/AboutUs/download-url.png"/>
+                      <v-card-text class="tips">下载链接</v-card-text>
+                    </v-col>
                   </v-row>
                 </v-container>
               </v-tooltip>
               
             </v-col>
-            <v-col sm="8" cols="12" >
+            <v-col sm="6" cols="12" >
               <v-card-title class="pro-title" v-html="item.product_title"></v-card-title>
               <v-card-text class="pro-text" v-html="item.product_desc"></v-card-text>
+            </v-col>
+            <v-col sm="3" cols="12" class="text-center" :class="$vuetify.breakpoint.xsOnly? 'mb-8 mt-n5': null">
+              <v-btn small height="40" dark :class="index!==0? 'hide': null" @click="gotoDownload">Android下载</v-btn>
             </v-col>
           </v-row>
         </v-card>
@@ -155,6 +163,9 @@ export default
       this.getMsg()
     },
     methods: {
+       gotoDownload() {
+         this.$router.push('/download')
+       },
        gotoContent() { 
         let scroll1 = document.querySelector('.sec-title').offsetTop + 20;
         　
@@ -217,6 +228,9 @@ export default
 /* .container{
   margin: 0;
 } */
+.hide {
+  display: none;
+}
 ::v-deep 
 .v-application--wrap {
   min-height: 0;
@@ -241,15 +255,15 @@ line-height: 12px;
 font-family: Segoe UI;
 }
 .pro-text{
- width: 60%;
- margin-left: 22%;
+ width: 90%;
+ margin-left: 15%;
 font-family: Segoe UI;
 font-size: 16px;
 line-height: 30px;
 color: #4E4E4E;
 }
 .pro-title{
- margin-left: 22%;
+ margin-left: 15%;
  margin-bottom: 10px;
   font-family: Segoe UI;
 font-weight: bold;
@@ -260,9 +274,9 @@ color: #4E4E4E;
 .dialog{
   position: absolute;
   left: 40px;
- top: -90px;
-width: 380px;
-height: 212px;
+ top: -80px;
+width: 470px;
+height: 190px;
 background: #FFFFFF;
 box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.1);
 border-radius: 12px;
@@ -270,13 +284,11 @@ border-radius: 12px;
 .dialog .img{
   width: 130px;
   height: 130px;
-  top: 20px;
-  left: 20px;
+  top: 10px;
 }
 .dialog .tips{
-  margin: 16px 0  0 43px;
+  margin: 6px 0  0 23px;
   top: 10px;
-  left: 10px;
   font-family: Source Serif Pro;
 font-size: 14px;
 line-height: 12px;
@@ -366,10 +378,18 @@ margin-left: 0px;
   height: 110px!important;
 }
 .dialog{
-   min-width: 310px;
-  max-width: 340px;
-  left: -235px;
+  left: -230px;
   top: 100px;
+  width: 340px;
+  height: 145px;
+}
+.dialog .img {
+  width: 85px;
+  height: 85px;
+}
+.dialog .tips{
+  margin: 3px 0  0 0px;
+  font-size: 12px;
 }
 .triangle{
   position: absolute;
