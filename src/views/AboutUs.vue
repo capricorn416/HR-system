@@ -75,7 +75,7 @@
               <v-card-text class="pro-text" v-html="item.product_desc"></v-card-text>
             </v-col>
             <v-col sm="3" cols="12" class="text-center" :class="$vuetify.breakpoint.xsOnly? 'mb-8 mt-n5': null">
-              <v-btn small height="40" dark :class="index!==0? 'hide': null" @click="gotoDownload">Android下载</v-btn>
+              <v-btn height="38" dark v-if="index===0" @click="gotoDownload">下载链接</v-btn>
             </v-col>
           </v-row>
         </v-card>
@@ -228,9 +228,6 @@ export default
 /* .container{
   margin: 0;
 } */
-.hide {
-  display: none;
-}
 ::v-deep 
 .col-sm-4, .col-sm-6 {
   display: block !important;

@@ -3,8 +3,33 @@
     <div class="mask">
       <div class="dialog">
         <div class="tip">
-          <v-icon @click="gotoDownload">mdi-download</v-icon>
-          <a href="https://pshrpub.nickxiao.icu/1037%E6%A0%91%E6%B4%9E.apk">1037树洞Android下载</a>
+          <v-row>
+            <v-col style="font-size: 20px">
+              <img src="~assets/img/AboutUs/方形Logo 1.png" width="35" style="margin-right:10px"><strong>1037树洞</strong>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col>
+              <v-icon @click="gotoH5">mdi-application-outline</v-icon>
+              <a href="https://husthole.pivotstudio.cn">H5网页版</a>
+            </v-col>
+
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-icon @click="gotoDownloadAndroid">mdi-download</v-icon>
+              <a href="https://pshrpub.nickxiao.icu/1037%E6%A0%91%E6%B4%9E.apk">Android下载</a>
+            </v-col>
+          </v-row>
+          
+          <v-row>
+            <v-col>
+              <v-icon @click="gotoDownloadiOS">mdi-download</v-icon>
+              <a href="https://apps.apple.com/cn/app/1037%E5%8F%B7%E6%A0%91%E6%B4%9E/id1568928394">iOS下载</a>
+            </v-col>
+          </v-row>
+          
         </div>
         <v-btn class="back-btn" width="93" dark 
         height="32" depressed color="#2C2C2C" @click="backHome">返回首页</v-btn>
@@ -25,9 +50,15 @@ export default {
     backHome() {
       this.$router.push({ path: '/' });
     },
-    gotoDownload() {
+    gotoH5() {
+      window.open('https://husthole.pivotstudio.cn')
+    },
+    gotoDownloadAndroid() {
       window.open('https://pshrpub.nickxiao.icu/1037%E6%A0%91%E6%B4%9E.apk')
-    }
+    },
+    gotoDownloadiOS() {
+      window.open('https://apps.apple.com/cn/app/1037%E5%8F%B7%E6%A0%91%E6%B4%9E/id1568928394')
+    },
   }
 }
 </script>
@@ -43,7 +74,7 @@ export default {
   background: #D5D5D5;
 }
 .dialog {
-  height: 289px;
+  height: 380px;
   width: 56vw;
   background: #FFFFFF;
   border-radius: 16px;
@@ -53,7 +84,6 @@ export default {
   bottom: 0;
   right: 0;
   margin: auto;
-  padding: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
