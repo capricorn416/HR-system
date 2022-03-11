@@ -1,3 +1,4 @@
+const Timestamp = new Date().getTime()
 module.exports = {
   transpileDependencies: [
     'vuetify'
@@ -11,6 +12,10 @@ module.exports = {
             'network': '@/network',
             'views': '@/views',
         }
+    },
+    output: {
+      filename: `[name].${process.env.VUE_APP_Version}.${Timestamp}.js`,
+      chunkFilename: `[name].${process.env.VUE_APP_Version}.${Timestamp}.js`
     }
   },
   // 反向代理
