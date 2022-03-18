@@ -226,7 +226,7 @@ export default {
   name: "Home",
   data() {
     return {
-      overlay: false,
+      overlay: true,
       loader: null,
       loading: false,
       time: "2021秋季",
@@ -234,12 +234,12 @@ export default {
       nameRules: [(v) => !!v || "姓名不能为空哦"],
       group: "",
       groups: [
-        { index: 1, name: "产品" },
-        { index: 2, name: "运营" },
-        { index: 3, name: "设计" },
-        { index: 4, name: "前端" },
+        { index: 1, name: "产品", disabled: true },
+        { index: 2, name: "运营", disabled: true },
+        { index: 3, name: "设计", disabled: true },
+        { index: 4, name: "前端", disabled: true },
         { index: 5, name: "后端", disabled: true },
-        { index: 6, name: "移动" },
+        { index: 6, name: "移动", disabled: true },
         { index: 7, name: "游戏", disabled: true },
       ],
       groupRules: [(v) => !!v || "组别不能为空哦"],
