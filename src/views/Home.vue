@@ -220,7 +220,9 @@
 import Bottom from "../components/Bottom.vue";
 import { sendForm } from "@/api/sendForm";
 import { getUploadToken } from "@/api/qiniu";
-const qiniu = require("qiniu-js");
+const OSS = require("ali-oss")
+const qiniu = require("qiniu-js")
+
 export default {
   components: { Bottom },
   name: "Home",
@@ -241,6 +243,7 @@ export default {
         { index: 5, name: "后端", disabled: false },
         { index: 6, name: "移动", disabled: false },
         { index: 7, name: "游戏", disabled: false },
+        { index: 8, name: "Lab", disabled: false},
       ],
       groupRules: [(v) => !!v || "组别不能为空哦"],
       phone: "",
@@ -268,7 +271,6 @@ export default {
       docmHeight: document.documentElement.clientHeight,
       showHeight: document.documentElement.clientHeight,
       hidShow: true,
-      loading: false,
       success: {
         state: true,
         info: "报名信息提交成功 ~",
@@ -297,8 +299,9 @@ export default {
       } else {
         this.loading = true;
         var formData = new FormData();
-        const tp1 = getUploadToken();
-        const tp2 = getUploadToken();
+        // const credentials = (await getUploadToken()).credentials;
+        // const tp1 = getUploadToken();
+        // const tp2 = getUploadToken();
         formData.append("name", this.name);
         formData.append("sex", this.sex);
         formData.append("phone_number", this.phone);
@@ -306,7 +309,29 @@ export default {
         formData.append("grade", this.grade);
         formData.append("major", this.major);
         formData.append("group", this.group);
-        const token1 = (await tp1).token;
+        // const token1 = (await tp1).token;
+        // const client = new OSS({
+        //   // yourRegion填写Bucket所在地域。以华东1（杭州）为例，Region填写为oss-cn-hangzhou。
+        //   region: 'oss-cn-beijing',
+        //   // 从STS服务获取的临时访问密钥（AccessKey ID和AccessKey Secret）。
+        //   accessKeyId: credentials.AccessKeyId,
+        //   accessKeySecret: credentials.AccessKeySecret,
+        //   // 从STS服务获取的安全令牌（SecurityToken）。
+        //   stsToken: credentials.SecurityToken,
+        //   refreshSTSToken: async () => {
+        //     // 向您搭建的STS服务获取临时访问凭证。
+        //     const info = await getUploadToken()
+        //     return {
+        //       accessKeyId: info.credentials.accessKeyId,
+        //       accessKeySecret: info.credentials.accessKeySecret,
+        //       stsToken: info.credentials.stsToken
+        //     }
+        //   },
+        //   // 刷新临时访问凭证的时间间隔，单位为毫秒。
+        //   refreshSTSTokenInterval: 600000,
+        //   // 填写Bucket名称。
+        //   bucket: 'pivotstudio'
+        // });
         const rel = this.resume.name.split(".");
         const rekey =
           new Date().getTime().toString() +
@@ -317,47 +342,79 @@ export default {
           this.name.split(" ").join("-") +
           "简历." +
           rel[rel.length - 1];
-        const ob = qiniu.upload(this.resume, rekey, token1);
-        await new Promise((re, rj) => {
-          ob.subscribe(
-            null,
-            (err) => {
-              alert("文件上传失败");
-              rj(err);
-            },
-            (res) => {
-              re(res);
-            }
-          );
-        });
+        // const ob = qiniu.upload(this.resume, rekey, token1);
+        formData.append("resume", this.resume);
         formData.append("resume_key", rekey);
-        const token2 = (await tp2).token;
+        formData.append("work", this.work)
+        // try {
+        //   // 填写Object完整路径。Object完整路径中不能包含Bucket名称。
+        //   // 您可以通过自定义文件名（例如exampleobject.txt）或文件完整路径（例如exampledir/exampleobject.txt）的形式实现将数据上传到当前Bucket或Bucket中的指定目录。
+        //   // data对象可以自定义为file对象、Blob数据或者OSS Buffer。
+        //   const result = await client.put(
+        //       rekey,
+        //       this.resume
+        //   );
+        //   formData.append("resume_key", rekey);
+        //   console.log(result);
+        // } catch (e) {
+        //   alert("文件上传失败");
+        //   console.log(e);
+        // }
+
+        // await new Promise((re, rj) => {
+        //   ob.subscribe(
+        //     null,
+        //     (err) => {
+        //       alert("文件上传失败");
+        //       rj(err);
+        //     },
+        //     (res) => {
+        //       re(res);
+        //     }
+        //   );
+        // });
+        // const token2 = (await tp2).token;
         if (this.work) {
           const workkey =
-            new Date().getTime().toString() +
-            this.phone +
-            "/" +
-            this.group +
-            "/" +
-            "/" +
-            this.name.split(" ").join("-") +
-            "-" +
-            this.work.name.split(" ").join("-");
-          const ob2 = qiniu.upload(this.work, workkey, token2);
-          await new Promise((re, rj) => {
-            ob2.subscribe(
-              null,
-              (err) => {
-                alert("文件上传失败");
-                rj(err);
-              },
-              (res) => {
-                re(res);
-              }
-            );
-          });
+              new Date().getTime().toString() +
+              this.phone +
+              "/" +
+              this.group +
+              "/" +
+              "/" +
+              this.name.split(" ").join("-") +
+              "-" +
+              this.work.name.split(" ").join("-");
           formData.append("work_key", workkey);
         }
+          // const ob2 = qiniu.upload(this.work, workkey, token2);
+          // await new Promise((re, rj) => {
+          //   ob2.subscribe(
+          //     null,
+          //     (err) => {
+          //       alert("文件上传失败");
+          //       rj(err);
+          //     },
+          //     (res) => {
+          //       re(res);
+          //     }
+          //   );
+          // });
+        //   try {
+        //     // 填写Object完整路径。Object完整路径中不能包含Bucket名称。
+        //     // 您可以通过自定义文件名（例如exampleobject.txt）或文件完整路径（例如exampledir/exampleobject.txt）的形式实现将数据上传到当前Bucket或Bucket中的指定目录。
+        //     // data对象可以自定义为file对象、Blob数据或者OSS Buffer。
+        //     const result = await client.put(
+        //         workkey,
+        //         this.work
+        //     );
+        //     console.log(result);
+        //     formData.append("work_key", workkey);
+        //   } catch (e) {
+        //     alert("文件上传失败");
+        //     console.log(e);
+        //   }
+        // }
         sendForm(formData)
           .then((res) => {
             this.loading = false;

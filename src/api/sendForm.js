@@ -10,3 +10,10 @@ export const sendForm = (data) => {
     }
   })
 }
+
+export const uploadFile = (data) => {
+  return request({
+    method: "POST",
+    url: "/uploadFile"
+  })
+}
