@@ -16,7 +16,7 @@
           <v-row>
             <v-col>
               <v-icon @click="gotoH5">mdi-application-outline</v-icon>
-              <a href="https://husthole.pivotstudio.cn">H5网页版</a>
+              <a href="https://husthole.com">H5网页版</a>
             </v-col>
           </v-row>
           <v-row>
@@ -67,7 +67,7 @@ export default {
       this.$router.push({ path: "/" });
     },
     gotoH5() {
-      window.open("https://husthole.pivotstudio.cn");
+      window.open("https://husthole.com");
     },
     gotoDownloadAndroid() {
       window.open(
