@@ -23,7 +23,7 @@
             <v-col>
               <v-icon @click="gotoDownloadAndroid">mdi-download</v-icon>
               <a
-                href="https://husthole-img.oss-cn-beijing.aliyuncs.com/husthole/download/Husthole.apk?versionId=CAEQIxiBgIDeloSGhxgiIDc1MzI0ZjZkMzViMDRlNDQ5OGJjMTQ1MTZkZDllOWZk"
+                href="https://husthole-img.oss-cn-beijing.aliyuncs.com/husthole/download/Husthole.apk"
                 >Android下载</a
               >
             </v-col>
